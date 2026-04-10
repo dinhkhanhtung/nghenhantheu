@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
 
 const reviews = [
@@ -33,7 +33,7 @@ const reviews = [
 ];
 
 export default function ReviewsCarousel() {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [activeIndex] = useState(0);
 
   return (
     <section className="bg-[#fffbf5] py-20">
