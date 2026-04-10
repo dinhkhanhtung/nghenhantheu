@@ -5,7 +5,7 @@ import {
   Bold, Italic, Underline, List, ListOrdered, 
   AlignLeft, AlignCenter, AlignRight, Image as ImageIcon,
   Link, Code, Quote, Heading1, Heading2, Heading3,
-  Undo, Redo, Save, Send, Clock, Sparkles, Share2,
+  Undo, Redo, Send, Clock, Sparkles, Share2,
   X, Upload, Grid, Search
 } from "lucide-react";
 

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { 
-  Plus, Edit, Trash2, Eye, Copy, DollarSign, TrendingUp, 
-  BarChart3, Activity, Calendar, Settings, Code
+  Plus, Edit, Trash2, Eye, DollarSign, TrendingUp, 
+  BarChart3, Activity, Calendar, Code
 } from "lucide-react";
 
 export default function AdsensePage() {

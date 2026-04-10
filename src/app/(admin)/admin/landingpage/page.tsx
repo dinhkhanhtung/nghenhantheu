@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { 
-  Plus, Edit, Trash2, Search, Eye, Copy, Layout, 
-  Globe, Smartphone, Monitor, Play, Pause
+  Plus, Edit, Trash2, Eye, Copy, Layout, 
+  Globe, Smartphone, Monitor, Pause
 } from "lucide-react";
 
 export default function LandingPageManagement() {

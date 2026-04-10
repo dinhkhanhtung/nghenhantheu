@@ -2,13 +2,12 @@
 
 import { useState } from "react";
 import { 
-  Plus, Edit, Trash2, Search, Filter, MoreVertical,
+  Plus, Edit, Trash2, Search, Filter,
   FolderOpen, ChevronRight, ChevronDown, Image as ImageIcon
 } from "lucide-react";
 
 export default function CategoriesPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
 
   // Mock data
   const categories = [

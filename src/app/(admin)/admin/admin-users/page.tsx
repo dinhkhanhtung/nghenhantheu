@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { 
-  Plus, Search, Mail, Shield, MoreVertical, Trash2, Key,
+  Search, Shield, MoreVertical, Trash2, Key,
   UserPlus, Crown, ShieldCheck, Clock, CheckCircle
 } from "lucide-react";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { 
-  Key, Save, CheckCircle, AlertCircle, Lock, Unlock, Copy,
+  Save, CheckCircle, AlertCircle, Lock, Unlock, Copy,
   Facebook, Image as ImageIcon, Mail, Zap, Settings as SettingsIcon
 } from "lucide-react";
 

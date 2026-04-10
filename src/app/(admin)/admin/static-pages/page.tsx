@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { 
-  Plus, Edit, Trash2, Eye, Search, FileText, Globe, 
-  Layout, MoreVertical, Calendar, Clock
+  Plus, Edit, Trash2, Eye, FileText, Globe, 
+  Layout, Clock
 } from "lucide-react";
 
 export default function StaticPagesPage() {

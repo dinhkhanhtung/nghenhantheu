@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import { 
-  Sparkles, Download, Upload, RefreshCw, Image as ImageIcon, 
-  Palette, Layout, Wand2, Save, History, Trash2, Copy, CheckCircle
+  Sparkles, Download, RefreshCw, Image as ImageIcon, 
+  Palette, Layout, Wand2, Save, Copy, CheckCircle
 } from "lucide-react";
 
 export default function AIImageGeneratorPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [prompt, setPrompt] = useState("");
-  const [generatedImages, setGeneratedImages] = useState<string[]>([]);
+  const [generatedImages] = useState<string[]>([]);
 
   const promptTemplates = [
     "Tranh thêu hoa sen treo trong phòng khách hiện đại",
@@ -150,7 +150,7 @@ export default function AIImageGeneratorPage() {
             ) : (
               <div className="border-2 border-dashed border-[#e7e5e4] rounded-lg p-12 text-center">
                 <ImageIcon size={48} className="mx-auto mb-4 text-[#a8a29e]" />
-                <p className="text-[#57534e]">Nhập mô tả và nhấn "Tạo ảnh" để bắt đầu</p>
+                <p className="text-[#57534e]">Nhập mô tả và nhấn &quot;Tạo ảnh&quot; để bắt đầu</p>
               </div>
             )}
           </div>

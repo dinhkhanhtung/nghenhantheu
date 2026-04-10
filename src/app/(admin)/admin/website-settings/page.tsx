@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { 
-  Globe, Phone, Mail, MapPin, Clock, Save, Upload,
-  Image as ImageIcon, Palette, Layout, Settings as SettingsIcon
+  Globe, Phone, Clock, Save, Upload,
+  Image as ImageIcon, Palette, Layout
 } from "lucide-react";
 
 export default function WebsiteSettingsPage() {

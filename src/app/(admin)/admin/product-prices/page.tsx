@@ -3,11 +3,11 @@
 import { useState } from "react";
 import { 
   Search, Filter, Edit, Save, Percent, DollarSign, TrendingUp,
-  Calendar, Tag, Package, MoreVertical, CheckCircle
+  Calendar, Package, MoreVertical
 } from "lucide-react";
 
 export default function ProductPricesPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory] = useState<string>("all");
 
   const products = [
     {
