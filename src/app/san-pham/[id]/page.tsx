@@ -88,7 +88,7 @@ const relatedProducts = [
 // export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
 //   const product = products.find(p => p.id === params.id);
 //   return {
-//     title: product ? `${product.name} - Tranh Thêu Tay Hoa Thượng` : "Sản Phẩm",
+//     title: product ? `${product.name} - Tranh Thêu Tay Hằng Khoa` : "Sản Phẩm",
 //     description: product?.description || "Chi tiết sản phẩm",
 //   };
 // }

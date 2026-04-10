@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Phụ Kiện Thêu - Tranh Thêu Tay Hoa Thượng",
+  title: "Phụ Kiện Thêu - Tranh Thêu Tay Hằng Khoa",
   description: "Khung tranh, kim chỉ, vải canvas và các phụ kiện thêu tay cao cấp.",
 };
 

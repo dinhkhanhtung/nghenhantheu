@@ -53,6 +53,8 @@ const navLinks = [
     href: "/san-pham?category=tranh-bieu-tuong", 
     label: "Biểu Tượng",
   },
+  { href: "/gioi-thieu", label: "Giới thiệu" },
+  { href: "/khoa-hoc", label: "Khóa học" },
   { href: "/bai-viet", label: "Blog" },
 ];
 
@@ -83,7 +85,7 @@ export default function Header() {
                   TRANH THÊU TAY
                 </div>
                 <div className="text-[10px] lg:text-xs tracking-[0.3em] text-[#57534e] uppercase">
-                  Hoa Thượng
+                  Hằng Khoa
                 </div>
               </div>
             </Link>

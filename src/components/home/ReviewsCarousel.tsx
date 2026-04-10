@@ -18,7 +18,7 @@ const reviews = [
     name: "Trần Văn Hùng",
     location: "TP. Hồ Chí Minh",
     rating: 5,
-    text: "I bought quite a few embroidery artworks from Hoa Thượng over the years. My wife loves them and displays them often. She says that she loves both the unique designs as well as how well the pieces are crafted.",
+    text: "I bought quite a few embroidery artworks from Hằng Khoa over the years. My wife loves them and displays them often. She says that she loves both the unique designs as well as how well the pieces are crafted.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80",
   },
   {

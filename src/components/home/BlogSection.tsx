@@ -23,7 +23,7 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: "Workshop Thêu Tay Tại Hoa Thượng",
+    title: "Workshop Thêu Tay Tại Hằng Khoa",
     excerpt: "Những khoảnh khắc đáng nhớ từ buổi workshop thêu tay tháng 2.",
     image: "https://images.unsplash.com/photo-1459749411177-047381bb3ece?w=600&q=80",
     category: "Tin Tức & Sự Kiện",

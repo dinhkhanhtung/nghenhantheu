@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Bài Viết - Tranh Thêu Tay Hoa Thượng",
+  title: "Bài Viết - Tranh Thêu Tay Hằng Khoa",
   description: "Khám phá câu chuyện, tin tức và kiến thức về nghệ thuật thêu tay truyền thống.",
 };
 

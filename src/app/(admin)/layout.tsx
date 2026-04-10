@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - Tranh Thêu Tay Hoa Thượng",
+  title: "Admin Dashboard - Tranh Thêu Tay Hằng Khoa",
   description: "Quản lý website bán tranh thêu tay",
 };
 

@@ -67,7 +67,7 @@ export default function ContactPage() {
                 <div>
                   <h3 className="font-semibold text-foreground">Địa chỉ</h3>
                   <p className="mt-1 text-muted-foreground">
-                    Xóm Hoa Thượng, Cũ Văn, Phú Lương, Thái Nguyên, Việt Nam
+                    Xóm Hằng Khoa, Cũ Văn, Phú Lương, Thái Nguyên, Việt Nam
                   </p>
                 </div>
               </div>

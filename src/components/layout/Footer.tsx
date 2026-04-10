@@ -59,7 +59,7 @@ export default function Footer() {
                 TRANH THÊU TAY
               </div>
               <div className="text-[10px] tracking-[0.3em] text-white/60 uppercase">
-                Hoa Thượng
+                Hằng Khoa
               </div>
             </div>
             <p className="text-sm text-white/60 leading-relaxed max-w-sm">
@@ -143,7 +143,7 @@ export default function Footer() {
         <div className="mx-auto max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-white/40">
-              © 2024 Tranh Thêu Tay Hoa Thượng. All rights reserved.
+              © 2024 Tranh Thêu Tay Hằng Khoa. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link href="#" className="text-xs text-white/40 hover:text-white/60 transition-colors">
