@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import BlogSkeleton from "@/components/blog/BlogSkeleton";
 
 const blogPosts = [
   {
@@ -71,6 +73,16 @@ const categories = [
 ];
 
 export default function BlogPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay for natural feel
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
@@ -103,6 +115,9 @@ export default function BlogPage() {
         </div>
 
         {/* Blog Grid */}
+        {isLoading ? (
+          <BlogSkeleton />
+        ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
             <motion.article
@@ -140,6 +155,7 @@ export default function BlogPage() {
             </motion.article>
           ))}
         </div>
+        )}
       </div>
     </div>
   );
