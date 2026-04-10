@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import Image from "next/image";
@@ -33,8 +32,6 @@ const reviews = [
 ];
 
 export default function ReviewsCarousel() {
-  const [activeIndex] = useState(0);
-
   return (
     <section className="bg-[#fffbf5] py-20">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">

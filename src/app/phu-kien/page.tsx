@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export const metadata: Metadata = {
   title: "Phụ Kiện Thêu - Tranh Thêu Tay Hoa Thượng",

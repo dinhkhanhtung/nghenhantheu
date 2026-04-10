@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
+import { ChevronRight, Share2, Facebook, Twitter } from "lucide-react";
 
 interface BlogPostPageProps {
   params: { id: string };

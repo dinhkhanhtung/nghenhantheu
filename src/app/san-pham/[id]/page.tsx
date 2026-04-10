@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  ShoppingBag, Heart, Share2, ChevronRight, Star, 
+  Heart, ChevronRight, Star, 
   ChevronDown, Minus, Plus, CheckCircle2
 } from "lucide-react";
 

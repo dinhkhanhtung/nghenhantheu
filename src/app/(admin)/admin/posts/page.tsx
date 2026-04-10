@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Plus, Search, Filter, MoreHorizontal, Edit, Trash2, Eye, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock3, Download } from "lucide-react";
+import { Plus, Search, Edit, Trash2, Eye, ChevronLeft, ChevronRight, CheckCircle2, XCircle, Clock3, Download } from "lucide-react";
 
 const mockPosts = [
   { id: "1", title: "Tranh thêu hoa sen - Ý nghĩa và cách chọn", category: "Hoa sen", status: "published", views: 1250, createdAt: "2024-01-15", thumbnail: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=100&q=80" },
