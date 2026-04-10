@@ -16,12 +16,10 @@ const menuItems = [
 export default function MobileBottomBar() {
   const pathname = usePathname();
   const [isVisible, setIsVisible] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [cartCount, setCartCount] = useState(2); // Mock cart count
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     // Only show on mobile devices
     const checkMobile = () => {
       setIsVisible(window.innerWidth < 1024);
@@ -31,9 +29,6 @@ export default function MobileBottomBar() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-
-  // Prevent hydration mismatch
-  if (!mounted) return null;
 
   // Don't show on admin pages
   if (pathname?.startsWith("/admin")) return null;

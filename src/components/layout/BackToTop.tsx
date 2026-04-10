@@ -22,7 +22,6 @@ export default function BackToTop() {
     return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
-  // Prevent hydration mismatch by not rendering until mounted
   if (!mounted) return null;
 
   const scrollToTop = () => {
@@ -33,7 +32,7 @@ export default function BackToTop() {
   };
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isVisible && (
         <motion.button
           initial={{ opacity: 0, scale: 0.8 }}
