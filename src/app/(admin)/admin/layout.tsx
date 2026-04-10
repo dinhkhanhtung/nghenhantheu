@@ -7,11 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, FileText, ShoppingBag, Image as ImageIcon,
   Users, Settings, MessageSquare, LogOut, Menu, X, ChevronRight,
-  Bell, Search, Layers, Tag, BarChart3
+  Bell, Search, Layers, Tag, BarChart3, PenTool
 } from "lucide-react";
 
 const navItems = [
   { href: "/admin", icon: <LayoutDashboard size={20} />, label: "Dashboard" },
+  { href: "/admin/editor", icon: <PenTool size={20} />, label: "Trình soạn thảo" },
   { href: "/admin/posts", icon: <FileText size={20} />, label: "Bài viết" },
   { href: "/admin/products", icon: <ShoppingBag size={20} />, label: "Sản phẩm" },
   { href: "/admin/categories", icon: <Tag size={20} />, label: "Danh mục" },
