@@ -17,7 +17,7 @@ const values = [
     title: "Cảm Hứng Thiêng Liêng",
     subtitle: "Divinely-Inspired",
     description: "Lấy cảm hứng từ vẻ đẹp của thiên nhiên và nghệ thuật truyền thống, mọi thiết kế của chúng tôi đều bắt nguồn từ di sản văn hóa phong phú. Mỗi đường kim mũi chỉ đều mang theo sự tôn kính đối với nghệ thuật cổ truyền.",
-    image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80",
     reverse: true,
   },
   {
@@ -25,7 +25,7 @@ const values = [
     title: "Chất Lượng Thủ Công",
     subtitle: "Quality Craftsmanship",
     description: "Làm việc với các nghệ nhân địa phương tài hoa, vẻ đẹp của những sản phẩm thủ công cao cấp của chúng tôi sẽ vượt qua thử thách của thời gian. Mỗi tác phẩm đều là kết tinh của sự kiên nhẫn và tâm huyết.",
-    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80",
     reverse: false,
   },
 ];

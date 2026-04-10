@@ -8,7 +8,7 @@ const categories = [
   {
     id: 1,
     name: "Tranh Thêu Phong Cảnh",
-    image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=800&q=80",
     href: "/san-pham?category=phong-canh",
     size: "large",
   },
@@ -22,14 +22,14 @@ const categories = [
   {
     id: 3,
     name: "Phụ Kiện Thêu",
-    image: "https://images.unsplash.com/photo-1606293926075-69a00febf281?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80",
     href: "/phu-kien",
     size: "small",
   },
   {
     id: 4,
     name: "Khóa Học Thêu",
-    image: "https://images.unsplash.com/photo-1459749411177-047381bb3ece?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?w=800&q=80",
     href: "/khoa-hoc",
     size: "medium",
   },

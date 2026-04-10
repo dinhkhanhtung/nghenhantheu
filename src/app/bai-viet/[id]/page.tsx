@@ -23,7 +23,7 @@ const blogPosts = [
       <h3>Ý nghĩa văn hóa</h3>
       <p>Mỗi tác phẩm thêu tay không chỉ là một sản phẩm thẩm mỹ mà còn mang theo những thông điệp, ước nguyện của người tạo ra nó. Các họa tiết hoa sen, chim hạc, tùng cúc trúc mai đều mang những ý nghĩa sâu sắc về đạo đức, triết lý sống.</p>
     `,
-    image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=1200&q=80",
     category: "Văn Hóa Truyền Thống",
     date: "15 Tháng 3, 2024",
     readTime: "5 phút đọc",
@@ -45,7 +45,7 @@ const blogPosts = [
       <h3>Chất liệu đặc biệt</h3>
       <p>Chúng tôi sử dụng vải lụa tự nhiên cao cấp và chỉ thêu cotton nhập khẩu từ Nhật Bản. Sự kết hợp này giúp tác phẩm có độ bền cao và màu sắc tươi sáng qua nhiều năm.</p>
     `,
-    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=1200&q=80",
+    image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=1200&q=80",
     category: "Câu Chuyện Sản Phẩm",
     date: "10 Tháng 3, 2024",
     readTime: "4 phút đọc",
