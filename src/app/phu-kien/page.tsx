@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
 import { Eye, ShoppingBag, Heart } from "lucide-react";
 import { useState } from "react";
+import { Toast, useToast } from "@/components/ui/Toast";
 
 interface Product {
   id: string;
@@ -16,12 +19,35 @@ interface Product {
 
 function ProductCard({ product, index }: { product: Product; index: number }) {
   const [isWishlisted, setIsWishlisted] = useState(false);
+  const sessionData = useSession();
+  const session = sessionData?.data;
+  const router = useRouter();
+  const { toast, showToast, hideToast } = useToast();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("vi-VN", {
       style: "currency",
       currency: "VND",
     }).format(price);
+  };
+
+  const handleWishlist = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!session) {
+      showToast("Vui lòng đăng nhập để thêm vào yêu thích", "warning");
+      setTimeout(() => {
+        router.push("/dang-nhap");
+      }, 1500);
+      return;
+    }
+
+    setIsWishlisted(!isWishlisted);
+    showToast(
+      isWishlisted ? "Đã xóa khỏi yêu thích" : "Đã thêm vào yêu thích",
+      "success"
+    );
   };
 
   return (
@@ -32,6 +58,8 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative"
     >
+      <Toast toast={toast} onClose={hideToast} />
+      
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f5f5f4] mb-3">
         <Link href={`/san-pham/${product.id}`}>
@@ -45,7 +73,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
 
         {/* Wishlist Button - Top Right */}
         <button
-          onClick={() => setIsWishlisted(!isWishlisted)}
+          onClick={handleWishlist}
           className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-sm"
         >
           <Heart
