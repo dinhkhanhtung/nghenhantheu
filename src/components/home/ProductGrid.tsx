@@ -127,7 +127,12 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
   return (
     <div className="group">
       <div className="relative aspect-square overflow-hidden bg-[#f5f5f4] mb-4 rounded-lg shadow-sm hover:shadow-xl transition-shadow duration-500">
-        <Link href={`/san-pham/${product.id}`} className="block w-full h-full">
+        {/* Main Link - covers entire image area */}
+        <Link 
+          href={`/san-pham/${product.id}`} 
+          className="absolute inset-0 z-0"
+          aria-label={`Xem chi tiết ${product.name}`}
+        >
           {/* Main Image */}
           <Image
             src={product.image}
@@ -148,20 +153,20 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
         </Link>
 
         {/* Gradient Overlay on Hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         {/* Badge */}
         {product.badge && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#b45309] to-[#d97706] text-white text-[10px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-lg z-10">
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#b45309] to-[#d97706] text-white text-[10px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-lg z-20 pointer-events-none">
             {product.badge}
           </div>
         )}
 
         {/* Quick View Button - Floating */}
-        <div className="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10">
+        <div className="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-20">
           <button 
             onClick={(e) => {
-              e.preventDefault();
+              e.stopPropagation();
               onQuickView(product);
             }}
             className="w-full bg-white/95 backdrop-blur-sm text-[#1c1917] py-3 text-xs font-semibold tracking-wide hover:bg-[#b45309] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 rounded-lg shadow-lg"
@@ -172,7 +177,13 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
         </div>
 
         {/* Wishlist Button */}
-        <button className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#b45309] hover:text-white shadow-md z-10">
+        <button 
+          onClick={(e) => {
+            e.stopPropagation();
+            // TODO: Add wishlist functionality
+          }}
+          className="absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#b45309] hover:text-white shadow-md z-20"
+        >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
