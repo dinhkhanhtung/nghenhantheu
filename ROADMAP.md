@@ -36,7 +36,7 @@
 
 ## 🎯 LỘ TRÌNH TRIỂN KHAI
 
-### GIAI ĐOẠN 1: BÁN HÀNG HOÀN CHỈNH (2 tuần)
+### 🟡 GIAI ĐOẠN 1: BÁN HÀNG HOÀN CHỈNH (2 tuần) - ĐANG THỰC HIỆN
 
 #### 1.1 Thanh Toán Tích Hợp ⭐⭐⭐⭐⭐
 - [ ] Tích hợp VNPay (QR Code + thẻ)

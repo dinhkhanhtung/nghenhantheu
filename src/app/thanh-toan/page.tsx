@@ -67,12 +67,62 @@ export default function CheckoutPage() {
         shipping,
         total,
         paymentMethod: formData.paymentMethod,
-        status: "Chờ xác nhận",
+        status: formData.paymentMethod === "VNPAY" || formData.paymentMethod === "MOMO" 
+          ? "Chờ thanh toán" 
+          : "Chờ xác nhận",
         createdAt: serverTimestamp(),
       };
 
+      // Save order to get order ID
       const docRef = await addDoc(collection(db, "orders"), orderData);
-      setOrderId(docRef.id.substring(0, 6).toUpperCase());
+      const newOrderId = docRef.id;
+      const orderCode = newOrderId.substring(0, 6).toUpperCase();
+
+      // Handle online payments
+      if (formData.paymentMethod === "VNPAY") {
+        // Create VNPay payment
+        const response = await fetch("/api/payment/vnpay/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderId: newOrderId,
+            amount: total,
+            orderInfo: `Thanh toan don hang ${orderCode}`,
+          }),
+        });
+        
+        if (response.ok) {
+          const { paymentUrl } = await response.json();
+          window.location.href = paymentUrl;
+          return;
+        } else {
+          throw new Error("Không thể tạo thanh toán VNPay");
+        }
+      }
+
+      if (formData.paymentMethod === "MOMO") {
+        // Create Momo payment
+        const response = await fetch("/api/payment/momo/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            orderId: newOrderId,
+            amount: total,
+            orderInfo: `Thanh toan don hang ${orderCode}`,
+          }),
+        });
+        
+        if (response.ok) {
+          const { payUrl } = await response.json();
+          window.location.href = payUrl;
+          return;
+        } else {
+          throw new Error("Không thể tạo thanh toán Momo");
+        }
+      }
+
+      // COD or BANK - show success
+      setOrderId(orderCode);
       setOrderSuccess(true);
       clearCart();
     } catch (error) {
@@ -185,6 +235,44 @@ export default function CheckoutPage() {
                   Phương thức thanh toán
                 </h2>
                 <div className="space-y-3">
+                  {/* VNPay */}
+                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'VNPAY' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="VNPAY"
+                      checked={formData.paymentMethod === "VNPAY"}
+                      onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
+                      className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-[#1c1917]">VNPay</p>
+                        <span className="px-2 py-0.5 bg-[#b45309] text-white text-[10px] font-bold rounded">QR Code</span>
+                      </div>
+                      <p className="text-xs text-[#57534e]">Thanh toán qua QR Code hoặc thẻ ngân hàng.</p>
+                    </div>
+                  </label>
+
+                  {/* Momo */}
+                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'MOMO' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
+                    <input 
+                      type="radio" 
+                      name="paymentMethod" 
+                      value="MOMO"
+                      checked={formData.paymentMethod === "MOMO"}
+                      onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
+                      className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
+                    />
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="font-bold text-[#1c1917]">Ví Momo</p>
+                        <span className="px-2 py-0.5 bg-pink-500 text-white text-[10px] font-bold rounded">Ví điện tử</span>
+                      </div>
+                      <p className="text-xs text-[#57534e]">Thanh toán nhanh qua ví Momo.</p>
+                    </div>
+                  </label>
+
                   <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'COD' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
                     <input 
                       type="radio" 
