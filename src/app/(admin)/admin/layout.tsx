@@ -8,18 +8,23 @@ import {
   LayoutDashboard, FileText, ShoppingBag, Image as ImageIcon,
   Users, Settings, MessageSquare, LogOut, Menu, X, ChevronRight,
   Bell, Search, Layers, Tag, BarChart3, PenTool, Layout, Reply,
-  DollarSign, File, Shield, Globe, Key, Sparkles
+  DollarSign, File, Shield, Globe, Key, Sparkles, ShoppingCart,
+  Folder, Megaphone, Package
 } from "lucide-react";
 
 const navItems = [
   { href: "/admin", icon: <LayoutDashboard size={20} />, label: "Dashboard" },
+  { href: "/admin/notifications", icon: <Bell size={20} />, label: "Thông báo" },
   { href: "/admin/editor", icon: <PenTool size={20} />, label: "Trình soạn thảo" },
   { href: "/admin/posts", icon: <FileText size={20} />, label: "Bài viết" },
   { href: "/admin/products", icon: <ShoppingBag size={20} />, label: "Sản phẩm" },
+  { href: "/admin/orders", icon: <ShoppingCart size={20} />, label: "Đơn hàng" },
   { href: "/admin/categories", icon: <Tag size={20} />, label: "Danh mục" },
   { href: "/admin/landingpage", icon: <Layout size={20} />, label: "Landing Page" },
   { href: "/admin/comments", icon: <MessageSquare size={20} />, label: "Comment" },
   { href: "/admin/facebook-comments", icon: <Reply size={20} />, label: "Facebook Comment" },
+  { href: "/admin/media", icon: <Folder size={20} />, label: "Thư viện ảnh" },
+  { href: "/admin/banners", icon: <Megaphone size={20} />, label: "Banner" },
   { href: "/admin/adsense", icon: <DollarSign size={20} />, label: "AdSense" },
   { href: "/admin/static-pages", icon: <File size={20} />, label: "Trang tĩnh" },
   { href: "/admin/admin-users", icon: <Shield size={20} />, label: "Quản trị viên" },
@@ -27,8 +32,6 @@ const navItems = [
   { href: "/admin/api-settings", icon: <Key size={20} />, label: "Cài đặt API" },
   { href: "/admin/product-prices", icon: <DollarSign size={20} />, label: "Quản lý giá" },
   { href: "/admin/ai-image-generator", icon: <Sparkles size={20} />, label: "Tạo ảnh AI" },
-  { href: "/admin/media", icon: <ImageIcon size={20} />, label: "Thư viện ảnh" },
-  { href: "/admin/banners", icon: <Layers size={20} />, label: "Banner/Slider" },
   { href: "/admin/contacts", icon: <MessageSquare size={20} />, label: "Liên hệ" },
   { href: "/admin/analytics", icon: <BarChart3 size={20} />, label: "Thống kê" },
   { href: "/admin/users", icon: <Users size={20} />, label: "Người dùng" },
