@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ShoppingBag, Menu, X, ChevronDown } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, ChevronDown, Heart, User } from "lucide-react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWebsite } from "@/context/WebsiteContext";
@@ -119,6 +119,18 @@ export default function Header() {
               >
                 <Search size={20} />
               </button>
+              <Link
+                href="/yeu-thich"
+                className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <Heart size={20} />
+              </Link>
+              <Link
+                href="/tai-khoan"
+                className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
+              >
+                <User size={20} />
+              </Link>
               <Link
                 href="/gio-hang"
                 className="p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] flex items-center justify-center"
