@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
+import AdminSidebar from "@/components/admin/AdminSidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,8 +21,13 @@ export default function AdminRootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+      <body className={`${inter.variable} font-sans antialiased bg-[#f5f5f4]`}>
+        <div className="flex min-h-screen">
+          <AdminSidebar />
+          <main className="flex-1 ml-64">
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

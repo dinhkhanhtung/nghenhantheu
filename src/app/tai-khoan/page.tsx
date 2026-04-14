@@ -1,0 +1,402 @@
+"use client";
+
+import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  User, ShoppingBag, Heart, BookOpen, Settings,
+  LogOut, MapPin, Phone, Mail, Camera, ChevronRight,
+  Star, Clock, Award
+} from "lucide-react";
+
+const tabs = [
+  { id: "profile", label: "Hồ sơ", icon: User },
+  { id: "courses", label: "Khóa học", icon: BookOpen },
+  { id: "orders", label: "Đơn hàng", icon: ShoppingBag },
+  { id: "wishlist", label: "Yêu thích", icon: Heart },
+  { id: "settings", label: "Cài đặt", icon: Settings },
+];
+
+// Mock data
+const myCourses = [
+  {
+    id: 1,
+    title: "Thêu Cơ Bản: Hoa Cúc",
+    progress: 75,
+    totalLessons: 12,
+    completedLessons: 9,
+    thumbnail: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&q=80",
+    nextLesson: "Bài 10: Đường viền lá",
+    instructor: "Cô Hằng Khoa",
+  },
+  {
+    id: 2,
+    title: "Thêu Nâng Cao: Chim Hạc",
+    progress: 30,
+    totalLessons: 15,
+    completedLessons: 4,
+    thumbnail: "https://images.unsplash.com/photo-1452570053594-1b985d6ea890?w=400&q=80",
+    nextLesson: "Bài 5: Lông chim chi tiết",
+    instructor: "Thầy Minh",
+  },
+];
+
+const myOrders = [
+  {
+    id: "DH001",
+    date: "15/03/2024",
+    status: "Đã giao",
+    total: 11500000,
+    items: [{ name: "Túi Xách Da Thật", qty: 1, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=100&q=80" }],
+  },
+  {
+    id: "DH002",
+    date: "10/03/2024",
+    status: "Đang giao",
+    total: 650000,
+    items: [{ name: "Tranh Thêu Quạt Giấy", qty: 1, image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=100&q=80" }],
+  },
+];
+
+export default function AccountPage() {
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const [activeTab, setActiveTab] = useState("profile");
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px] flex items-center justify-center">
+        <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
+
+  if (!session) {
+    router.push("/dang-nhap");
+    return null;
+  }
+
+  const handleLogout = () => {
+    signOut({ callbackUrl: "/" });
+  };
+
+  return (
+    <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px] pb-12">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        {/* Page Title */}
+        <div className="mb-8">
+          <h1 className="text-2xl font-serif text-[#1c1917]">Tài khoản của tôi</h1>
+          <p className="text-sm text-[#57534e] mt-1">
+            Quản lý thông tin cá nhân, khóa học và đơn hàng
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Sidebar */}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-lg border border-[#e7e5e4] overflow-hidden">
+              {/* User Info */}
+              <div className="p-6 border-b border-[#e7e5e4]">
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16">
+                    <Image
+                      src={session.user?.image || "/avatar-placeholder.png"}
+                      alt={session.user?.name || "User"}
+                      fill
+                      className="rounded-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-medium text-[#1c1917]">{session.user?.name}</p>
+                    <p className="text-sm text-[#57534e]">{session.user?.email}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Navigation */}
+              <nav className="p-2">
+                {tabs.map((tab) => {
+                  const Icon = tab.icon;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors ${
+                        activeTab === tab.id
+                          ? "bg-[#b45309]/10 text-[#b45309] font-medium"
+                          : "text-[#57534e] hover:bg-[#f5f5f4]"
+                      }`}
+                    >
+                      <Icon size={18} />
+                      <span>{tab.label}</span>
+                    </button>
+                  );
+                })}
+                <hr className="my-2 border-[#e7e5e4]" />
+                <button
+                  onClick={handleLogout}
+                  className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut size={18} />
+                  <span>Đăng xuất</span>
+                </button>
+              </nav>
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="lg:col-span-9">
+            {activeTab === "profile" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-lg border border-[#e7e5e4] p-6"
+              >
+                <h2 className="text-lg font-medium text-[#1c1917] mb-6">Thông tin cá nhân</h2>
+                <div className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm text-[#57534e] mb-2">Họ và tên</label>
+                      <input
+                        type="text"
+                        defaultValue={session.user?.name || ""}
+                        className="w-full px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-[#57534e] mb-2">Email</label>
+                      <input
+                        type="email"
+                        defaultValue={session.user?.email || ""}
+                        readOnly
+                        className="w-full px-4 py-2.5 border border-[#e7e5e4] rounded-lg bg-[#f5f5f4] text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm text-[#57534e] mb-2">Số điện thoại</label>
+                      <div className="relative">
+                        <Phone size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#57534e]" />
+                        <input
+                          type="tel"
+                          placeholder="Thêm số điện thoại"
+                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm text-[#57534e] mb-2">Địa chỉ</label>
+                      <div className="relative">
+                        <MapPin size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#57534e]" />
+                        <input
+                          type="text"
+                          placeholder="Thêm địa chỉ"
+                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-end gap-3 pt-4 border-t border-[#e7e5e4]">
+                    <button className="px-6 py-2.5 border border-[#e7e5e4] rounded-lg text-sm hover:bg-[#f5f5f4] transition-colors">
+                      Hủy
+                    </button>
+                    <button className="px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors">
+                      Lưu thay đổi
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {activeTab === "courses" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
+              >
+                <h2 className="text-lg font-medium text-[#1c1917] mb-4">Khóa học của tôi</h2>
+                {myCourses.map((course) => (
+                  <div
+                    key={course.id}
+                    className="bg-white rounded-lg border border-[#e7e5e4] p-4 flex gap-4"
+                  >
+                    <div className="relative w-32 h-24 shrink-0">
+                      <Image
+                        src={course.thumbnail}
+                        alt={course.title}
+                        fill
+                        className="rounded-lg object-cover"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-medium text-[#1c1917] mb-1">{course.title}</h3>
+                      <p className="text-sm text-[#57534e] mb-2">Giảng viên: {course.instructor}</p>
+                      <div className="flex items-center gap-4 text-xs text-[#57534e] mb-3">
+                        <span className="flex items-center gap-1">
+                          <Clock size={12} />
+                          Bài tiếp theo: {course.nextLesson}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="flex-1 h-2 bg-[#e7e5e4] rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-[#b45309] rounded-full"
+                            style={{ width: `${course.progress}%` }}
+                          />
+                        </div>
+                        <span className="text-sm font-medium text-[#b45309]">{course.progress}%</span>
+                      </div>
+                      <p className="text-xs text-[#57534e] mt-2">
+                        {course.completedLessons}/{course.totalLessons} bài học
+                      </p>
+                    </div>
+                    <Link
+                      href={`/khoa-hoc/${course.id}`}
+                      className="shrink-0 self-center p-2 text-[#b45309] hover:bg-[#b45309]/10 rounded-lg transition-colors"
+                    >
+                      <ChevronRight size={20} />
+                    </Link>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+
+            {activeTab === "orders" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="space-y-4"
+              >
+                <h2 className="text-lg font-medium text-[#1c1917] mb-4">Đơn hàng của tôi</h2>
+                {myOrders.map((order) => (
+                  <div
+                    key={order.id}
+                    className="bg-white rounded-lg border border-[#e7e5e4] p-4"
+                  >
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#e7e5e4]">
+                      <div className="flex items-center gap-4">
+                        <span className="text-sm font-medium text-[#1c1917]">{order.id}</span>
+                        <span className="text-xs text-[#57534e]">{order.date}</span>
+                      </div>
+                      <span
+                        className={`text-xs px-3 py-1 rounded-full ${
+                          order.status === "Đã giao"
+                            ? "bg-green-100 text-green-700"
+                            : "bg-yellow-100 text-yellow-700"
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-16 h-16">
+                        <Image
+                          src={order.items[0].image}
+                          alt={order.items[0].name}
+                          fill
+                          className="rounded-lg object-cover"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium text-[#1c1917]">{order.items[0].name}</p>
+                        <p className="text-xs text-[#57534e]">x{order.items[0].qty}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-medium text-[#b45309]">
+                          {new Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(order.total)}
+                        </p>
+                        <Link
+                          href={`/don-hang/${order.id}`}
+                          className="text-xs text-[#b45309] hover:underline"
+                        >
+                          Xem chi tiết
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+
+            {activeTab === "wishlist" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-center py-12"
+              >
+                <Heart size={48} className="mx-auto text-[#e7e5e4] mb-4" />
+                <h3 className="text-lg font-medium text-[#1c1917] mb-2">
+                  Danh sách yêu thích trống
+                </h3>
+                <p className="text-sm text-[#57534e] mb-4">
+                  Lưu sản phẩm yêu thích để mua sắm sau
+                </p>
+                <Link
+                  href="/san-pham"
+                  className="inline-block px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors"
+                >
+                  Khám phá sản phẩm
+                </Link>
+              </motion.div>
+            )}
+
+            {activeTab === "settings" && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-white rounded-lg border border-[#e7e5e4] p-6"
+              >
+                <h2 className="text-lg font-medium text-[#1c1917] mb-6">Cài đặt tài khoản</h2>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
+                    <div>
+                      <p className="font-medium text-[#1c1917]">Đổi mật khẩu</p>
+                      <p className="text-sm text-[#57534e]">Cập nhật mật khẩu định kỳ để bảo mật</p>
+                    </div>
+                    <button className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm hover:bg-[#f5f5f4] transition-colors">
+                      Đổi mật khẩu
+                    </button>
+                  </div>
+                  <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
+                    <div>
+                      <p className="font-medium text-[#1c1917]">Thông báo email</p>
+                      <p className="text-sm text-[#57534e]">Nhận thông báo về khóa học và ưu đãi</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" defaultChecked className="sr-only peer" />
+                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[#b45309]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
+                    <div>
+                      <p className="font-medium text-[#1c1917]">Thông báo SMS</p>
+                      <p className="text-sm text-[#57534e]">Nhận thông báo về đơn hàng qua SMS</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input type="checkbox" className="sr-only peer" />
+                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[#b45309]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+                  <div className="flex items-center justify-between py-4">
+                    <div>
+                      <p className="font-medium text-red-600">Xóa tài khoản</p>
+                      <p className="text-sm text-[#57534e]">Xóa vĩnh viễn tài khoản và dữ liệu</p>
+                    </div>
+                    <button className="px-4 py-2 border border-red-200 text-red-600 rounded-lg text-sm hover:bg-red-50 transition-colors">
+                      Xóa tài khoản
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

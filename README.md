@@ -188,6 +188,61 @@ my-app/
 - Dữ liệu bài viết lưu trong Firestore (real-time)
 - Admin dashboard chỉ dùng localStorage auth (cần bảo mật thêm cho production)
 
+## Hệ thống Video Học Tập
+
+### Phương án lưu trữ: YouTube Unlisted (Miễn phí)
+
+Với 100+ video, 10 phút/video, 1000 học viên → **YouTube Unlisted** là lựa chọn tối ưu chi phí.
+
+### Quy trình upload video:
+
+1. **Upload lên YouTube:**
+   - Đăng nhập YouTube Studio (studio.youtube.com)
+   - Upload video → Chọn visibility: **Unlisted**
+   - Copy Video ID từ URL (vd: `youtube.com/watch?v=**dQw4w9WgXcQ**`)
+
+2. **Thêm vào Admin:**
+   - Vào Admin → Khóa học & Video
+   - Click "Thêm khóa học" hoặc chọn khóa học có sẵn
+   - Trong mục video, paste YouTube ID
+   - Thêm tiêu đề và thời lượng
+
+3. **Phân loại nội dung:**
+   - **Khóa học đầy đủ**: Series video có hệ thống
+   - **Tips & Tricks**: Video lẻ, ngắn, có thể bán riêng
+
+### Bảo vệ nội dung:
+
+```javascript
+// Trong trang học, sử dụng iframe với branding
+<iframe 
+  src={`https://www.youtube.com/embed/${videoId}?modestbranding=1&rel=0`}
+  className="w-full aspect-video"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+/>
+```
+
+**Lưu ý:**
+- Unlisted video không xuất hiện trong search/kênh
+- Chỉ người có link mới xem được
+- Có thể thêm watermark động bằng Canvas overlay
+
+### Cấu trúc URL quản lý:
+
+| Trang | Mô tả |
+|-------|-------|
+| `/admin/courses` | Quản lý tất cả khóa học |
+| `/khoa-hoc` | Trang danh sách khóa học (frontend) |
+| `/khoa-hoc/[id]` | Trang chi tiết khóa học |
+| `/tai-khoan` | Học viên xem khóa học đã đăng ký |
+
+### Tips tối ưu:
+
+1. **Chia nhỏ video**: Mỗi video 5-10 phút, khó download hàng loạt
+2. **Thumbnail chuẩn**: 1280x720, có logo thương hiệu
+3. **Tiêu đề YouTube**: Không ghi rõ nội dung (ví dụ: "Bài 1" thay vì "Hướng dẫn thêu hoa cúc")
+4. **Watermark**: Thêm tên học viên chạy ngang màn hình mỗi 30 giây
+
 ## License
 
 MIT License - Free for commercial use
