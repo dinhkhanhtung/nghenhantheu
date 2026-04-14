@@ -89,9 +89,12 @@
 - [x] Chuyển bài học (previous/next)
 - [ ] Resume: tự động vào bài đang học dở
 
-#### 2.2 Admin Khóa Học ⭐⭐⭐⭐
-- [ ] CRUD khóa học
-- [ ] Quản lý bài học (thêm/sửa/xóa video)
+#### 2.2 Admin Khóa Học ⭐⭐⭐⭐ ✅
+- [x] CRUD khóa học (Firebase)
+- [x] Upload ảnh thumbnail
+- [x] Quản lý bài học (thêm/sửa/xóa)
+- [x] Phân cấp độ: Cơ bản/Trung cấp/Nâng cao
+- [x] Đánh dấu nổi bật, công khai/bản nháp
 - [ ] Theo dõi học viên theo khóa học
 
 #### 2.3 Chứng Chỉ Hoàn Thành ⭐⭐⭐
