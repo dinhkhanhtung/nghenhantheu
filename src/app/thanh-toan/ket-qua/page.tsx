@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -9,7 +9,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useWebsite } from "@/context/WebsiteContext";
 
-export default function PaymentResultPage() {
+function PaymentResultContent() {
   const searchParams = useSearchParams();
   const { settings } = useWebsite();
   const [status, setStatus] = useState<"loading" | "success" | "failed">("loading");
@@ -209,6 +209,18 @@ export default function PaymentResultPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function PaymentResultPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-[#fffbf5] flex items-center justify-center">
+        <Loader2 size={40} className="animate-spin text-[#b45309]" />
+      </div>
+    }>
+      <PaymentResultContent />
+    </Suspense>
   );
 }
 
