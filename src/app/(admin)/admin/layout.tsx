@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,10 +9,22 @@ import {
   Users, Settings, MessageSquare, LogOut, Menu, X, ChevronRight,
   Bell, Search, Tag, BarChart3, Layout, Reply,
   DollarSign, File, Shield, Globe, Key, Sparkles, ShoppingCart,
-  Folder, Megaphone
+  Folder, Megaphone, ExternalLink
 } from "lucide-react";
 
-const navGroups = [
+interface NavItem {
+  href: string;
+  icon: React.ReactNode;
+  label: string;
+  isExternal?: boolean;
+}
+
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+const navGroups: NavGroup[] = [
   {
     label: "Tổng quan",
     items: [
@@ -56,6 +68,12 @@ const navGroups = [
       { href: "/admin/admin-users", icon: <Shield size={18} />, label: "Quản trị viên" },
       { href: "/admin/users", icon: <Users size={18} />, label: "Người dùng" },
       { href: "/admin/adsense", icon: <DollarSign size={18} />, label: "AdSense" },
+    ]
+  },
+  {
+    label: "Website",
+    items: [
+      { href: "/", icon: <ExternalLink size={18} />, label: "Xem trang web", isExternal: true },
     ]
   }
 ];
@@ -146,8 +164,31 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               </AnimatePresence>
               <div className="space-y-1">
                 {group.items.map((item) => {
-                  const isActive = pathname === item.href || pathname?.startsWith(`${item.href}/`);
-                  return (
+                  const isActive = !item.isExternal && (pathname === item.href || pathname?.startsWith(`${item.href}/`));
+                  const linkContent = (
+                    <>
+                      <span className={`shrink-0 transition-transform duration-200 ${isActive ? "" : "group-hover:scale-110"}`}>
+                        {item.icon}
+                      </span>
+                      {isSidebarOpen && (
+                        <span className="whitespace-nowrap overflow-hidden">
+                          {item.label}
+                        </span>
+                      )}
+                    </>
+                  );
+                  
+                  return item.isExternal ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 px-3 py-2 rounded-xl text-[13px] font-semibold transition-all duration-200 group text-[#57534e] hover:bg-[#b45309]/5 hover:text-[#b45309]"
+                    >
+                      {linkContent}
+                    </a>
+                  ) : (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -157,14 +198,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                           : "text-[#57534e] hover:bg-[#b45309]/5 hover:text-[#b45309]"
                       }`}
                     >
-                      <span className={`shrink-0 transition-transform duration-200 ${isActive ? "" : "group-hover:scale-110"}`}>
-                        {item.icon}
-                      </span>
-                      {isSidebarOpen && (
-                        <span className="whitespace-nowrap overflow-hidden">
-                          {item.label}
-                        </span>
-                      )}
+                      {linkContent}
                     </Link>
                   );
                 })}

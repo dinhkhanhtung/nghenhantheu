@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import AdminSidebar from "@/components/admin/AdminSidebar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,7 +12,7 @@ export const metadata: Metadata = {
   description: "Quản lý website bán tranh thêu tay",
 };
 
-// Admin layout - KHÔNG có Header/Footer của trang web chính
+// Admin root layout - children will be rendered by nested layouts
 export default function AdminRootLayout({
   children,
 }: Readonly<{
@@ -22,12 +21,7 @@ export default function AdminRootLayout({
   return (
     <html lang="vi">
       <body className={`${inter.variable} font-sans antialiased bg-[#f5f5f4]`}>
-        <div className="flex min-h-screen">
-          <AdminSidebar />
-          <main className="flex-1 ml-64">
-            {children}
-          </main>
-        </div>
+        {children}
       </body>
     </html>
   );
