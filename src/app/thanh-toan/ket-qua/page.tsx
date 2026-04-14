@@ -4,95 +4,61 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { CheckCircle, XCircle, Loader2, Truck, Home, FileText, CreditCard } from "lucide-react";
-import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { CheckCircle, XCircle, Loader2, Truck, Home, FileText, CreditCard, MessageCircle } from "lucide-react";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useWebsite } from "@/context/WebsiteContext";
 
 export default function PaymentResultPage() {
   const searchParams = useSearchParams();
+  const { settings } = useWebsite();
   const [status, setStatus] = useState<"loading" | "success" | "failed">("loading");
   const [orderDetails, setOrderDetails] = useState<any>(null);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // VNPay params
-  const vnpResponseCode = searchParams.get("vnp_ResponseCode");
-  const vnpTxnRef = searchParams.get("vnp_TxnRef");
-  const vnpAmount = searchParams.get("vnp_Amount");
-  
-  // Momo params
-  const momoResultCode = searchParams.get("resultCode");
-  const momoOrderId = searchParams.get("orderId");
-  const momoAmount = searchParams.get("amount");
-  
-  // Demo mode
-  const isDemo = searchParams.get("demo") === "true";
+  // Order params
+  const orderId = searchParams.get("orderId");
+  const isError = searchParams.get("error") === "true";
 
   useEffect(() => {
-    const processPayment = async () => {
+    const fetchOrder = async () => {
       try {
-        // Determine payment method and order ID
-        let orderId = vnpTxnRef || momoOrderId?.split("_")[0] || "";
-        let isSuccess = false;
-        let paymentMethod = "";
-
-        if (vnpResponseCode !== null) {
-          // VNPay payment
-          paymentMethod = "VNPAY";
-          isSuccess = vnpResponseCode === "00";
-        } else if (momoResultCode !== null) {
-          // Momo payment
-          paymentMethod = "MOMO";
-          isSuccess = momoResultCode === "0";
-        } else {
-          setStatus("failed");
-          setErrorMessage("Không xác định được phương thức thanh toán");
-          return;
-        }
-
         if (!orderId) {
           setStatus("failed");
           setErrorMessage("Không tìm thấy mã đơn hàng");
           return;
         }
 
-        // Update order status in Firebase
-        if (db && !isDemo) {
-          const orderRef = doc(db, "orders", orderId);
-          
-          if (isSuccess) {
-            await updateDoc(orderRef, {
-              status: "Đã thanh toán",
-              paymentStatus: "success",
-              paidAt: new Date(),
-            });
-          } else {
-            await updateDoc(orderRef, {
-              status: "Thanh toán thất bại",
-              paymentStatus: "failed",
-            });
-          }
+        if (isError) {
+          setStatus("failed");
+          setErrorMessage("Đặt hàng không thành công. Vui lòng thử lại sau.");
+          return;
+        }
 
-          // Fetch order details
+        // Fetch order details
+        if (db) {
+          const orderRef = doc(db, "orders", orderId);
           const orderSnap = await getDoc(orderRef);
+          
           if (orderSnap.exists()) {
             setOrderDetails(orderSnap.data());
+            setStatus("success");
+          } else {
+            setStatus("failed");
+            setErrorMessage("Không tìm thấy thông tin đơn hàng");
           }
-        }
-
-        setStatus(isSuccess ? "success" : "failed");
-        
-        if (!isSuccess) {
-          setErrorMessage("Giao dịch không thành công. Vui lòng thử lại sau.");
+        } else {
+          setStatus("success");
         }
       } catch (error) {
-        console.error("Payment result error:", error);
+        console.error("Fetch order error:", error);
         setStatus("failed");
-        setErrorMessage("Có lỗi xảy ra khi xử lý thanh toán");
+        setErrorMessage("Có lỗi xảy ra khi lấy thông tin đơn hàng");
       }
     };
 
-    processPayment();
-  }, [vnpResponseCode, vnpTxnRef, momoResultCode, momoOrderId, isDemo]);
+    fetchOrder();
+  }, [orderId, isError]);
 
   // Loading state
   if (status === "loading") {
@@ -104,10 +70,7 @@ export default function PaymentResultPage() {
           className="text-center"
         >
           <Loader2 size={48} className="animate-spin text-[#b45309] mx-auto mb-4" />
-          <p className="text-[#57534e]">Đang xử lý thanh toán...</p>
-          {isDemo && (
-            <p className="text-xs text-[#a8a29e] mt-2">(Chế độ demo - không thực hiện thanh toán thật)</p>
-          )}
+          <p className="text-[#57534e]">Đang xử lý đơn hàng...</p>
         </motion.div>
       </div>
     );
@@ -127,14 +90,23 @@ export default function PaymentResultPage() {
           </div>
           
           <h1 className="text-2xl font-bold text-[#1c1917] mb-3">
-            Thanh toán thành công!
+            Đặt hàng thành công!
           </h1>
           
           <p className="text-[#57534e] mb-6">
-            Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đã được thanh toán thành công.
+            Cảm ơn bạn đã đặt hàng tại {settings.brand.name || "Tranh Thêu Tay Hằng Khoa"}.
+            {orderDetails?.paymentMethod === "BANK" ? (
+              <span className="block mt-2 text-sm">
+                Vui lòng chuyển khoản theo thông tin bên dưới. Đơn hàng sẽ được xử lý sau khi xác nhận thanh toán.
+              </span>
+            ) : (
+              <span className="block mt-2 text-sm">
+                Chúng tôi sẽ liên hệ qua Zalo để xác nhận đơn hàng.
+              </span>
+            )}
             {orderDetails && (
               <span className="block mt-2 font-medium">
-                Mã đơn hàng: <span className="text-[#b45309]">HK{orderDetails.id?.substring(0, 6).toUpperCase()}</span>
+                Mã đơn hàng: <span className="text-[#b45309]">HK{orderId?.substring(0, 6).toUpperCase()}</span>
               </span>
             )}
           </p>
@@ -144,8 +116,8 @@ export default function PaymentResultPage() {
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-[#57534e]">Phương thức:</span>
                 <span className="font-medium text-[#1c1917]">
-                  {orderDetails.paymentMethod === "VNPAY" ? "VNPay" : 
-                   orderDetails.paymentMethod === "MOMO" ? "Ví Momo" : 
+                  {orderDetails.paymentMethod === "BANK" ? "Chuyển khoản ngân hàng" : 
+                   orderDetails.paymentMethod === "COD" ? "Thanh toán khi nhận" : 
                    orderDetails.paymentMethod}
                 </span>
               </div>
@@ -157,15 +129,22 @@ export default function PaymentResultPage() {
               </div>
               <div className="flex justify-between text-sm">
                 <span className="text-[#57534e]">Trạng thái:</span>
-                <span className="font-medium text-green-600">Đã thanh toán</span>
+                <span className={`font-medium ${
+                  orderDetails.paymentMethod === "BANK" ? "text-orange-600" : "text-green-600"
+                }`}>
+                  {orderDetails.paymentMethod === "BANK" ? "Chờ thanh toán" : "Chờ xác nhận"}
+                </span>
               </div>
+              
+              {/* Bank Transfer Info */}
+              {orderDetails.paymentMethod === "BANK" && (
+                <div className="mt-4 pt-4 border-t border-[#e7e5e4]">
+                  <p className="text-sm font-medium text-[#1c1917] mb-2">Thông tin chuyển khoản:</p>
+                  <p className="text-xs text-[#57534e] mb-1">Vui lòng chuyển khoản với nội dung: <strong>Thanh toan HK{orderId?.substring(0, 6).toUpperCase()}</strong></p>
+                  <p className="text-xs text-[#57534e]">Sau khi chuyển khoản, vui lòng gửi biên lai qua Zalo để được xác nhận nhanh nhất.</p>
+                </div>
+              )}
             </div>
-          )}
-
-          {isDemo && (
-            <p className="text-xs text-[#a8a29e] mb-4 bg-yellow-50 p-2 rounded">
-              ⚠️ Đây là chế độ demo. Thanh toán thật cần cấu hình API key.
-            </p>
           )}
           
           <div className="space-y-3">
@@ -210,11 +189,6 @@ export default function PaymentResultPage() {
           {errorMessage || "Giao dịch không thành công. Vui lòng thử lại sau hoặc chọn phương thức thanh toán khác."}
         </p>
 
-        {isDemo && (
-          <p className="text-xs text-[#a8a29e] mb-4 bg-yellow-50 p-2 rounded">
-            ⚠️ Đây là chế độ demo.
-          </p>
-        )}
         
         <div className="space-y-3">
           <Link 

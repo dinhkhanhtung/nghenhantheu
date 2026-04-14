@@ -7,12 +7,13 @@ import { useWebsite } from "@/context/WebsiteContext";
 import { ChevronRight, CreditCard, Truck, MapPin, User, Phone, Mail } from "lucide-react";
 import { db } from "@/lib/firebase";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 export default function CheckoutPage() {
   const { cartItems, subtotal, clearCart } = useCart();
   const { settings } = useWebsite();
+  const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
-  const [orderSuccess, setOrderSuccess] = useState(false);
   const [orderId, setOrderId] = useState("");
 
   const [formData, setFormData] = useState({
@@ -78,53 +79,12 @@ export default function CheckoutPage() {
       const newOrderId = docRef.id;
       const orderCode = newOrderId.substring(0, 6).toUpperCase();
 
-      // Handle online payments
-      if (formData.paymentMethod === "VNPAY") {
-        // Create VNPay payment
-        const response = await fetch("/api/payment/vnpay/create", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            orderId: newOrderId,
-            amount: total,
-            orderInfo: `Thanh toan don hang ${orderCode}`,
-          }),
-        });
-        
-        if (response.ok) {
-          const { paymentUrl } = await response.json();
-          window.location.href = paymentUrl;
-          return;
-        } else {
-          throw new Error("Không thể tạo thanh toán VNPay");
-        }
-      }
-
-      if (formData.paymentMethod === "MOMO") {
-        // Create Momo payment
-        const response = await fetch("/api/payment/momo/create", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            orderId: newOrderId,
-            amount: total,
-            orderInfo: `Thanh toan don hang ${orderCode}`,
-          }),
-        });
-        
-        if (response.ok) {
-          const { payUrl } = await response.json();
-          window.location.href = payUrl;
-          return;
-        } else {
-          throw new Error("Không thể tạo thanh toán Momo");
-        }
-      }
-
-      // COD or BANK - show success
+      // COD or BANK - redirect to result page
+      // For BANK: Order status is "Chờ thanh toán" until admin confirms
+      // For COD: Order status is "Chờ xác nhận"
       setOrderId(orderCode);
-      setOrderSuccess(true);
       clearCart();
+      router.push(`/thanh-toan/ket-qua?orderId=${newOrderId}`);
     } catch (error) {
       console.error("Error saving order:", error);
       alert("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại sau.");
@@ -133,22 +93,6 @@ export default function CheckoutPage() {
     }
   };
 
-  if (orderSuccess) {
-    return (
-      <div className="min-h-screen bg-[#fffbf5] flex items-center justify-center p-4">
-        <div className="bg-white p-10 rounded-2xl shadow-xl border border-[#e7e5e4] text-center max-w-lg w-full space-y-6">
-          <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto shadow-inner">
-            <Truck size={40} />
-          </div>
-          <h1 className="text-2xl font-bold text-[#1c1917]">Đặt hàng thành công!</h1>
-          <p className="text-[#57534e]">Cảm ơn bạn đã tin tưởng {settings.brand.name}. Mã đơn hàng của bạn là <strong>#HK{orderId}</strong>. Chúng tôi sẽ liên hệ sớm nhất để xác nhận.</p>
-          <Link href="/" className="block w-full py-4 bg-[#b45309] text-white font-bold rounded-xl hover:bg-[#1c1917] transition-all">
-            Quay lại trang chủ
-          </Link>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-[#fffbf5] py-12">
@@ -235,44 +179,23 @@ export default function CheckoutPage() {
                   Phương thức thanh toán
                 </h2>
                 <div className="space-y-3">
-                  {/* VNPay */}
-                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'VNPAY' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
+                  {/* Bank Transfer */}
+                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'BANK' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
                     <input 
                       type="radio" 
                       name="paymentMethod" 
-                      value="VNPAY"
-                      checked={formData.paymentMethod === "VNPAY"}
+                      value="BANK"
+                      checked={formData.paymentMethod === "BANK"}
                       onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
                       className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
                     />
                     <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <p className="font-bold text-[#1c1917]">VNPay</p>
-                        <span className="px-2 py-0.5 bg-[#b45309] text-white text-[10px] font-bold rounded">QR Code</span>
-                      </div>
-                      <p className="text-xs text-[#57534e]">Thanh toán qua QR Code hoặc thẻ ngân hàng.</p>
+                      <p className="font-bold text-[#1c1917]">Chuyển khoản ngân hàng</p>
+                      <p className="text-xs text-[#57534e]">Chuyển khoản vào tài khoản ngân hàng. Đơn hàng được xử lý sau khi xác nhận thanh toán.</p>
                     </div>
                   </label>
 
-                  {/* Momo */}
-                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'MOMO' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
-                    <input 
-                      type="radio" 
-                      name="paymentMethod" 
-                      value="MOMO"
-                      checked={formData.paymentMethod === "MOMO"}
-                      onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
-                      className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
-                    />
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2">
-                        <p className="font-bold text-[#1c1917]">Ví Momo</p>
-                        <span className="px-2 py-0.5 bg-pink-500 text-white text-[10px] font-bold rounded">Ví điện tử</span>
-                      </div>
-                      <p className="text-xs text-[#57534e]">Thanh toán nhanh qua ví Momo.</p>
-                    </div>
-                  </label>
-
+                  {/* COD */}
                   <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'COD' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
                     <input 
                       type="radio" 
@@ -284,24 +207,46 @@ export default function CheckoutPage() {
                     />
                     <div className="flex-1">
                       <p className="font-bold text-[#1c1917]">Thanh toán khi nhận hàng (COD)</p>
-                      <p className="text-xs text-[#57534e]">Bạn chỉ thanh toán khi nhận được hàng.</p>
-                    </div>
-                  </label>
-                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'BANK' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
-                    <input 
-                      type="radio" 
-                      name="paymentMethod" 
-                      value="BANK"
-                      checked={formData.paymentMethod === "BANK"}
-                      onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
-                      className="w-4 h-4 text-[#b45309] border-[#e7e5e4] focus:ring-[#b45309]" 
-                    />
-                    <div className="flex-1">
-                      <p className="font-bold text-[#1c1917]">Chuyển khoản ngân hàng</p>
-                      <p className="text-xs text-[#57534e]">Nhân viên sẽ gửi thông tin tài khoản sau khi xác nhận đơn.</p>
+                      <p className="text-xs text-[#57534e]">Bạn chỉ thanh toán khi nhận được hàng. Phí ship có thể cao hơn.</p>
                     </div>
                   </label>
                 </div>
+
+                {/* Bank Transfer Details */}
+                {formData.paymentMethod === 'BANK' && settings.payment.bankTransfer.enabled && (
+                  <div className="mt-4 p-4 bg-[#f5f5f4] rounded-xl border border-[#e7e5e4]">
+                    <p className="text-sm font-medium text-[#1c1917] mb-3">Thông tin chuyển khoản:</p>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-[#57534e]">Ngân hàng:</span>
+                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.bankName || "Vietcombank"}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[#57534e]">Số tài khoản:</span>
+                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.accountNumber || "1234567890"}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-[#57534e]">Chủ tài khoản:</span>
+                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.accountName || settings.brand.name}</span>
+                      </div>
+                      {settings.payment.bankTransfer.branch && (
+                        <div className="flex justify-between">
+                          <span className="text-[#57534e]">Chi nhánh:</span>
+                          <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.branch}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between pt-2 border-t border-[#e7e5e4]">
+                        <span className="text-[#57534e]">Số tiền:</span>
+                        <span className="font-medium text-[#b45309]">{formatPrice(total)}</span>
+                      </div>
+                      <div className="mt-3 p-2 bg-yellow-50 rounded border border-yellow-200">
+                        <p className="text-xs text-yellow-700">
+                          <strong>Ghi chú:</strong> Vui lòng ghi "Thanh toan don hang [SĐT]" khi chuyển khoản. Chúng tôi sẽ liên hệ qua Zalo để xác nhận.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <button 
