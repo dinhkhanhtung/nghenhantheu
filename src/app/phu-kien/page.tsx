@@ -1,11 +1,97 @@
-import { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { Eye, ShoppingBag, Heart } from "lucide-react";
+import { useState } from "react";
 
-export const metadata: Metadata = {
-  title: "Phụ Kiện Thêu - Tranh Thêu Tay Hằng Khoa",
-  description: "Khung tranh, kim chỉ, vải canvas và các phụ kiện thêu tay cao cấp.",
-};
+interface Product {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+}
+
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("vi-VN", {
+      style: "currency",
+      currency: "VND",
+    }).format(price);
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group relative"
+    >
+      {/* Image Container */}
+      <div className="relative aspect-square overflow-hidden rounded-lg bg-[#f5f5f4] mb-3">
+        <Link href={`/san-pham/${product.id}`}>
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </Link>
+
+        {/* Wishlist Button - Top Right */}
+        <button
+          onClick={() => setIsWishlisted(!isWishlisted)}
+          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 hover:bg-white transition-colors shadow-sm"
+        >
+          <Heart
+            size={18}
+            className={isWishlisted ? "fill-red-500 text-red-500" : "text-[#57534e]"}
+          />
+        </button>
+
+        {/* Hover Overlay with Quick View & Add to Cart */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/40 group-hover:opacity-100">
+          <motion.button
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#1c1917] shadow-lg hover:bg-[#b45309] hover:text-white transition-colors"
+          >
+            <Eye size={16} />
+            Xem nhanh
+          </motion.button>
+          <motion.button
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center gap-2 rounded-full bg-[#b45309] px-4 py-2 text-sm font-medium text-white shadow-lg hover:bg-[#92400e] transition-colors"
+          >
+            <ShoppingBag size={16} />
+            Thêm vào giỏ
+          </motion.button>
+        </div>
+      </div>
+
+      {/* Product Info */}
+      <div className="text-center">
+        <p className="text-xs text-[#57534e] uppercase tracking-wide mb-1">
+          {product.category}
+        </p>
+        <Link href={`/san-pham/${product.id}`}>
+          <h3 className="text-sm font-medium text-[#1c1917] line-clamp-2 min-h-[40px] hover:text-[#b45309] transition-colors">
+            {product.name}
+          </h3>
+        </Link>
+        <p className="text-sm font-semibold text-[#b45309] mt-1">
+          {formatPrice(product.price)}
+        </p>
+      </div>
+    </motion.div>
+  );
+}
 
 const accessories = [
   {
@@ -53,18 +139,10 @@ const accessories = [
 ];
 
 export default function AccessoriesPage() {
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-      minimumFractionDigits: 0,
-    }).format(price);
-  };
-
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-[#fffbf5] py-16">
+      <div className="bg-[#fffbf5] pt-[140px] lg:pt-[160px] pb-16">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
             Phụ Kiện Thêu Tay
@@ -78,26 +156,8 @@ export default function AccessoriesPage() {
       {/* Products Grid */}
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {accessories.map((product) => (
-            <Link key={product.id} href={`/san-pham/${product.id}`} className="group">
-              <div className="relative aspect-square overflow-hidden bg-[#f5f5f4] mb-3">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="text-center">
-                <p className="text-xs text-[#57534e] mb-1">{product.category}</p>
-                <h3 className="text-sm text-[#1c1917] mb-1 line-clamp-2 min-h-[40px]">
-                  {product.name}
-                </h3>
-                <p className="text-sm font-medium text-[#b45309]">
-                  {formatPrice(product.price)}
-                </p>
-              </div>
-            </Link>
+          {accessories.map((product, index) => (
+            <ProductCard key={product.id} product={product} index={index} />
           ))}
         </div>
       </div>
