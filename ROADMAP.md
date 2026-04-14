@@ -87,7 +87,7 @@
 - [x] Đánh dấu hoàn thành bài học
 - [x] Theo dõi tiến trình học tập
 - [x] Chuyển bài học (previous/next)
-- [ ] Resume: tự động vào bài đang học dở
+- [x] Resume: tự động vào bài đang học dở
 
 #### 2.2 Admin Khóa Học ⭐⭐⭐⭐ ✅
 - [x] CRUD khóa học (Firebase)
@@ -95,7 +95,8 @@
 - [x] Quản lý bài học (thêm/sửa/xóa)
 - [x] Phân cấp độ: Cơ bản/Trung cấp/Nâng cao
 - [x] Đánh dấu nổi bật, công khai/bản nháp
-- [ ] Theo dõi học viên theo khóa học
+- [x] Theo dõi học viên theo khóa học
+- [x] Google Drive API - lấy video từ folder
 
 #### 2.3 Chứng Chỉ Hoàn Thành ⭐⭐⭐
 - [ ] Tự động tạo khi đạt 100%
