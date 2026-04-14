@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -42,7 +42,7 @@ const colors = [
   { name: "Xanh navy", hex: "#1e3a5f" },
 ];
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const searchCategory = searchParams.get("category");
   const searchQuery = searchParams.get("search");
@@ -309,5 +309,18 @@ export default function ProductsPage() {
         } : null}
       />
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center min-h-screen py-20 text-[#57534e]">
+        <Loader2 size={40} className="animate-spin mb-4 text-[#b45309]" />
+        <p>Đang chuẩn bị sản phẩm...</p>
+      </div>
+    }>
+      <ProductsContent />
+    </Suspense>
   );
 }
