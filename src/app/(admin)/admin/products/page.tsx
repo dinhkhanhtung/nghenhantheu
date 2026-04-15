@@ -10,6 +10,22 @@ import { db } from "@/lib/firebase";
 import { collection, query, orderBy, getDocs, doc, addDoc, updateDoc, deleteDoc, serverTimestamp, Timestamp } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Custom Attribute (simple)
+interface CustomAttribute {
+  name: string;        // "Kích thước", "Màu sắc", "Chất liệu"
+  values: string[];    // ["40x50cm", "50x70cm"], ["Đỏ", "Xanh"]
+  priceModifiers?: number[]; // Giá thêm cho từng giá trị [0, 500000]
+}
+
+// Product Variant (full SKU support)
+interface ProductVariant {
+  sku: string;         // Unique SKU: "TTRANH-SEN-40X50-RED"
+  attributes: Record<string, string>; // { size: "40x50cm", color: "Đỏ" }
+  price: number;
+  stock: number;
+  image?: string;      // Ảnh riêng cho variant
+}
+
 interface Product {
   id: string;
   name: string;
@@ -22,6 +38,10 @@ interface Product {
   featured: boolean;
   image?: string;
   images?: string[];
+  // Attribute management
+  attributeType?: "none" | "custom" | "variants"; // none = simple product
+  customAttributes?: CustomAttribute[];
+  variants?: ProductVariant[];
   createdAt?: Timestamp;
   updatedAt?: Timestamp;
 }
@@ -51,7 +71,79 @@ export default function ProductsPage() {
     status: "active",
     featured: false,
     image: "",
+    attributeType: "none",
+    customAttributes: [],
+    variants: [],
   });
+
+  // Attribute management helpers
+  const [activeAttributeTab, setActiveAttributeTab] = useState<"custom" | "variants">("custom");
+
+  // Add custom attribute
+  const addCustomAttribute = () => {
+    setFormData(prev => ({
+      ...prev,
+      customAttributes: [...(prev.customAttributes || []), { name: "", values: [""], priceModifiers: [0] }]
+    }));
+  };
+
+  // Remove custom attribute
+  const removeCustomAttribute = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      customAttributes: prev.customAttributes?.filter((_, i) => i !== index) || []
+    }));
+  };
+
+  // Update custom attribute
+  const updateCustomAttribute = (index: number, field: keyof CustomAttribute, value: any) => {
+    setFormData(prev => ({
+      ...prev,
+      customAttributes: prev.customAttributes?.map((attr, i) => 
+        i === index ? { ...attr, [field]: value } : attr
+      ) || []
+    }));
+  };
+
+  // Generate variants from custom attributes
+  const generateVariants = () => {
+    if (!formData.customAttributes || formData.customAttributes.length === 0) return;
+    
+    const combinations: string[][] = [[]];
+    formData.customAttributes.forEach(attr => {
+      const newCombinations: string[][] = [];
+      combinations.forEach(combo => {
+        attr.values.forEach(value => {
+          newCombinations.push([...combo, `${attr.name}:${value}`]);
+        });
+      });
+      combinations.length = 0;
+      combinations.push(...newCombinations);
+    });
+
+    const variants: ProductVariant[] = combinations.map((combo, idx) => {
+      const attributes: Record<string, string> = {};
+      let extraPrice = 0;
+      
+      combo.forEach(pair => {
+        const [attrName, value] = pair.split(":");
+        attributes[attrName] = value;
+        
+        const attr = formData.customAttributes?.find(a => a.name === attrName);
+        const valueIndex = attr?.values.indexOf(value) || 0;
+        extraPrice += attr?.priceModifiers?.[valueIndex] || 0;
+      });
+
+      return {
+        sku: `${formData.name?.substring(0, 3).toUpperCase() || "SKU"}-${idx + 1}`,
+        attributes,
+        price: (formData.price || 0) + extraPrice,
+        stock: formData.stock || 0,
+      };
+    });
+
+    setFormData(prev => ({ ...prev, variants, attributeType: "variants" }));
+  };
 
   // Fetch products from Firebase
   useEffect(() => {
@@ -675,6 +767,146 @@ export default function ProductsPage() {
                   <label htmlFor="featured" className="text-sm text-[#1c1917]">
                     Sản phẩm nổi bật (hiển thị trên trang chủ)
                   </label>
+                </div>
+
+                {/* Attribute Management Section */}
+                <div className="pt-4 border-t border-[#e7e5e4]">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-sm font-medium text-[#1c1917]">Quản lý thuộc tính</h3>
+                    <select
+                      value={formData.attributeType}
+                      onChange={(e) => setFormData(prev => ({ 
+                        ...prev, 
+                        attributeType: e.target.value as Product["attributeType"],
+                        // Reset when switching
+                        customAttributes: e.target.value === "none" ? [] : prev.customAttributes,
+                        variants: e.target.value === "none" ? [] : prev.variants
+                      }))}
+                      className="px-3 py-1.5 text-sm border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                    >
+                      <option value="none">Sản phẩm đơn giản</option>
+                      <option value="custom">Thuộc tính tùy chỉnh</option>
+                      <option value="variants">Biến thể + SKU</option>
+                    </select>
+                  </div>
+
+                  {/* Custom Attributes Mode */}
+                  {formData.attributeType === "custom" && (
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between">
+                        <p className="text-xs text-[#57534e]">Thêm thuộc tính (VD: Kích thước, Màu sắc)</p>
+                        <button
+                          onClick={addCustomAttribute}
+                          className="flex items-center gap-1 px-3 py-1.5 text-xs bg-[#f5f5f4] hover:bg-[#e7e5e4] text-[#1c1917] rounded-lg transition-colors"
+                        >
+                          <Plus size={14} />
+                          Thêm thuộc tính
+                        </button>
+                      </div>
+
+                      {formData.customAttributes?.map((attr, idx) => (
+                        <div key={idx} className="p-3 bg-[#f5f5f4] rounded-lg space-y-3">
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="text"
+                              value={attr.name}
+                              onChange={(e) => updateCustomAttribute(idx, "name", e.target.value)}
+                              placeholder="Tên thuộc tính (VD: Kích thước)"
+                              className="flex-1 px-3 py-2 text-sm border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                            />
+                            <button
+                              onClick={() => removeCustomAttribute(idx)}
+                              className="p-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-xs text-[#57534e]">Các giá trị (phân cách bằng dấu phẩy):</p>
+                            <input
+                              type="text"
+                              value={attr.values.join(", ")}
+                              onChange={(e) => updateCustomAttribute(idx, "values", e.target.value.split(",").map((v: string) => v.trim()).filter(Boolean))}
+                              placeholder="40x50cm, 50x70cm, 60x80cm"
+                              className="w-full px-3 py-2 text-sm border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                            />
+                          </div>
+                          <div className="space-y-2">
+                            <p className="text-xs text-[#57534e]">Giá thêm cho từng giá trị (VNĐ, phân cách bằng dấu phẩy):</p>
+                            <input
+                              type="text"
+                              value={attr.priceModifiers?.join(", ") || "0"}
+                              onChange={(e) => updateCustomAttribute(idx, "priceModifiers", e.target.value.split(",").map((v: string) => Number(v.trim()) || 0))}
+                              placeholder="0, 500000, 1000000"
+                              className="w-full px-3 py-2 text-sm border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                      ))}
+
+                      {formData.customAttributes && formData.customAttributes.length > 0 && (
+                        <button
+                          onClick={generateVariants}
+                          className="w-full py-2 bg-[#b45309] text-white text-sm rounded-lg hover:bg-[#92400e] transition-colors"
+                        >
+                          Tạo biến thể tự động từ thuộc tính
+                        </button>
+                      )}
+                    </div>
+                  )}
+
+                  {/* Variants Table */}
+                  {formData.attributeType === "variants" && formData.variants && formData.variants.length > 0 && (
+                    <div className="space-y-3">
+                      <p className="text-xs text-[#57534e]">Danh sách biến thể (có thể chỉnh sửa giá và tồn kho):</p>
+                      <div className="max-h-60 overflow-y-auto space-y-2">
+                        {formData.variants.map((variant, idx) => (
+                          <div key={idx} className="p-3 bg-[#f5f5f4] rounded-lg text-sm">
+                            <div className="flex items-center justify-between mb-2">
+                              <span className="font-medium text-[#1c1917]">SKU: {variant.sku}</span>
+                              <span className="text-xs text-[#57534e]">
+                                {Object.entries(variant.attributes).map(([k, v]) => `${k}: ${v}`).join(" | ")}
+                              </span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                              <div>
+                                <label className="text-xs text-[#57534e]">Giá (VNĐ)</label>
+                                <input
+                                  type="number"
+                                  value={variant.price}
+                                  onChange={(e) => {
+                                    const newVariants = [...(formData.variants || [])];
+                                    newVariants[idx].price = Number(e.target.value);
+                                    setFormData(prev => ({ ...prev, variants: newVariants }));
+                                  }}
+                                  className="w-full px-2 py-1 text-sm border border-[#e7e5e4] rounded"
+                                />
+                              </div>
+                              <div>
+                                <label className="text-xs text-[#57534e]">Tồn kho</label>
+                                <input
+                                  type="number"
+                                  value={variant.stock}
+                                  onChange={(e) => {
+                                    const newVariants = [...(formData.variants || [])];
+                                    newVariants[idx].stock = Number(e.target.value);
+                                    setFormData(prev => ({ ...prev, variants: newVariants }));
+                                  }}
+                                  className="w-full px-2 py-1 text-sm border border-[#e7e5e4] rounded"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {formData.attributeType === "variants" && (!formData.variants || formData.variants.length === 0) && (
+                    <p className="text-sm text-[#57534e] text-center py-4">
+                      Chọn "Thuộc tính tùy chỉnh" trước để tạo biến thể
+                    </p>
+                  )}
                 </div>
 
                 {/* Actions */}

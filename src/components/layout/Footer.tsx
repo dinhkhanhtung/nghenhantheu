@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from "lucide-react";
+import { TiktokIcon, TwitterIcon } from "@/components/icons";
 import { useWebsite } from "@/context/WebsiteContext";
 
 const footerLinks = {
@@ -9,6 +10,7 @@ const footerLinks = {
     { name: "Tranh Thêu Tay", href: "/san-pham" },
     { name: "Phụ Kiện Thêu", href: "/phu-kien" },
     { name: "Khóa Học Online", href: "/khoa-hoc" },
+    { name: "Mẫu Thêu Miễn Phí", href: "/tai-nguyen" },
     { name: "Khung Tranh", href: "/phu-kien" },
   ],
   support: [
@@ -52,10 +54,32 @@ export default function Footer() {
             <p className="text-sm text-white/60 leading-relaxed max-w-sm mt-4">
               {settings.brand.description}
             </p>
-            <div className="flex gap-4 pt-4">
-              <a href={settings.contact.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
-                <Facebook size={18} />
-              </a>
+            <div className="flex gap-3 pt-4 flex-wrap">
+              {settings.contact.facebook && (
+                <a href={settings.contact.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                  <Facebook size={18} />
+                </a>
+              )}
+              {settings.contact.instagram && (
+                <a href={settings.contact.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                  <Instagram size={18} />
+                </a>
+              )}
+              {settings.contact.youtube && (
+                <a href={settings.contact.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                  <Youtube size={18} />
+                </a>
+              )}
+              {settings.contact.tiktok && (
+                <a href={settings.contact.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                  <TiktokIcon size={18} />
+                </a>
+              )}
+              {settings.contact.twitter && (
+                <a href={settings.contact.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                  <TwitterIcon size={18} />
+                </a>
+              )}
             </div>
           </div>
 

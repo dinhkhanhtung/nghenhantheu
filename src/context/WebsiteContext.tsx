@@ -15,6 +15,10 @@ export interface WebsiteSettings {
     email: string;
     zalo: string;
     facebook: string;
+    instagram?: string;
+    youtube?: string;
+    tiktok?: string;
+    twitter?: string;
     address: string;
   };
   seo: {
@@ -51,6 +55,10 @@ const defaultSettings: WebsiteSettings = {
     email: "email@example.com",
     zalo: "0123456789",
     facebook: "https://facebook.com/yourpage",
+    instagram: "",
+    youtube: "",
+    tiktok: "",
+    twitter: "",
     address: "Địa chỉ của bạn",
   },
   seo: {

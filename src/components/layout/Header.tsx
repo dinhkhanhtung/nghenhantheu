@@ -57,6 +57,7 @@ const navLinks = [
   },
   { href: "/gioi-thieu", label: "Giới thiệu" },
   { href: "/khoa-hoc", label: "Khóa học" },
+  { href: "/tai-nguyen", label: "Tài nguyên" },
   { href: "/bai-viet", label: "Blog" },
 ];
 
