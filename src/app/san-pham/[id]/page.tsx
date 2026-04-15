@@ -10,6 +10,20 @@ import {
   Eye, MessageCircle, ShoppingBag, Truck, RefreshCw, Shield
 } from "lucide-react";
 
+interface ProductVariant {
+  sku: string;
+  attributes: Record<string, string>;
+  price: number;
+  stock: number;
+  image?: string;
+}
+
+interface CustomAttribute {
+  name: string;
+  values: string[];
+  priceModifiers?: number[];
+}
+
 interface ProductPageProps {
   params: { id: string };
 }
@@ -112,6 +126,10 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
   const [isAdded, setIsAdded] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImage, setLightboxImage] = useState(0);
+  
+  // Variant selection state
+  const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null);
+  const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
 
   const handleAddToCart = () => {
     addToCart({
@@ -298,6 +316,74 @@ export default function ProductDetailPage({ params }: ProductPageProps) {
                       </button>
                     ))}
                   </div>
+                </div>
+              )}
+
+              {/* Variant Selection (for products with variants) */}
+              {(product as any).variants && (product as any).variants.length > 0 && (
+                <div className="space-y-4 p-4 bg-[#f5f5f4] rounded-lg">
+                  <p className="text-sm font-medium text-[#1c1917]">Chọn biến thể</p>
+                  
+                  {/* Get unique attribute names from variants */}
+                  {(() => {
+                    const variants: ProductVariant[] = (product as any).variants || [];
+                    const attrNames = Array.from(new Set(variants.flatMap((v) => Object.keys(v.attributes))));
+                    
+                    return attrNames.map((attrName) => {
+                      const values = Array.from(new Set(variants.map((v) => v.attributes[attrName]))).filter(Boolean) as string[];
+                      
+                      return (
+                        <div key={attrName}>
+                          <p className="text-sm text-[#57534e] mb-2 capitalize">{attrName}</p>
+                          <div className="flex gap-2 flex-wrap">
+                            {values.map((value) => {
+                              const isSelected = selectedAttributes[attrName] === value;
+                              return (
+                                <button
+                                  key={value}
+                                  onClick={() => {
+                                    const newAttrs = { ...selectedAttributes, [attrName]: value };
+                                    setSelectedAttributes(newAttrs);
+                                    // Find matching variant
+                                    const matchingVariant = variants.find((v) => 
+                                      Object.entries(newAttrs).every(([k, val]) => v.attributes[k] === val)
+                                    );
+                                    setSelectedVariant(matchingVariant || null);
+                                  }}
+                                  className={`px-3 py-1.5 border text-sm transition-all rounded-lg ${
+                                    isSelected
+                                      ? "border-[#b45309] bg-[#b45309] text-white" 
+                                      : "border-[#e7e5e4] bg-white text-[#57534e] hover:border-[#b45309]"
+                                  }`}
+                                >
+                                  {value}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    });
+                  })()}
+
+                  {/* Show selected variant info */}
+                  {selectedVariant && (
+                    <div className="mt-4 p-3 bg-white rounded-lg border border-[#e7e5e4]">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-sm font-medium text-[#1c1917]">SKU: {selectedVariant.sku}</span>
+                        <span className={`text-xs px-2 py-1 rounded ${
+                          selectedVariant.stock > 0 
+                            ? "bg-green-100 text-green-700" 
+                            : "bg-red-100 text-red-700"
+                        }`}>
+                          {selectedVariant.stock > 0 ? `Còn ${selectedVariant.stock} sản phẩm` : "Hết hàng"}
+                        </span>
+                      </div>
+                      <p className="text-lg font-medium text-[#b45309]">
+                        {formatPrice(selectedVariant.price)}
+                      </p>
+                    </div>
+                  )}
                 </div>
               )}
 
