@@ -67,7 +67,7 @@ export default function CoursesPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <div className="relative h-[40vh] min-h-[300px] w-full overflow-hidden">
+      <div className="relative h-[30vh] sm:h-[40vh] min-h-[200px] sm:min-h-[300px] w-full overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=1920&q=80"
           alt="Khóa học thêu tay"
@@ -81,11 +81,11 @@ export default function CoursesPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white">
               Khóa học thêu tay
             </h1>
-            <p className="mt-4 max-w-2xl text-lg text-stone-300">
-              Học nghệ thuật thêu tay từ cơ bản đến nâng cao cùng các nghệ nhân giàu kinh nghiệm
+            <p className="mt-2 sm:mt-4 max-w-2xl text-sm sm:text-lg text-stone-300">
+              Học nghệ thuật thêu tay từ cơ bản đến nâng cao
             </p>
           </motion.div>
         </div>

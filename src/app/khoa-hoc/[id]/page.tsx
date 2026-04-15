@@ -125,18 +125,18 @@ export default function CourseDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px]">
+    <div className="min-h-screen bg-[#fffbf5] pt-[100px] lg:pt-[120px]">
       <Toast toast={toast} onClose={hideToast} />
-      
+
       {/* Breadcrumb */}
       <div className="bg-white border-b border-[#e7e5e4]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-3">
-          <div className="flex items-center gap-2 text-sm text-[#57534e]">
-            <Link href="/" className="hover:text-[#b45309]">Trang chủ</Link>
-            <ChevronRight size={14} />
-            <Link href="/khoa-hoc" className="hover:text-[#b45309]">Khóa học</Link>
-            <ChevronRight size={14} />
-            <span className="text-[#1c1917]">{course.title}</span>
+          <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-[#57534e] overflow-x-auto">
+            <Link href="/" className="hover:text-[#b45309] whitespace-nowrap">Trang chủ</Link>
+            <ChevronRight size={12} className="sm:w-[14px] sm:h-[14px] shrink-0" />
+            <Link href="/khoa-hoc" className="hover:text-[#b45309] whitespace-nowrap">Khóa học</Link>
+            <ChevronRight size={12} className="sm:w-[14px] sm:h-[14px] shrink-0" />
+            <span className="text-[#1c1917] truncate max-w-[150px] sm:max-w-none">{course.title}</span>
           </div>
         </div>
       </div>
@@ -166,25 +166,25 @@ export default function CourseDetailPage() {
                 </div>
               </div>
               
-              <div className="p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="flex items-center gap-1 text-sm">
-                    <Star size={16} className="text-yellow-500 fill-yellow-500" />
+              <div className="p-4 sm:p-6">
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4">
+                  <div className="flex items-center gap-1 text-xs sm:text-sm">
+                    <Star size={14} className="sm:w-4 sm:h-4 text-yellow-500 fill-yellow-500" />
                     <span className="font-medium">{course.rating}</span>
-                    <span className="text-[#57534e]">({course.reviews} đánh giá)</span>
+                    <span className="text-[#57534e] hidden sm:inline">({course.reviews} đánh giá)</span>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-[#57534e]">
-                    <Users size={16} />
+                  <div className="flex items-center gap-1 text-xs sm:text-sm text-[#57534e]">
+                    <Users size={14} className="sm:w-4 sm:h-4" />
                     <span>{course.totalStudents.toLocaleString()} học viên</span>
                   </div>
-                  <div className="flex items-center gap-1 text-sm text-[#57534e]">
-                    <Clock size={16} />
+                  <div className="flex items-center gap-1 text-xs sm:text-sm text-[#57534e]">
+                    <Clock size={14} className="sm:w-4 sm:h-4" />
                     <span>{course.totalDuration}</span>
                   </div>
                 </div>
-                
-                <h1 className="text-2xl font-serif text-[#1c1917] mb-3">{course.title}</h1>
-                <p className="text-[#57534e] leading-relaxed">{course.description}</p>
+
+                <h1 className="text-xl sm:text-2xl font-serif text-[#1c1917] mb-3">{course.title}</h1>
+                <p className="text-sm sm:text-base text-[#57534e] leading-relaxed">{course.description}</p>
               </div>
             </div>
 
