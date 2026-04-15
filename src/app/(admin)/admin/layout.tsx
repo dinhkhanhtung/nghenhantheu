@@ -9,7 +9,7 @@ import {
   Users, Settings, MessageSquare, LogOut, Menu, X, ChevronRight,
   Bell, Search, Tag, BarChart3, Layout, Reply,
   DollarSign, File, Shield, Globe, Key, Sparkles, ShoppingCart,
-  Folder, Megaphone, ExternalLink
+  Folder, Megaphone, ExternalLink, BookOpen, GraduationCap
 } from "lucide-react";
 
 interface NavItem {
@@ -40,6 +40,13 @@ const navGroups: NavGroup[] = [
       { href: "/admin/orders", icon: <ShoppingCart size={18} />, label: "Đơn hàng" },
       { href: "/admin/categories", icon: <Tag size={18} />, label: "Danh mục" },
       { href: "/admin/product-prices", icon: <DollarSign size={18} />, label: "Quản lý giá" },
+    ]
+  },
+  {
+    label: "Đào tạo",
+    items: [
+      { href: "/admin/courses", icon: <BookOpen size={18} />, label: "Khóa học" },
+      { href: "/admin/students", icon: <GraduationCap size={18} />, label: "Học viên" },
     ]
   },
   {
