@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Admin Dashboard - Tranh Thêu Tay Hằng Khoa",
-  description: "Quản lý website bán tranh thêu tay",
+  title: "Admin Dashboard",
+  description: "Quản lý website",
 };
 
 // Admin layout - NO Header/Footer from main website

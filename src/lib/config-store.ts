@@ -23,7 +23,7 @@ export interface APISettings {
   };
 }
 
-const STORAGE_KEY = "hangkhoa_api_config";
+const STORAGE_KEY = "api_config";
 
 // Default/Empty Settings
 const defaultSettings: APISettings = {

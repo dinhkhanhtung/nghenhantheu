@@ -17,8 +17,8 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Tranh Thêu Tay Hằng Khoa - Nghệ thuật thêu truyền thống",
-  description: "Kế thừa tinh hoa nghề thêu truyền thống, mang đến những tác phẩm nghệ thuật độc đáo và ý nghĩa. Tranh thêu tay, phụ kiện thêu, khóa học thêu online.",
+  title: "Tên Thương Hiệu - Website bán hàng & khóa học",
+  description: "Mô tả về sản phẩm và dịch vụ của bạn. Có thể tùy chỉnh trong Admin Dashboard.",
 };
 
 export default function RootLayout({

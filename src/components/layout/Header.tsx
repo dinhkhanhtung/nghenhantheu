@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import { useWebsite } from "@/context/WebsiteContext";
 
-// Danh mục từ tranhtheuhangkhoa.blogspot.com
+// Danh mục sản phẩm
 const navLinks = [
   { 
     href: "/san-pham?category=tranh-theu-hoa", 

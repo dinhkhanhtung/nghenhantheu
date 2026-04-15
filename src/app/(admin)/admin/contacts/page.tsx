@@ -36,7 +36,7 @@ export default function ContactsPage() {
       email: "levanc@email.com",
       phone: "0909123456",
       subject: "Hợp tác đại lý",
-      message: "Tôi có cửa hàng quà tặng tại Đà Nẵng, muốn nhập sỉ tranh thêu Hằng Khoa.",
+      message: "Tôi có cửa hàng quà tặng tại Đà Nẵng, muốn hợp tác đại lý.",
       status: "unread",
       time: "3 ngày trước"
     }

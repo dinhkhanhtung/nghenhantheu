@@ -169,7 +169,7 @@ export default function AdminCoursesPage() {
         title: formData.title,
         description: formData.description,
         image: formData.image,
-        instructor: formData.instructor || "Cô Hằng Khoa",
+        instructor: formData.instructor || "Giảng viên",
         level: formData.level || "beginner",
         price: Number(formData.price) || 0,
         isPublished: formData.isPublished || false,

@@ -14,7 +14,7 @@ export default function StaticPagesPage() {
       id: "1",
       name: "Về chúng tôi",
       slug: "gioi-thieu",
-      title: "Về Tranh Thêu Tay Hằng Khoa",
+      title: "Về Chúng Tôi",
       status: "published",
       lastModified: "2 ngày trước",
       views: 3450,

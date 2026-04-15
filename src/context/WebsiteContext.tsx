@@ -42,21 +42,21 @@ export interface WebsiteSettings {
 
 const defaultSettings: WebsiteSettings = {
   brand: {
-    name: "Tranh Thêu Tay Hằng Khoa",
-    slogan: "Kế thừa tinh hoa nghề thêu truyền thống",
-    description: "Website bán tranh thêu tay và các sản phẩm thêu truyền thống.",
+    name: "Tên Thương Hiệu",
+    slogan: "Slogan của bạn ở đây",
+    description: "Mô tả về thương hiệu và sản phẩm của bạn.",
   },
   contact: {
-    phone: "0982581222",
-    email: "contact@hangkhoa.com",
-    zalo: "0982581222",
-    facebook: "https://facebook.com/tranhhangkhoa",
-    address: "Xóm Hằng Khoa, Cũ Văn, Phú Lương, Thái Nguyên",
+    phone: "0123456789",
+    email: "email@example.com",
+    zalo: "0123456789",
+    facebook: "https://facebook.com/yourpage",
+    address: "Địa chỉ của bạn",
   },
   seo: {
-    title: "Tranh Thêu Tay Hằng Khoa - Nghệ thuật thêu truyền thống",
-    description: "Kế thừa tinh hoa nghề thêu truyền thống, mang đến những tác phẩm nghệ thuật độc đáo.",
-    keywords: "tranh thêu tay, tranh thêu truyền thống, nghệ thuật việt",
+    title: "Tên Thương Hiệu - Website bán hàng & khóa học",
+    description: "Mô tả SEO cho website của bạn.",
+    keywords: "từ khóa, sản phẩm, dịch vụ",
   },
   shipping: {
     fee: 30000,
@@ -67,15 +67,15 @@ const defaultSettings: WebsiteSettings = {
     cod: true,
     bankTransfer: {
       enabled: true,
-      bankName: "Vietcombank",
-      accountNumber: "1234567890",
-      accountName: "NGUYEN VAN A",
-      branch: "Hà Nội",
+      bankName: "Tên ngân hàng",
+      accountNumber: "Số tài khoản",
+      accountName: "Tên chủ tài khoản",
+      branch: "Chi nhánh",
     },
   },
 };
 
-const STORAGE_KEY = "hangkhoa_website_settings";
+const STORAGE_KEY = "website_settings";
 
 interface WebsiteContextType {
   settings: WebsiteSettings;

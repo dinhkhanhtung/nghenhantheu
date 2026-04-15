@@ -47,7 +47,7 @@ export default function AboutPage() {
           >
             <h1 className="text-4xl font-bold text-white sm:text-5xl">Về chúng tôi</h1>
             <p className="mt-4 text-lg text-stone-300">
-              Tranh Thêu Tay Hằng Khoa - Nơi nghệ thuật truyền thống gặp gỡ đam mê hiện đại
+              Tên Thương Hiệu - Nơi nghệ thuật truyền thống gặp gỡ đam mê hiện đại
             </p>
           </motion.div>
         </div>
@@ -65,9 +65,9 @@ export default function AboutPage() {
             <h2 className="text-3xl font-bold text-foreground">Câu chuyện của chúng tôi</h2>
             <div className="mt-6 space-y-4 text-muted-foreground">
               <p>
-                Tranh Thêu Tay Hằng Khoa được thành lập với mong muốn gìn giữ và phát huy
-                nghệ thuật thêu tay truyền thống của Việt Nam. Từ một xưởng thêu nhỏ tại
-                Cũ Văn, Thái Nguyên, chúng tôi đã phát triển thành một thương hiệu được
+                [Tên Thương Hiệu] được thành lập với mong muốn gìn giữ và phát huy
+                nghệ thuật thêu tay truyền thống của Việt Nam. Từ một xưởng thêu nhỏ,
+                chúng tôi đã phát triển thành một thương hiệu được
                 nhiều người yêu nghệ thuật tin tưởng.
               </p>
               <p>

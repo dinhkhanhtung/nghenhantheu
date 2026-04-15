@@ -34,8 +34,8 @@ export default function AdminLoginPage() {
         <div className="text-center mb-8">
           <Link href="/" className="inline-block">
             <div className="text-center">
-              <div className="text-2xl font-serif text-[#1c1917] tracking-wide">TRANH THÊU TAY</div>
-              <div className="text-xs tracking-[0.3em] text-[#57534e] uppercase">Hằng Khoa</div>
+              <div className="text-2xl font-serif text-[#1c1917] tracking-wide">ADMIN PANEL</div>
+              <div className="text-xs tracking-[0.3em] text-[#57534e] uppercase">Quản lý website</div>
             </div>
           </Link>
           <h1 className="text-xl font-medium text-[#1c1917] mt-6">Admin Dashboard</h1>

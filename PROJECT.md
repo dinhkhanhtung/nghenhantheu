@@ -1,5 +1,5 @@
 # 📋 Project Documentation
-## Tranh Thêu Tay Hằng Khoa - Full E-commerce Website
+## E-commerce & E-learning Platform Template
 
 **Version:** 2.0  
 **Last Updated:** April 10, 2026  
@@ -16,11 +16,11 @@ Website bán tranh thêu tay và các sản phẩm thêu truyền thống với:
 - **Image Hosting:** ImgBB API
 - **Deploy:** Vercel
 
-**Tên thương hiệu:** Tranh Thêu Tay Hằng Khoa
-**Lĩnh vực:** Thuốc đông y, thảo dược, bài thuốc gia truyền (ĐANG CHUYỂN SANG TRANH THÊU TAY)
-**SĐT:** 0982581222
-**Địa chỉ:** Xóm Hằng Khoa, Cũ Văn, Phú Lương, Thái Nguyên, Việt Nam
-**Blogspot:** tranhtheuhangkhoa.blogspot.com
+**Tên thương hiệu:** [Tên của bạn]
+**Lĩnh vực:** [Lĩnh vực kinh doanh của bạn]
+**SĐT:** [Số điện thoại]
+**Địa chỉ:** [Địa chỉ của bạn]
+**Website:** [URL website của bạn]
 
 ---
 

@@ -94,7 +94,7 @@ function PaymentResultContent() {
           </h1>
           
           <p className="text-[#57534e] mb-6">
-            Cảm ơn bạn đã đặt hàng tại {settings.brand.name || "Tranh Thêu Tay Hằng Khoa"}.
+            Cảm ơn bạn đã đặt hàng tại {settings.brand.name || "cửa hàng của chúng tôi"}.
             {orderDetails?.paymentMethod === "BANK" ? (
               <span className="block mt-2 text-sm">
                 Vui lòng chuyển khoản theo thông tin bên dưới. Đơn hàng sẽ được xử lý sau khi xác nhận thanh toán.

@@ -37,7 +37,7 @@ const blogPosts = [
     id: "2",
     title: "Câu Chuyện Sản Phẩm: Tranh Thêu Hoa Sen",
     content: `
-      <p>Hoa sen - biểu tượng của sự tinh khiết, thanh cao trong văn hóa Phật giáo và Á Đông. Tác phẩm thêu hoa sen của Hằng Khoa là kết tinh của hàng tháng trời kiên nhẫn, tỉ mỉ.</p>
+      <p>Hoa sen - biểu tượng của sự tinh khiết, thanh cao trong văn hóa Phật giáo và Á Đông. Tác phẩm thêu hoa sen là kết tinh của hàng tháng trời kiên nhẫn, tỉ mỉ.</p>
       
       <h3>Quá trình sáng tác</h3>
       <p>Để tạo nên một tác phẩm thêu hoa sen hoàn chỉnh, nghệ nhân phải trải qua nhiều công đoạn: chọn vải, phác thảo, chọn chỉ, thêu từng chi tiết. Mỗi cánh sen được thêu bằng nhiều lớp chỉ khác nhau để tạo độ sâu và chân thực.</p>
@@ -60,7 +60,7 @@ const blogPosts = [
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
   const post = blogPosts.find(p => p.id === params.id);
   return {
-    title: post ? `${post.title} - Tranh Thêu Tay Hằng Khoa` : "Bài Viết",
+    title: post ? `${post.title} - Tên Thương Hiệu` : "Bài Viết",
     description: post?.content?.slice(0, 150) || "Chi tiết bài viết",
   };
 }

@@ -50,9 +50,9 @@ const mockCourse: Course = {
   description: "Khóa học dành cho người mới bắt đầu, hướng dẫn từ A-Z kỹ thuật thêu tay cơ bản qua tác phẩm hoa cúc truyền thống. Sau khóa học, bạn sẽ tự tin thêu được những bông hoa cúc tuyệt đẹp.",
   thumbnail: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80",
   instructor: {
-    name: "Cô Hằng Khoa",
-    avatar: "https://ui-avatars.com/api/?name=Hang+Khoa&background=b45309&color=fff",
-    bio: "Nghệ nhân thêu tay với hơn 20 năm kinh nghiệm, đã đào tạo hàng nghìn học viên trong và ngoài nước.",
+    name: "Giảng viên",
+    avatar: "https://ui-avatars.com/api/?name=Teacher&background=b45309&color=fff",
+    bio: "Nghệ nhân thêu tay với nhiều năm kinh nghiệm, đã đào tạo nhiều học viên trong và ngoài nước.",
   },
   level: "beginner",
   price: 0,

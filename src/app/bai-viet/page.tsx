@@ -27,7 +27,7 @@ const blogPosts = [
   },
   {
     id: 3,
-    title: "Workshop Thêu Tay Tại Hằng Khoa",
+    title: "Workshop Thêu Tay Của Chúng Tôi",
     excerpt: "Những khoảnh khắc đáng nhớ từ buổi workshop thêu tay tháng 2. Cùng xem các học viên đã tạo nên những tác phẩm đầu tay như thế nào.",
     image: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=800&q=80",
     category: "Tin Tức & Sự Kiện",

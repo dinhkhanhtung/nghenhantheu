@@ -13,7 +13,7 @@ export default function AdminUsersPage() {
     {
       id: "1",
       name: "Admin chính",
-      email: "admin@hangkhoa.com",
+      email: "admin@example.com",
       role: "super_admin",
       status: "active",
       lastLogin: "Vừa xong",
@@ -23,7 +23,7 @@ export default function AdminUsersPage() {
     {
       id: "2",
       name: "Nguyễn Văn A",
-      email: "nguyenvana@hangkhoa.com",
+      email: "user1@example.com",
       role: "admin",
       status: "active",
       lastLogin: "2 giờ trước",
@@ -33,7 +33,7 @@ export default function AdminUsersPage() {
     {
       id: "3",
       name: "Trần Thị B",
-      email: "tranthib@hangkhoa.com",
+      email: "user2@example.com",
       role: "editor",
       status: "active",
       lastLogin: "1 ngày trước",
@@ -43,7 +43,7 @@ export default function AdminUsersPage() {
     {
       id: "4",
       name: "Lê Văn C",
-      email: "levanc@hangkhoa.com",
+      email: "user3@example.com",
       role: "editor",
       status: "inactive",
       lastLogin: "7 ngày trước",

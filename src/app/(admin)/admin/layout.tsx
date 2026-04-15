@@ -146,7 +146,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                   exit={{ opacity: 0, x: -10 }}
                   className="flex flex-col"
                 >
-                  <span className="font-bold text-[#1c1917] text-sm tracking-wider uppercase">HẰNG KHOA</span>
+                  <span className="font-bold text-[#1c1917] text-sm tracking-wider uppercase">ADMIN</span>
                   <span className="text-[10px] text-[#57534e] font-medium tracking-[0.2em] uppercase">Admin Panel</span>
                 </motion.div>
               )}
