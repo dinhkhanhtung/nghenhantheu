@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
-import { Eye, ShoppingBag, Heart } from "lucide-react";
+import { Eye, ShoppingBag, Heart, Search, Filter } from "lucide-react";
 import { useState } from "react";
 import { Toast, useToast } from "@/components/ui/Toast";
 
@@ -167,27 +167,76 @@ const accessories = [
 ];
 
 export default function AccessoriesPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Tất cả");
+
+  const categories = ["Tất cả", "Khung tranh", "Chỉ thêu", "Kim thêu", "Vải thêu", "Dụng cụ"];
+
+  const filteredAccessories = accessories.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory === "Tất cả" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <div className="bg-[#fffbf5] pt-[140px] lg:pt-[160px] pb-16">
-        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
-            Phụ Kiện Thêu Tay
-          </h1>
-          <p className="text-[#57534e] max-w-2xl mx-auto">
-            Khung tranh, kim chỉ, vải canvas và các dụng cụ thêu tay cao cấp để bạn thỏa sức sáng tạo
-          </p>
+      <div className="bg-[#fffbf5] pt-[100px] lg:pt-[120px] pb-12">
+        <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
+              Phụ Kiện Thêu Tay
+            </h1>
+            <p className="text-[#57534e] max-w-2xl mx-auto">
+              Khung tranh, kim chỉ, vải canvas và các dụng cụ thêu tay cao cấp để bạn thỏa sức sáng tạo
+            </p>
+          </div>
+
+          {/* Search & Filter */}
+          <div className="max-w-3xl mx-auto space-y-4">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#57534e]" size={20} />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Tìm kiếm phụ kiện..."
+                className="w-full pl-12 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+              />
+            </div>
+
+            <div className="flex flex-nowrap gap-2 sm:gap-3 overflow-x-auto pb-1">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
+                    selectedCategory === cat
+                      ? "bg-[#b45309] text-white"
+                      : "bg-[#f5f5f4] text-[#57534e] hover:bg-[#e7e5e4]"
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
       {/* Products Grid */}
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {accessories.map((product, index) => (
-            <ProductCard key={product.id} product={product} index={index} />
-          ))}
-        </div>
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-12">
+        {filteredAccessories.length > 0 ? (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredAccessories.map((product, index) => (
+              <ProductCard key={product.id} product={product} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-[#57534e]">Không tìm thấy phụ kiện nào phù hợp.</p>
+          </div>
+        )}
       </div>
     </div>
   );

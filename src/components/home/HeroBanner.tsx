@@ -135,17 +135,17 @@ export default function HeroBanner() {
       {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white/80 hover:bg-white/20 hover:text-white hover:scale-110 transition-all duration-300 border border-white/20"
+        className="absolute left-2 md:left-8 bottom-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-20 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white/80 hover:bg-white/20 hover:text-white hover:scale-110 transition-all duration-300 border border-white/20"
         aria-label="Previous slide"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft size={20} className="md:w-7 md:h-7" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-14 h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white/80 hover:bg-white/20 hover:text-white hover:scale-110 transition-all duration-300 border border-white/20"
+        className="absolute right-2 md:right-8 bottom-20 md:bottom-auto md:top-1/2 md:-translate-y-1/2 z-20 w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md text-white/80 hover:bg-white/20 hover:text-white hover:scale-110 transition-all duration-300 border border-white/20"
         aria-label="Next slide"
       >
-        <ChevronRight size={28} />
+        <ChevronRight size={20} className="md:w-7 md:h-7" />
       </button>
 
       {/* Slide Indicators */}
