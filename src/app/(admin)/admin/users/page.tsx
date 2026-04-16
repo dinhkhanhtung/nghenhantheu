@@ -30,7 +30,7 @@ export default function UsersPage() {
               className="pl-10 pr-4 py-2 bg-white border border-[#e7e5e4] rounded-xl text-sm focus:border-[#b45309] focus:outline-none"
             />
           </div>
-          <button className="p-2 border border-[#e7e5e4] rounded-xl hover:bg-[#f5f5f4] transition-colors">
+          <button className="p-2 border border-[#e7e5e4] rounded-xl hover:bg-[#f5f5f4] transition-colors press-feedback">
             <Filter size={20} />
           </button>
         </div>

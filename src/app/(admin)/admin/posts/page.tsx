@@ -67,8 +67,8 @@ export default function PostsPage() {
           <p className="text-sm text-[#57534e] mt-1">{filteredPosts.length} bài viết</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#57534e] bg-white border border-[#e7e5e4] rounded-lg hover:bg-[#f5f5f4] transition-colors"><Download size={16} /> Export</button>
-          <Link href="/admin/posts/new" className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#b45309] rounded-lg hover:bg-[#1c1917] transition-colors"><Plus size={16} /> Thêm bài viết</Link>
+          <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#57534e] bg-white border border-[#e7e5e4] rounded-lg hover:bg-[#f5f5f4] transition-colors press-feedback"><Download size={16} /> Export</button>
+          <Link href="/admin/posts/new" className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#b45309] rounded-lg hover:bg-[#1c1917] transition-colors press-feedback"><Plus size={16} /> Thêm bài viết</Link>
         </div>
       </div>
 

@@ -61,7 +61,7 @@ export default function AdminDashboardPage() {
           <h1 className="text-2xl font-bold text-[#1c1917] tracking-tight">Tổng quan hệ thống</h1>
           <p className="text-sm text-[#57534e] mt-1 font-medium">Chào mừng trở lại! Dưới đây là những gì đang diễn ra.</p>
         </div>
-        <Link href="/admin/posts/new" className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-[#b45309] rounded-xl hover:bg-[#1c1917] shadow-lg shadow-[#b45309]/20 transition-all active:scale-95">
+        <Link href="/admin/posts/new" className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-[#b45309] rounded-xl hover:bg-[#1c1917] shadow-lg shadow-[#b45309]/20 transition-all press-feedback">
           <Plus size={18} /> Soạn bài viết mới
         </Link>
       </div>
@@ -76,7 +76,7 @@ export default function AdminDashboardPage() {
             transition={{ delay: idx * 0.1 }}
           >
             <Link href={stat.link} className="block group">
-              <div className="bg-white p-6 rounded-2xl border border-[#e7e5e4] group-hover:border-[#b45309] group-hover:shadow-xl group-hover:shadow-[#b45309]/5 transition-all duration-300">
+              <div className="bg-white p-6 rounded-2xl border border-[#e7e5e4] group-hover:border-[#b45309] group-hover:shadow-xl group-hover:shadow-[#b45309]/5 transition-all duration-300 hover-lift">
                 <div className="flex items-start justify-between">
                   <div className="space-y-3">
                     <p className="text-xs font-bold text-[#57534e] uppercase tracking-widest">{stat.title}</p>
@@ -191,21 +191,21 @@ export default function AdminDashboardPage() {
           <div className="bg-white rounded-2xl border border-[#e7e5e4] p-6 shadow-sm space-y-5">
             <h3 className="font-bold text-[#1c1917] tracking-tight">Thao tác nhanh</h3>
             <div className="grid grid-cols-1 gap-3">
-              <Link href="/admin/posts/new" className="flex items-center gap-4 p-3.5 rounded-xl bg-blue-50/50 hover:bg-blue-50 transition-all group border border-transparent hover:border-blue-100">
+              <Link href="/admin/posts/new" className="flex items-center gap-4 p-3.5 rounded-xl bg-blue-50/50 hover:bg-blue-50 transition-all group border border-transparent hover:border-blue-100 press-feedback">
                 <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><FileText size={20} /></div>
                 <div>
                   <p className="text-sm font-bold text-[#1c1917]">Thêm bài viết</p>
                   <p className="text-[10px] text-[#57534e] font-medium">Viết tin tức, hướng dẫn mới</p>
                 </div>
               </Link>
-              <Link href="/admin/products/new" className="flex items-center gap-4 p-3.5 rounded-xl bg-green-50/50 hover:bg-green-50 transition-all group border border-transparent hover:border-green-100">
+              <Link href="/admin/products/new" className="flex items-center gap-4 p-3.5 rounded-xl bg-green-50/50 hover:bg-green-50 transition-all group border border-transparent hover:border-green-100 press-feedback">
                 <div className="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><ShoppingBag size={20} /></div>
                 <div>
                   <p className="text-sm font-bold text-[#1c1917]">Thêm sản phẩm</p>
-                  <p className="text-[10px] text-[#57534e] font-medium">Cập nhật kho tranh thêu</p>
+                  <p className="text-[10px] text-[#57534e] font-medium">Đăng sản phẩm mới lên kho</p>
                 </div>
               </Link>
-              <Link href="/admin/banners" className="flex items-center gap-4 p-3.5 rounded-xl bg-[#b45309]/5 hover:bg-[#b45309]/10 transition-all group border border-transparent hover:border-[#b45309]/10">
+              <Link href="/admin/banners" className="flex items-center gap-4 p-3.5 rounded-xl bg-[#b45309]/5 hover:bg-[#b45309]/10 transition-all group border border-transparent hover:border-[#b45309]/10 press-feedback">
                 <div className="w-10 h-10 bg-[#b45309]/10 text-[#b45309] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform"><TrendingUp size={20} /></div>
                 <div>
                   <p className="text-sm font-bold text-[#1c1917]">Cài đặt Banner</p>

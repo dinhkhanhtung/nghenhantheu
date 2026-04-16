@@ -366,9 +366,9 @@ export default function ProductsPage() {
           <h1 className="text-xl md:text-2xl font-serif text-[#1c1917]">Sản phẩm</h1>
           <p className="text-sm text-[#57534e] mt-1">Quản lý sản phẩm tranh thêu</p>
         </div>
-        <button 
+        <button
           onClick={openNewProductModal}
-          className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#b45309] rounded-lg hover:bg-[#92400e] transition-colors"
+          className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[#b45309] rounded-lg hover:bg-[#92400e] transition-colors press-feedback"
         >
           <Plus size={16} />
           <span>Thêm sản phẩm</span>
@@ -913,14 +913,14 @@ export default function ProductsPage() {
                 <div className="flex gap-3 pt-4 border-t border-[#e7e5e4]">
                   <button
                     onClick={() => setIsModalOpen(false)}
-                    className="flex-1 px-4 py-2 border border-[#e7e5e4] text-[#1c1917] rounded-lg hover:bg-[#f5f5f4] transition-colors"
+                    className="flex-1 px-4 py-2 border border-[#e7e5e4] text-[#1c1917] rounded-lg hover:bg-[#f5f5f4] transition-colors press-feedback"
                   >
                     Hủy
                   </button>
                   <button
                     onClick={saveProduct}
                     disabled={uploadingImage}
-                    className="flex-1 px-4 py-2 bg-[#b45309] text-white rounded-lg hover:bg-[#92400e] transition-colors disabled:opacity-50"
+                    className="flex-1 px-4 py-2 bg-[#b45309] text-white rounded-lg hover:bg-[#92400e] transition-colors disabled:opacity-50 press-feedback"
                   >
                     {editingProduct ? "Lưu thay đổi" : "Thêm sản phẩm"}
                   </button>

@@ -36,10 +36,10 @@ export default function WebsiteSettingsPage() {
           <h1 className="text-2xl font-bold text-[#1c1917] tracking-tight">Cài đặt Website</h1>
           <p className="text-sm text-[#57534e] mt-1 font-medium">Cấu hình thông tin, giao diện và vận hành website</p>
         </div>
-        <button 
+        <button
           onClick={handleSave}
           disabled={isSaving}
-          className={`flex items-center gap-2 px-6 py-2.5 text-white font-bold rounded-xl transition-all active:scale-95 ${
+          className={`flex items-center gap-2 px-6 py-2.5 text-white font-bold rounded-xl transition-all press-feedback ${
             saveSuccess ? "bg-green-600" : "bg-[#b45309] hover:bg-[#1c1917]"
           }`}
         >
