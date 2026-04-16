@@ -365,8 +365,223 @@ export default function WebsiteSettingsPage() {
               </div>
             )}
 
-            {/* Appearance, Payment, Shipping - similar pattern ... */}
-            {/* (Omitted for brevity, but they should also use tempSettings and onChange) */}
+            {/* Appearance Settings */}
+            {activeTab === "appearance" && (
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
+                  <div className="w-12 h-12 bg-[#b45309]/10 rounded-2xl flex items-center justify-center text-[#b45309]">
+                    <Palette size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#1c1917] text-lg tracking-tight">Màu sắc chủ đạo</h3>
+                    <p className="text-sm text-[#57534e] font-medium">Chọn bảng màu phù hợp với thương hiệu của bạn</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Theme Presets */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-bold text-[#1c1917] uppercase tracking-wider">Bảng màu có sẵn</label>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                      {[
+                        { id: "amber", name: "Hổ Phách", desc: "Truyền thống, ấm áp", color: "#b45309" },
+                        { id: "emerald", name: "Ngọc Lục", desc: "Tự nhiên, thanh bình", color: "#047857" },
+                        { id: "blue", name: "Xanh Cobalt", desc: "Hiện đại, chuyên nghiệp", color: "#1d4ed8" },
+                        { id: "rose", name: "Hồng Đào", desc: "Nữ tính, tinh tế", color: "#be123c" },
+                        { id: "violet", name: "Tím Cẩm Thạch", desc: "Sang trọng, nghệ thuật", color: "#7c3aed" },
+                        { id: "orange", name: "Cam Đất", desc: "Năng động, Việt Nam", color: "#c2410c" },
+                        { id: "custom", name: "Tùy chỉnh", desc: "Màu của riêng bạn", color: "#78716c" },
+                      ].map((preset) => (
+                        <button
+                          key={preset.id}
+                          type="button"
+                          onClick={() => {
+                            const newSettings = {
+                              ...tempSettings,
+                              theme: { ...tempSettings.theme, preset: preset.id as any }
+                            };
+                            // If not custom, auto-fill colors from preset
+                            if (preset.id !== "custom") {
+                              const presetData = {
+                                amber: { primary: "#b45309", secondary: "#d97706", accent: "#fbbf24", dark: "#1c1917" },
+                                emerald: { primary: "#047857", secondary: "#059669", accent: "#34d399", dark: "#064e3b" },
+                                blue: { primary: "#1d4ed8", secondary: "#2563eb", accent: "#60a5fa", dark: "#1e3a8a" },
+                                rose: { primary: "#be123c", secondary: "#e11d48", accent: "#fb7185", dark: "#881337" },
+                                violet: { primary: "#7c3aed", secondary: "#8b5cf6", accent: "#a78bfa", dark: "#4c1d95" },
+                                orange: { primary: "#c2410c", secondary: "#ea580c", accent: "#fb923c", dark: "#7c2d12" },
+                              }[preset.id];
+                              if (presetData) {
+                                newSettings.theme = {
+                                  ...newSettings.theme,
+                                  primaryColor: presetData.primary,
+                                  secondaryColor: presetData.secondary,
+                                  accentColor: presetData.accent,
+                                  darkColor: presetData.dark,
+                                };
+                              }
+                            }
+                            setTempSettings(newSettings);
+                          }}
+                          className={`p-4 rounded-xl border-2 transition-all text-left ${
+                            tempSettings.theme?.preset === preset.id
+                              ? "border-[#b45309] bg-[#b45309]/5"
+                              : "border-[#e7e5e4] hover:border-[#b45309]/30"
+                          }`}
+                        >
+                          <div className="flex items-center gap-3 mb-2">
+                            <div
+                              className="w-8 h-8 rounded-full border-2 border-white shadow-md"
+                              style={{ backgroundColor: preset.color }}
+                            />
+                            {tempSettings.theme?.preset === preset.id && (
+                              <div className="text-[#b45309]">✓</div>
+                            )}
+                          </div>
+                          <div className="font-medium text-[#1c1917] text-sm">{preset.name}</div>
+                          <div className="text-xs text-[#57534e] mt-1">{preset.desc}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Custom Colors (only when custom preset selected) */}
+                  {tempSettings.theme?.preset === "custom" && (
+                    <div className="space-y-4 p-6 bg-[#f5f5f4] rounded-xl border border-[#e7e5e4]">
+                      <h4 className="font-medium text-[#1c1917]">Tùy chỉnh màu sắc</h4>
+                      <div className="grid grid-cols-2 gap-4">
+                        <div className="space-y-2">
+                          <label className="text-sm text-[#57534e]">Màu chính (Buttons, Links)</label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="color"
+                              value={tempSettings.theme?.primaryColor || "#b45309"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, primaryColor: e.target.value }
+                              })}
+                              className="w-12 h-10 rounded cursor-pointer"
+                            />
+                            <input
+                              type="text"
+                              value={tempSettings.theme?.primaryColor || "#b45309"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, primaryColor: e.target.value }
+                              })}
+                              className="flex-1 px-3 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                              placeholder="#b45309"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm text-[#57534e]">Màu phụ (Hover, Gradient)</label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="color"
+                              value={tempSettings.theme?.secondaryColor || "#d97706"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, secondaryColor: e.target.value }
+                              })}
+                              className="w-12 h-10 rounded cursor-pointer"
+                            />
+                            <input
+                              type="text"
+                              value={tempSettings.theme?.secondaryColor || "#d97706"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, secondaryColor: e.target.value }
+                              })}
+                              className="flex-1 px-3 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                              placeholder="#d97706"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm text-[#57534e]">Màu nhấn (Badges, Tags)</label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="color"
+                              value={tempSettings.theme?.accentColor || "#fbbf24"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, accentColor: e.target.value }
+                              })}
+                              className="w-12 h-10 rounded cursor-pointer"
+                            />
+                            <input
+                              type="text"
+                              value={tempSettings.theme?.accentColor || "#fbbf24"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, accentColor: e.target.value }
+                              })}
+                              className="flex-1 px-3 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                              placeholder="#fbbf24"
+                            />
+                          </div>
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-sm text-[#57534e]">Màu tối (Text nền đen)</label>
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="color"
+                              value={tempSettings.theme?.darkColor || "#1c1917"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, darkColor: e.target.value }
+                              })}
+                              className="w-12 h-10 rounded cursor-pointer"
+                            />
+                            <input
+                              type="text"
+                              value={tempSettings.theme?.darkColor || "#1c1917"}
+                              onChange={(e) => setTempSettings({
+                                ...tempSettings,
+                                theme: { ...tempSettings.theme, darkColor: e.target.value }
+                              })}
+                              className="flex-1 px-3 py-2 border border-[#e7e5e4] rounded-lg text-sm"
+                              placeholder="#1c1917"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Preview */}
+                  <div className="p-6 rounded-xl border border-[#e7e5e4]">
+                    <h4 className="font-medium text-[#1c1917] mb-4">Xem trước</h4>
+                    <div className="flex flex-wrap gap-3">
+                      <button
+                        className="px-4 py-2 rounded-lg text-white font-medium"
+                        style={{ backgroundColor: tempSettings.theme?.primaryColor || "#b45309" }}
+                      >
+                        Nút chính
+                      </button>
+                      <button
+                        className="px-4 py-2 rounded-lg text-white font-medium"
+                        style={{ backgroundColor: tempSettings.theme?.secondaryColor || "#d97706" }}
+                      >
+                        Nút phụ
+                      </button>
+                      <span
+                        className="px-3 py-1 rounded-full text-sm font-medium"
+                        style={{ backgroundColor: tempSettings.theme?.accentColor || "#fbbf24", color: tempSettings.theme?.darkColor || "#1c1917" }}
+                      >
+                        Nhãn
+                      </span>
+                      <div
+                        className="px-4 py-2 rounded-lg text-white font-medium"
+                        style={{ backgroundColor: tempSettings.theme?.darkColor || "#1c1917" }}
+                      >
+                        Nền tối
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Popup Settings */}
             {activeTab === "popup" && (

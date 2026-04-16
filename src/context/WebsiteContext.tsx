@@ -58,6 +58,13 @@ export interface WebsiteSettings {
     showAfter: number;     // Hiện sau bao nhiêu giây
     showOnce: boolean;     // Chỉ hiện 1 lần
   };
+  theme: {
+    preset: "amber" | "emerald" | "blue" | "rose" | "violet" | "orange" | "custom";
+    primaryColor: string;  // Hex color code
+    secondaryColor: string;
+    accentColor: string;
+    darkColor: string;
+  };
 }
 
 const defaultSettings: WebsiteSettings = {
@@ -112,6 +119,13 @@ const defaultSettings: WebsiteSettings = {
     buttonLink: "/san-pham",
     showAfter: 3,        // Hiện sau 3 giây
     showOnce: true,      // Chỉ hiện 1 lần
+  },
+  theme: {
+    preset: "amber",
+    primaryColor: "#b45309",    // Amber-700
+    secondaryColor: "#d97706",  // Amber-600
+    accentColor: "#fbbf24",     // Amber-400
+    darkColor: "#1c1917",       // Stone-900
   },
 };
 
