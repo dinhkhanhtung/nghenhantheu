@@ -10,9 +10,13 @@ const mockPosts = [
   { id: "2", title: "Kỹ thuật thêu tay cơ bản cho người mới", category: "Hướng dẫn", status: "published", views: 890, createdAt: "2024-01-14", thumbnail: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=100&q=80" },
   { id: "3", title: "Bộ sưu tập tranh phong thủy 2024", category: "Phong thủy", status: "draft", views: 0, createdAt: "2024-01-13", thumbnail: "https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?w=100&q=80" },
   { id: "4", title: "Cách bảo quản tranh thêu đúng cách", category: "Bảo quản", status: "published", views: 567, createdAt: "2024-01-12", thumbnail: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=100&q=80" },
+  { id: "5", title: "Hướng dẫn mua hàng", category: "Hỗ trợ", status: "published", views: 320, createdAt: "2024-01-10", thumbnail: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=100&q=80" },
+  { id: "6", title: "Chính sách đổi trả", category: "Chính sách", status: "published", views: 280, createdAt: "2024-01-09", thumbnail: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=100&q=80" },
+  { id: "7", title: "Vận chuyển và giao hàng", category: "Hỗ trợ", status: "published", views: 150, createdAt: "2024-01-08", thumbnail: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=100&q=80" },
+  { id: "8", title: "Câu hỏi thường gặp", category: "FAQ", status: "published", views: 420, createdAt: "2024-01-07", thumbnail: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=100&q=80" },
 ];
 
-const categories = ["Tất cả", "Hoa sen", "Chim hạc", "Phong thủy", "Hướng dẫn", "Bảo quản"];
+const categories = ["Tất cả", "Hoa sen", "Chim hạc", "Phong thủy", "Hướng dẫn", "Bảo quản", "Hỗ trợ", "Chính sách", "FAQ"];
 
 export default function PostsPage() {
   const [posts, setPosts] = useState(mockPosts);
