@@ -54,8 +54,8 @@ Nói: "Em muốn website ngành [tên ngành], tên shop [tên shop]"
 
 ```bash
 # 1. Clone repo
-git clone https://github.com/dinhkhanhtung/tranhhangkhoa.git
-cd tranhhangkhoa
+git clone https://github.com/dinhkhanhtung/industry-themes.git
+cd industry-themes
 
 # 2. Install dependencies
 npm install
@@ -101,7 +101,7 @@ Vào Admin → Sản phẩm → Thêm sản phẩm
 
 - **Demo:** https://industry-themes.vercel.app/demo
 - **Admin Demo:** https://industry-themes.vercel.app/admin
-- **GitHub:** https://github.com/dinhkhanhtung/tranhhangkhoa
+- **GitHub:** https://github.com/dinhkhanhtung/industry-themes
 
 ---
 

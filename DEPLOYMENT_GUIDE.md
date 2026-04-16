@@ -69,7 +69,7 @@ Gửi cho khách hàng xem trước theo ngành:
 
 ```bash
 # Trên GitHub
-1. Vào repo: https://github.com/dinhkhanhtung/tranhhangkhoa
+1. Vào repo: https://github.com/dinhkhanhtung/industry-themes
 2. Settings → General → Template repository ✅
 3. Save
 ```
@@ -89,7 +89,7 @@ Dưới đây là hướng dẫn setup website:
    → https://github.com/signup
 
 2. **Tạo repo từ template**
-   → Click: https://github.com/dinhkhanhtung/tranhhangkhoa/generate
+   → Click: https://github.com/dinhkhanhtung/industry-themes/generate
    → Đặt tên: [ten-shop]-website
    → Chọn Private
 
@@ -116,7 +116,7 @@ Nếu khách không rành kỹ thuật, tự làm giúp:
 
 ```bash
 # Clone repo
-gh repo create [ten-shop]/website --template dinhkhanhtung/tranhhangkhoa
+gh repo create [ten-shop]/website --template dinhkhanhtung/industry-themes
 
 # Customize
 cd website
