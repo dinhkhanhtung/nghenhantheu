@@ -133,7 +133,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-[64px] lg:h-[80px]">
             {/* Mobile Menu Button */}
             <button
-              className="lg:hidden p-3 -ml-2 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
+              className="lg:hidden p-3 -ml-2 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -146,7 +146,7 @@ export default function Header() {
                   <img src={settings.brand.logo} alt={settings.brand.name} className="h-8 lg:h-10 w-auto object-contain" />
                 ) : (
                   <div className="flex flex-col items-center max-w-[140px] sm:max-w-[180px] lg:max-w-none">
-                    <div className="text-sm sm:text-lg lg:text-2xl font-bold text-[#1c1917] tracking-wider uppercase leading-tight whitespace-nowrap">
+                    <div className="text-sm sm:text-lg lg:text-2xl font-bold text-[var(--color-dark)] tracking-wider uppercase leading-tight whitespace-nowrap">
                       {settings.brand.name}
                     </div>
                     <div className="text-[7px] sm:text-[8px] lg:text-xs tracking-[0.1em] sm:tracking-[0.15em] lg:tracking-[0.4em] text-[#57534e] uppercase font-medium mt-0.5 whitespace-nowrap">
@@ -160,7 +160,7 @@ export default function Header() {
             {/* Right Icons - Mobile: Search + User (close together, right aligned) */}
             <div className="flex items-center space-x-0 lg:space-x-2 ml-auto">
               <button 
-                className="p-2 lg:p-3 text-[#1c1917] hover:text-[#b45309] transition-colors min-w-[40px] min-h-[44px] flex items-center justify-center -mr-1"
+                className="p-2 lg:p-3 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors min-w-[40px] min-h-[44px] flex items-center justify-center -mr-1"
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
               >
                 <Search size={20} />
@@ -168,24 +168,24 @@ export default function Header() {
               {/* Mobile & Desktop: Account */}
               <Link
                 href="/tai-khoan"
-                className="p-2 lg:p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[40px] min-h-[44px] flex items-center justify-center"
+                className="p-2 lg:p-3 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors relative min-w-[40px] min-h-[44px] flex items-center justify-center"
               >
                 <User size={20} />
               </Link>
               {/* Desktop only: Wishlist & Cart */}
               <Link
                 href="/yeu-thich"
-                className="hidden lg:flex p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
+                className="hidden lg:flex p-3 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
               >
                 <Heart size={20} />
               </Link>
               <Link
                 href="/gio-hang"
-                className="hidden lg:flex p-3 text-[#1c1917] hover:text-[#b45309] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
+                className="hidden lg:flex p-3 text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors relative min-w-[44px] min-h-[44px] items-center justify-center"
               >
                 <ShoppingBag size={20} />
                 {cartCount > 0 && (
-                  <span className="absolute top-2 right-2 w-4 h-4 bg-[#b45309] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
+                  <span className="absolute top-2 right-2 w-4 h-4 bg-[var(--color-primary)] text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white">
                     {cartCount}
                   </span>
                 )}
@@ -204,7 +204,7 @@ export default function Header() {
               >
                 <Link
                   href={link.href}
-                  className="flex items-center space-x-1.5 text-[13px] font-semibold text-[#1c1917] hover:text-[#b45309] transition-colors uppercase tracking-wide press-feedback"
+                  className="flex items-center space-x-1.5 text-[13px] font-semibold text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors uppercase tracking-wide press-feedback"
                 >
                   <span>{link.label}</span>
                   {link.megaMenu && <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />}
@@ -236,7 +236,7 @@ export default function Header() {
                                   <p className="text-xs font-bold uppercase tracking-[0.2em] mb-2 text-white/90">
                                     {link.megaMenu.imageTitle}
                                   </p>
-                                  <span className="text-[11px] font-semibold uppercase tracking-widest border-b border-white/40 pb-1 hover:text-[#b45309] hover:border-[#b45309] transition-all">
+                                  <span className="text-[11px] font-semibold uppercase tracking-widest border-b border-white/40 pb-1 hover:text-[var(--color-primary)] hover:border-[var(--color-primary)] transition-all">
                                     Khám phá ngay
                                   </span>
                                 </div>
@@ -247,7 +247,7 @@ export default function Header() {
                           <div className="p-10 grid grid-cols-3 gap-12 min-w-[600px] bg-white">
                             {link.megaMenu?.columns?.map((column: {title: string, items: string[]}) => (
                               <div key={column.title}>
-                                <h4 className="text-[#1c1917] text-[11px] font-bold tracking-[0.2em] uppercase mb-6 border-l-2 border-[#b45309] pl-3">
+                                <h4 className="text-[var(--color-dark)] text-[11px] font-bold tracking-[0.2em] uppercase mb-6 border-l-2 border-[var(--color-primary)] pl-3">
                                   {column.title}
                                 </h4>
                                 <ul className="space-y-4">
@@ -255,7 +255,7 @@ export default function Header() {
                                     <li key={item}>
                                       <Link 
                                         href={`${link.href}?filter=${encodeURIComponent(item)}`} 
-                                        className="text-[13px] text-[#57534e] hover:text-[#b45309] hover:translate-x-1 transition-all block"
+                                        className="text-[13px] text-[#57534e] hover:text-[var(--color-primary)] hover:translate-x-1 transition-all block"
                                       >
                                         {item}
                                       </Link>
@@ -290,10 +290,10 @@ export default function Header() {
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder="Tìm kiếm sản phẩm..."
-                      className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[#b45309] focus:outline-none rounded-lg text-[#1c1917] placeholder:text-[#57534e]"
+                      className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none rounded-lg text-[var(--color-dark)] placeholder:text-[#57534e]"
                       autoFocus
                     />
-                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[#b45309]">
+                    <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--color-primary)]">
                       <Search size={20} />
                     </button>
                   </form>
@@ -329,7 +329,7 @@ export default function Header() {
                 <span className="font-serif text-lg">Menu</span>
                 <button
                   onClick={() => setIsMenuOpen(false)}
-                  className="p-2 hover:text-[#b45309] transition-colors"
+                  className="p-2 hover:text-[var(--color-primary)] transition-colors"
                 >
                   <X size={24} />
                 </button>
@@ -341,7 +341,7 @@ export default function Header() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="px-4 py-4 text-sm font-medium text-[#1c1917] hover:bg-[#fffbf5] hover:text-[#b45309] transition-colors border-b border-[#f5f5f4] flex items-center justify-between"
+                    className="px-4 py-4 text-sm font-medium text-[var(--color-dark)] hover:bg-[#fffbf5] hover:text-[var(--color-primary)] transition-colors border-b border-[#f5f5f4] flex items-center justify-between"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.label}
@@ -353,7 +353,7 @@ export default function Header() {
               {/* Sidebar Footer */}
               <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-[#e7e5e4] bg-[#fffbf5]">
                 <p className="text-xs text-[#57534e] mb-2">Liên hệ hỗ trợ</p>
-                <p className="text-sm font-medium text-[#1c1917]">0982 581 222</p>
+                <p className="text-sm font-medium text-[var(--color-dark)]">0982 581 222</p>
               </div>
             </motion.div>
           </>

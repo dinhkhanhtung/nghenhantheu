@@ -48,7 +48,7 @@ export default function LoginPage() {
           className="bg-white p-8 rounded-lg shadow-sm border border-[#e7e5e4]"
         >
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-serif text-[#1c1917] mb-2">
+            <h1 className="text-2xl font-serif text-[var(--color-dark)] mb-2">
               Đăng nhập
             </h1>
             <p className="text-sm text-[#57534e]">
@@ -68,7 +68,7 @@ export default function LoginPage() {
             className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-[#e7e5e4] rounded-lg hover:bg-[#f5f5f4] transition-colors mb-6"
           >
             <Chrome size={20} className="text-[#4285F4]" />
-            <span className="text-sm font-medium text-[#1c1917]">
+            <span className="text-sm font-medium text-[var(--color-dark)]">
               Đăng nhập với Google
             </span>
           </button>
@@ -87,7 +87,7 @@ export default function LoginPage() {
           {/* Email Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Email
               </label>
               <div className="relative">
@@ -99,7 +99,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="your@email.com"
                   required
                 />
@@ -107,7 +107,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Mật khẩu
               </label>
               <div className="relative">
@@ -119,14 +119,14 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-12 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="••••••••"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e] hover:text-[#1c1917]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e] hover:text-[var(--color-dark)]"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -137,13 +137,13 @@ export default function LoginPage() {
               <label className="flex items-center gap-2">
                 <input
                   type="checkbox"
-                  className="w-4 h-4 rounded border-[#e7e5e4] text-[#b45309] focus:ring-[#b45309]"
+                  className="w-4 h-4 rounded border-[#e7e5e4] text-[var(--color-primary)] focus:ring-[var(--color-primary)]"
                 />
                 <span className="text-[#57534e]">Ghi nhớ đăng nhập</span>
               </label>
               <Link
                 href="/quen-mat-khau"
-                className="text-[#b45309] hover:underline"
+                className="text-[var(--color-primary)] hover:underline"
               >
                 Quên mật khẩu?
               </Link>
@@ -152,7 +152,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-[#b45309] text-white font-medium rounded-lg hover:bg-[#92400e] transition-colors disabled:opacity-50"
+              className="w-full py-3 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-secondary)] transition-colors disabled:opacity-50"
             >
               {isLoading ? "Đang đăng nhập..." : "Đăng nhập"}
             </button>
@@ -160,7 +160,7 @@ export default function LoginPage() {
 
           <p className="mt-6 text-center text-sm text-[#57534e]">
             Chưa có tài khoản?{" "}
-            <Link href="/dang-ky" className="text-[#b45309] hover:underline font-medium">
+            <Link href="/dang-ky" className="text-[var(--color-primary)] hover:underline font-medium">
               Đăng ký ngay
             </Link>
           </p>
@@ -169,3 +169,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

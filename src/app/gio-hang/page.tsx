@@ -46,7 +46,7 @@ export default function CartPage() {
       {/* Header */}
       <div className="bg-white border-b border-[#e7e5e4]">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 py-8">
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-serif text-[#1c1917] text-center">
+          <h1 className="text-xl md:text-2xl lg:text-3xl font-serif text-[var(--color-dark)] text-center">
             Giỏ Hàng
           </h1>
         </div>
@@ -78,8 +78,8 @@ export default function CartPage() {
                     <div className="flex-1">
                       <div className="flex justify-between items-start mb-2">
                         <div>
-                          <p className="text-xs text-[#b45309] mb-1">{item.category}</p>
-                          <Link href={`/san-pham/${item.id}`} className="font-medium text-[#1c1917] hover:text-[#b45309] transition-colors">
+                          <p className="text-xs text-[var(--color-primary)] mb-1">{item.category}</p>
+                          <Link href={`/san-pham/${item.id}`} className="font-medium text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors">
                             {item.name}
                           </Link>
                         </div>
@@ -107,7 +107,7 @@ export default function CartPage() {
                             <Plus size={14} />
                           </button>
                         </div>
-                        <p className="font-medium text-[#1c1917]">
+                        <p className="font-medium text-[var(--color-dark)]">
                           {formatPrice(item.price * item.quantity)}
                         </p>
                       </div>
@@ -119,7 +119,7 @@ export default function CartPage() {
               {/* Continue Shopping */}
               <Link
                 href="/san-pham"
-                className="inline-flex items-center gap-2 text-sm text-[#57534e] hover:text-[#b45309] transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-[#57534e] hover:text-[var(--color-primary)] transition-colors"
               >
                 <ArrowRight size={16} className="rotate-180" />
                 Tiếp tục mua sắm
@@ -128,26 +128,26 @@ export default function CartPage() {
 
             {/* Cart Summary */}
             <div className="bg-white p-6 h-fit">
-              <h2 className="text-lg font-medium text-[#1c1917] mb-6 uppercase tracking-wider">
+              <h2 className="text-lg font-medium text-[var(--color-dark)] mb-6 uppercase tracking-wider">
                 Tóm Tắt Đơn Hàng
               </h2>
               
               <div className="space-y-4 pb-6 border-b border-[#e7e5e4]">
                 <div className="flex justify-between text-sm">
                   <span className="text-[#57534e]">Tạm tính</span>
-                  <span className="text-[#1c1917]">{formatPrice(subtotal)}</span>
+                  <span className="text-[var(--color-dark)]">{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-[#57534e]">Phí vận chuyển</span>
-                  <span className={shipping === 0 ? "text-green-600" : "text-[#1c1917]"}>
+                  <span className={shipping === 0 ? "text-green-600" : "text-[var(--color-dark)]"}>
                     {shipping === 0 ? "Miễn phí" : formatPrice(shipping)}
                   </span>
                 </div>
               </div>
               
               <div className="flex justify-between py-6 border-b border-[#e7e5e4]">
-                <span className="font-medium text-[#1c1917]">Tổng cộng</span>
-                <span className="font-medium text-xl text-[#b45309]">{formatPrice(total)}</span>
+                <span className="font-medium text-[var(--color-dark)]">Tổng cộng</span>
+                <span className="font-medium text-xl text-[var(--color-primary)]">{formatPrice(total)}</span>
               </div>
 
               {/* Free Shipping Progress */}
@@ -158,14 +158,14 @@ export default function CartPage() {
                   </p>
                   <div className="h-1 bg-[#e7e5e4] rounded-full overflow-hidden">
                     <div 
-                      className="h-full bg-[#b45309] rounded-full"
+                      className="h-full bg-[var(--color-primary)] rounded-full"
                       style={{ width: `${Math.min(100, (subtotal / 500000) * 100)}%` }}
                     />
                   </div>
                 </div>
               )}
 
-              <Link href="/thanh-toan" className="block w-full text-center bg-[#1c1917] text-white py-4 font-medium tracking-wide hover:bg-[#b45309] transition-colors mt-6 uppercase text-sm">
+              <Link href="/thanh-toan" className="block w-full text-center bg-[var(--color-dark)] text-white py-4 font-medium tracking-wide hover:bg-[var(--color-primary)] transition-colors mt-6 uppercase text-sm">
                 Thanh Toán Ngay
               </Link>
 
@@ -178,7 +178,7 @@ export default function CartPage() {
           /* Empty Cart */
           <div className="text-center py-20">
             <ShoppingBag size={64} className="mx-auto text-[#e7e5e4] mb-6" />
-            <h2 className="text-xl font-medium text-[#1c1917] mb-2">
+            <h2 className="text-xl font-medium text-[var(--color-dark)] mb-2">
               Giỏ hàng của bạn đang trống
             </h2>
             <p className="text-[#57534e] mb-8">
@@ -186,7 +186,7 @@ export default function CartPage() {
             </p>
             <Link
               href="/san-pham"
-              className="inline-block bg-[#1c1917] text-white px-8 py-3 font-medium tracking-wide hover:bg-[#b45309] transition-colors"
+              className="inline-block bg-[var(--color-dark)] text-white px-8 py-3 font-medium tracking-wide hover:bg-[var(--color-primary)] transition-colors"
             >
               Khám phá sản phẩm
             </Link>
@@ -196,3 +196,4 @@ export default function CartPage() {
     </div>
   );
 }
+

@@ -96,7 +96,7 @@ export default function WishlistPage() {
   if (status === "loading") {
     return (
       <div className="min-h-screen bg-[#fffbf5] pt-[100px] lg:pt-[120px] flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+        <div className="animate-spin w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full"></div>
       </div>
     );
   }
@@ -111,10 +111,10 @@ export default function WishlistPage() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white p-8 rounded-lg shadow-sm border border-[#e7e5e4] text-center"
           >
-            <div className="w-16 h-16 bg-[#b45309]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Heart size={32} className="text-[#b45309]" />
+            <div className="w-16 h-16 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Heart size={32} className="text-[var(--color-primary)]" />
             </div>
-            <h1 className="text-xl font-serif text-[#1c1917] mb-2">
+            <h1 className="text-xl font-serif text-[var(--color-dark)] mb-2">
               Danh sách yêu thích
             </h1>
             <p className="text-sm text-[#57534e] mb-6">
@@ -123,20 +123,20 @@ export default function WishlistPage() {
             <div className="space-y-3">
               <button
                 onClick={() => router.push("/dang-nhap")}
-                className="w-full py-3 bg-[#b45309] text-white font-medium rounded-lg hover:bg-[#92400e] transition-colors"
+                className="w-full py-3 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-secondary)] transition-colors"
               >
                 Đăng nhập
               </button>
               <button
                 onClick={() => router.push("/dang-ky")}
-                className="w-full py-3 border border-[#e7e5e4] text-[#1c1917] font-medium rounded-lg hover:bg-[#f5f5f4] transition-colors"
+                className="w-full py-3 border border-[#e7e5e4] text-[var(--color-dark)] font-medium rounded-lg hover:bg-[#f5f5f4] transition-colors"
               >
                 Tạo tài khoản
               </button>
             </div>
             <Link
               href="/san-pham"
-              className="inline-flex items-center gap-2 mt-6 text-sm text-[#b45309] hover:underline"
+              className="inline-flex items-center gap-2 mt-6 text-sm text-[var(--color-primary)] hover:underline"
             >
               <ArrowRight size={16} />
               Tiếp tục mua sắm
@@ -152,7 +152,7 @@ export default function WishlistPage() {
     <div className="min-h-screen bg-[#fffbf5] pt-[140px] lg:pt-[160px] pb-12">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <h1 className="text-2xl font-serif text-[#1c1917]">Danh sách yêu thích</h1>
+          <h1 className="text-2xl font-serif text-[var(--color-dark)]">Danh sách yêu thích</h1>
           <p className="text-sm text-[#57534e] mt-1">
             {wishlistItems.length} sản phẩm đã lưu
           </p>
@@ -161,7 +161,7 @@ export default function WishlistPage() {
         {wishlistItems.length === 0 ? (
           <div className="text-center py-12">
             <Heart size={48} className="mx-auto text-[#e7e5e4] mb-4" />
-            <h3 className="text-lg font-medium text-[#1c1917] mb-2">
+            <h3 className="text-lg font-medium text-[var(--color-dark)] mb-2">
               Chưa có sản phẩm yêu thích
             </h3>
             <p className="text-sm text-[#57534e] mb-4">
@@ -169,7 +169,7 @@ export default function WishlistPage() {
             </p>
             <Link
               href="/san-pham"
-              className="inline-block px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors"
+              className="inline-block px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg text-sm hover:bg-[var(--color-secondary)] transition-colors"
             >
               Khám phá sản phẩm
             </Link>
@@ -198,18 +198,18 @@ export default function WishlistPage() {
                     {product.category}
                   </p>
                   <Link href={`/san-pham/${product.id}`}>
-                    <h3 className="text-sm font-medium text-[#1c1917] line-clamp-2 min-h-[40px] hover:text-[#b45309] transition-colors">
+                    <h3 className="text-sm font-medium text-[var(--color-dark)] line-clamp-2 min-h-[40px] hover:text-[var(--color-primary)] transition-colors">
                       {product.name}
                     </h3>
                   </Link>
-                  <p className="text-sm font-semibold text-[#b45309] mt-1">
+                  <p className="text-sm font-semibold text-[var(--color-primary)] mt-1">
                     {new Intl.NumberFormat("vi-VN", {
                       style: "currency",
                       currency: "VND",
                     }).format(product.price)}
                   </p>
                   <div className="flex gap-2 mt-3">
-                    <button className="flex-1 py-2 bg-[#b45309] text-white text-sm rounded-lg hover:bg-[#92400e] transition-colors flex items-center justify-center gap-1">
+                    <button className="flex-1 py-2 bg-[var(--color-primary)] text-white text-sm rounded-lg hover:bg-[var(--color-secondary)] transition-colors flex items-center justify-center gap-1">
                       <ShoppingBag size={14} />
                       Thêm giỏ
                     </button>
@@ -226,3 +226,4 @@ export default function WishlistPage() {
     </div>
   );
 }
+

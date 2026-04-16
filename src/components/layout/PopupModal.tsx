@@ -54,7 +54,7 @@ export default function PopupModal() {
                 className="object-cover"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-[#b45309] to-[#d97706] flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center">
                 <Sparkles className="w-16 h-16 text-white" />
               </div>
             )}
@@ -64,10 +64,10 @@ export default function PopupModal() {
       case "text":
         return (
           <div className="p-8 text-center">
-            <div className="w-16 h-16 bg-[#b45309]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Tag className="w-8 h-8 text-[#b45309]" />
+            <div className="w-16 h-16 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Tag className="w-8 h-8 text-[var(--color-primary)]" />
             </div>
-            <h3 className="text-2xl font-serif text-[#1c1917] mb-3">
+            <h3 className="text-2xl font-serif text-[var(--color-dark)] mb-3">
               {settings.popup.title || "Thông báo"}
             </h3>
             <p className="text-[#57534e] leading-relaxed">
@@ -79,17 +79,17 @@ export default function PopupModal() {
       case "promotion":
       default:
         return (
-          <div className="p-8 text-center bg-gradient-to-br from-[#b45309]/5 to-[#fef3c7]/30">
-            <div className="w-20 h-20 bg-gradient-to-br from-[#b45309] to-[#d97706] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+          <div className="p-8 text-center bg-gradient-to-br from-[var(--color-primary)]/5 to-[var(--color-accent)]/30">
+            <div className="w-20 h-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
               <Gift className="w-10 h-10 text-white" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif text-[#b45309] mb-3">
+            <h3 className="text-2xl sm:text-3xl font-serif text-[var(--color-primary)] mb-3">
               {settings.popup.title || "ƯU ĐÃI ĐẶC BIỆT"}
             </h3>
             <p className="text-lg text-[#57534e] leading-relaxed mb-6">
               {settings.popup.content || "Giảm 20% cho đơn hàng đầu tiên!"}
             </p>
-            <div className="inline-block px-6 py-2 bg-[#1c1917] text-white text-sm font-medium rounded-full">
+            <div className="inline-block px-6 py-2 bg-[var(--color-dark)] text-white text-sm font-medium rounded-full">
               Mã: NEW20
             </div>
           </div>
@@ -119,14 +119,14 @@ export default function PopupModal() {
               <Link
                 href={settings.popup.buttonLink}
                 onClick={handleClose}
-                className="block w-full py-3 px-6 bg-[#b45309] hover:bg-[#92400e] text-white font-medium text-center rounded-lg transition-colors"
+                className="block w-full py-3 px-6 bg-[var(--color-primary)] hover:bg-[var(--color-dark)] text-white font-medium text-center rounded-lg transition-colors"
               >
                 {settings.popup.buttonText || "Xem ngay"}
               </Link>
             ) : (
               <button
                 onClick={handleClose}
-                className="w-full py-3 px-6 bg-[#b45309] hover:bg-[#92400e] text-white font-medium rounded-lg transition-colors"
+                className="w-full py-3 px-6 bg-[var(--color-primary)] hover:bg-[var(--color-dark)] text-white font-medium rounded-lg transition-colors"
               >
                 {settings.popup.buttonText || "Đóng"}
               </button>

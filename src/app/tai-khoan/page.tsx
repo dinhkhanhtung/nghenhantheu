@@ -175,7 +175,7 @@ export default function AccountPage() {
   if (status === "loading" || typeof window === "undefined") {
     return (
       <div className="min-h-screen bg-[#fffbf5] pt-[100px] lg:pt-[120px] flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+        <div className="animate-spin w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full"></div>
       </div>
     );
   }
@@ -196,7 +196,7 @@ export default function AccountPage() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         {/* Page Title */}
         <div className="mb-8">
-          <h1 className="text-2xl font-serif text-[#1c1917]">Tài khoản của tôi</h1>
+          <h1 className="text-2xl font-serif text-[var(--color-dark)]">Tài khoản của tôi</h1>
           <p className="text-sm text-[#57534e] mt-1">
             Quản lý thông tin cá nhân, khóa học và đơn hàng
           </p>
@@ -218,7 +218,7 @@ export default function AccountPage() {
                     />
                   </div>
                   <div>
-                    <p className="font-medium text-[#1c1917]">{session.user?.name}</p>
+                    <p className="font-medium text-[var(--color-dark)]">{session.user?.name}</p>
                     <p className="text-sm text-[#57534e]">{session.user?.email}</p>
                   </div>
                 </div>
@@ -234,7 +234,7 @@ export default function AccountPage() {
                       onClick={() => setActiveTab(tab.id)}
                       className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-colors ${
                         activeTab === tab.id
-                          ? "bg-[#b45309]/10 text-[#b45309] font-medium"
+                          ? "bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-medium"
                           : "text-[#57534e] hover:bg-[#f5f5f4]"
                       }`}
                     >
@@ -263,7 +263,7 @@ export default function AccountPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-white rounded-lg border border-[#e7e5e4] p-6"
               >
-                <h2 className="text-lg font-medium text-[#1c1917] mb-6">Thông tin cá nhân</h2>
+                <h2 className="text-lg font-medium text-[var(--color-dark)] mb-6">Thông tin cá nhân</h2>
                 <div className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -271,7 +271,7 @@ export default function AccountPage() {
                       <input
                         type="text"
                         defaultValue={session.user?.name || ""}
-                        className="w-full px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                        className="w-full px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                       />
                     </div>
                     <div>
@@ -290,7 +290,7 @@ export default function AccountPage() {
                         <input
                           type="tel"
                           placeholder="Thêm số điện thoại"
-                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                         />
                       </div>
                     </div>
@@ -301,7 +301,7 @@ export default function AccountPage() {
                         <input
                           type="text"
                           placeholder="Thêm địa chỉ"
-                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                          className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                         />
                       </div>
                     </div>
@@ -310,7 +310,7 @@ export default function AccountPage() {
                     <button className="px-6 py-2.5 border border-[#e7e5e4] rounded-lg text-sm hover:bg-[#f5f5f4] transition-colors">
                       Hủy
                     </button>
-                    <button className="px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors">
+                    <button className="px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg text-sm hover:bg-[var(--color-secondary)] transition-colors">
                       Lưu thay đổi
                     </button>
                   </div>
@@ -324,16 +324,16 @@ export default function AccountPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <h2 className="text-lg font-medium text-[#1c1917] mb-4">Khóa học của tôi</h2>
+                <h2 className="text-lg font-medium text-[var(--color-dark)] mb-4">Khóa học của tôi</h2>
                 {coursesLoading ? (
                   <div className="flex justify-center py-12">
-                    <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+                    <div className="animate-spin w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full"></div>
                   </div>
                 ) : enrolledCourses.length === 0 ? (
                   <div className="text-center py-12 bg-white rounded-lg border border-[#e7e5e4]">
                     <BookOpen size={48} className="mx-auto text-[#a8a29e] mb-4" />
                     <p className="text-[#57534e]">Bạn chưa đăng ký khóa học nào</p>
-                    <Link href="/khoa-hoc" className="text-[#b45309] hover:underline mt-2 inline-block">
+                    <Link href="/khoa-hoc" className="text-[var(--color-primary)] hover:underline mt-2 inline-block">
                       Khám phá khóa học
                     </Link>
                   </div>
@@ -352,7 +352,7 @@ export default function AccountPage() {
                         />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-medium text-[#1c1917] mb-1">{course.title}</h3>
+                        <h3 className="font-medium text-[var(--color-dark)] mb-1">{course.title}</h3>
                         <p className="text-sm text-[#57534e] mb-2">Giảng viên: {course.instructor || "Chưa có"}</p>
                         {course.nextLesson && (
                           <div className="flex items-center gap-4 text-xs text-[#57534e] mb-3">
@@ -365,11 +365,11 @@ export default function AccountPage() {
                         <div className="flex items-center gap-3">
                           <div className="flex-1 h-2 bg-[#e7e5e4] rounded-full overflow-hidden">
                             <div
-                              className="h-full bg-[#b45309] rounded-full"
+                              className="h-full bg-[var(--color-primary)] rounded-full"
                               style={{ width: `${course.progress}%` }}
                             />
                           </div>
-                          <span className="text-sm font-medium text-[#b45309]">{course.progress}%</span>
+                          <span className="text-sm font-medium text-[var(--color-primary)]">{course.progress}%</span>
                         </div>
                         <p className="text-xs text-[#57534e] mt-2">
                           {course.completedLessons}/{course.totalLessons} bài học
@@ -377,7 +377,7 @@ export default function AccountPage() {
                       </div>
                       <Link
                         href={`/hoc-tap/${course.courseId}/${course.lastAccessedLessonId || "lesson-1"}`}
-                        className="shrink-0 self-center p-2 text-[#b45309] hover:bg-[#b45309]/10 rounded-lg transition-colors"
+                        className="shrink-0 self-center p-2 text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 rounded-lg transition-colors"
                       >
                         <ChevronRight size={20} />
                       </Link>
@@ -393,16 +393,16 @@ export default function AccountPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="space-y-4"
               >
-                <h2 className="text-lg font-medium text-[#1c1917] mb-4">Đơn hàng của tôi</h2>
+                <h2 className="text-lg font-medium text-[var(--color-dark)] mb-4">Đơn hàng của tôi</h2>
                 
                 {ordersLoading ? (
                   <div className="flex items-center justify-center py-12">
-                    <div className="animate-spin w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full"></div>
+                    <div className="animate-spin w-8 h-8 border-2 border-[var(--color-primary)] border-t-transparent rounded-full"></div>
                   </div>
                 ) : orders.length === 0 ? (
                   <div className="text-center py-12 bg-white rounded-lg border border-[#e7e5e4]">
                     <Package size={48} className="mx-auto text-[#e7e5e4] mb-4" />
-                    <h3 className="text-lg font-medium text-[#1c1917] mb-2">
+                    <h3 className="text-lg font-medium text-[var(--color-dark)] mb-2">
                       Chưa có đơn hàng
                     </h3>
                     <p className="text-sm text-[#57534e] mb-4">
@@ -410,7 +410,7 @@ export default function AccountPage() {
                     </p>
                     <Link
                       href="/san-pham"
-                      className="inline-block px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors"
+                      className="inline-block px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg text-sm hover:bg-[var(--color-secondary)] transition-colors"
                     >
                       Mua sắm ngay
                     </Link>
@@ -423,7 +423,7 @@ export default function AccountPage() {
                     >
                       <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#e7e5e4]">
                         <div className="flex items-center gap-4">
-                          <span className="text-sm font-medium text-[#1c1917]">
+                          <span className="text-sm font-medium text-[var(--color-dark)]">
                             HK{order.id.substring(0, 6).toUpperCase()}
                           </span>
                           <span className="text-xs text-[#57534e]">
@@ -457,7 +457,7 @@ export default function AccountPage() {
                           />
                         </div>
                         <div className="flex-1">
-                          <p className="text-sm font-medium text-[#1c1917]">
+                          <p className="text-sm font-medium text-[var(--color-dark)]">
                             {order.items?.[0]?.name || "Sản phẩm"}
                           </p>
                           <p className="text-xs text-[#57534e]">
@@ -474,7 +474,7 @@ export default function AccountPage() {
                           </p>
                         </div>
                         <div className="text-right">
-                          <p className="font-medium text-[#b45309]">
+                          <p className="font-medium text-[var(--color-primary)]">
                             {new Intl.NumberFormat("vi-VN", {
                               style: "currency",
                               currency: "VND",
@@ -482,7 +482,7 @@ export default function AccountPage() {
                           </p>
                           <Link
                             href={`/don-hang/${order.id}`}
-                            className="text-xs text-[#b45309] hover:underline inline-flex items-center gap-1 mt-1"
+                            className="text-xs text-[var(--color-primary)] hover:underline inline-flex items-center gap-1 mt-1"
                           >
                             <Eye size={12} />
                             Xem chi tiết
@@ -502,7 +502,7 @@ export default function AccountPage() {
                 className="text-center py-12"
               >
                 <Heart size={48} className="mx-auto text-[#e7e5e4] mb-4" />
-                <h3 className="text-lg font-medium text-[#1c1917] mb-2">
+                <h3 className="text-lg font-medium text-[var(--color-dark)] mb-2">
                   Danh sách yêu thích trống
                 </h3>
                 <p className="text-sm text-[#57534e] mb-4">
@@ -510,7 +510,7 @@ export default function AccountPage() {
                 </p>
                 <Link
                   href="/san-pham"
-                  className="inline-block px-6 py-2.5 bg-[#b45309] text-white rounded-lg text-sm hover:bg-[#92400e] transition-colors"
+                  className="inline-block px-6 py-2.5 bg-[var(--color-primary)] text-white rounded-lg text-sm hover:bg-[var(--color-secondary)] transition-colors"
                 >
                   Khám phá sản phẩm
                 </Link>
@@ -523,11 +523,11 @@ export default function AccountPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className="bg-white rounded-lg border border-[#e7e5e4] p-6"
               >
-                <h2 className="text-lg font-medium text-[#1c1917] mb-6">Cài đặt tài khoản</h2>
+                <h2 className="text-lg font-medium text-[var(--color-dark)] mb-6">Cài đặt tài khoản</h2>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
                     <div>
-                      <p className="font-medium text-[#1c1917]">Đổi mật khẩu</p>
+                      <p className="font-medium text-[var(--color-dark)]">Đổi mật khẩu</p>
                       <p className="text-sm text-[#57534e]">Cập nhật mật khẩu định kỳ để bảo mật</p>
                     </div>
                     <button className="px-4 py-2 border border-[#e7e5e4] rounded-lg text-sm hover:bg-[#f5f5f4] transition-colors">
@@ -536,22 +536,22 @@ export default function AccountPage() {
                   </div>
                   <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
                     <div>
-                      <p className="font-medium text-[#1c1917]">Thông báo email</p>
+                      <p className="font-medium text-[var(--color-dark)]">Thông báo email</p>
                       <p className="text-sm text-[#57534e]">Nhận thông báo về khóa học và ưu đãi</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" defaultChecked className="sr-only peer" />
-                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[#b45309]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[var(--color-primary)]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--color-primary)]"></div>
                     </label>
                   </div>
                   <div className="flex items-center justify-between py-4 border-b border-[#e7e5e4]">
                     <div>
-                      <p className="font-medium text-[#1c1917]">Thông báo SMS</p>
+                      <p className="font-medium text-[var(--color-dark)]">Thông báo SMS</p>
                       <p className="text-sm text-[#57534e]">Nhận thông báo về đơn hàng qua SMS</p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input type="checkbox" className="sr-only peer" />
-                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[#b45309]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                      <div className="w-11 h-6 bg-[#e7e5e4] peer-focus:ring-2 peer-focus:ring-[var(--color-primary)]/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--color-primary)]"></div>
                     </label>
                   </div>
                   <div className="flex items-center justify-between py-4">
@@ -572,3 +572,4 @@ export default function AccountPage() {
     </div>
   );
 }
+

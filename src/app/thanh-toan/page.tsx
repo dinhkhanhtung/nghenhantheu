@@ -101,14 +101,14 @@ export default function CheckoutPage() {
           {/* Checkout Form */}
           <div className="space-y-8">
             <div className="flex items-center gap-2 text-sm text-[#57534e] mb-4">
-              <Link href="/gio-hang" className="hover:text-[#b45309]">Giỏ hàng</Link>
+              <Link href="/gio-hang" className="hover:text-[var(--color-primary)]">Giỏ hàng</Link>
               <ChevronRight size={14} />
-              <span className="text-[#1c1917] font-bold">Thanh toán</span>
+              <span className="text-[var(--color-dark)] font-bold">Thanh toán</span>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6 bg-white p-8 rounded-2xl border border-[#e7e5e4] shadow-sm">
-              <h2 className="text-xl font-bold text-[#1c1917] flex items-center gap-3">
-                <MapPin size={24} className="text-[#b45309]" />
+              <h2 className="text-xl font-bold text-[var(--color-dark)] flex items-center gap-3">
+                <MapPin size={24} className="text-[var(--color-primary)]" />
                 Thông tin giao hàng
               </h2>
               
@@ -124,7 +124,7 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       type="text" 
                       placeholder="Nguyễn Văn A" 
-                      className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[#b45309]/20 focus:border-[#b45309] outline-none" 
+                      className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none" 
                     />
                   </div>
                 </div>
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
                       onChange={handleInputChange}
                       type="tel" 
                       placeholder="09xx xxx xxx" 
-                      className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[#b45309]/20 focus:border-[#b45309] outline-none" 
+                      className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none" 
                     />
                   </div>
                 </div>
@@ -155,7 +155,7 @@ export default function CheckoutPage() {
                     onChange={handleInputChange}
                     type="email" 
                     placeholder="example@gmail.com" 
-                    className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[#b45309]/20 focus:border-[#b45309] outline-none" 
+                    className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none" 
                   />
                 </div>
               </div>
@@ -169,44 +169,44 @@ export default function CheckoutPage() {
                   onChange={handleInputChange}
                   rows={3} 
                   placeholder="Số nhà, tên đường, phường/xã, quận/huyện, tỉnh/thành phố" 
-                  className="w-full px-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[#b45309]/20 focus:border-[#b45309] outline-none resize-none"
+                  className="w-full px-4 py-3 border border-[#e7e5e4] rounded-xl focus:ring-2 focus:ring-[var(--color-primary)]/20 focus:border-[var(--color-primary)] outline-none resize-none"
                 ></textarea>
               </div>
 
               <div className="pt-6 border-t border-[#e7e5e4]">
-                <h2 className="text-xl font-bold text-[#1c1917] flex items-center gap-3 mb-6">
-                  <CreditCard size={24} className="text-[#b45309]" />
+                <h2 className="text-xl font-bold text-[var(--color-dark)] flex items-center gap-3 mb-6">
+                  <CreditCard size={24} className="text-[var(--color-primary)]" />
                   Phương thức thanh toán
                 </h2>
                 <div className="space-y-3">
                   {/* Bank Transfer */}
-                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'BANK' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
+                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'BANK' ? 'border-[var(--color-primary)] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
                     <input 
                       type="radio" 
                       name="paymentMethod" 
                       value="BANK"
                       checked={formData.paymentMethod === "BANK"}
                       onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
-                      className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
+                      className="w-4 h-4 text-[var(--color-primary)] border-[var(--color-primary)] focus:ring-[var(--color-primary)]" 
                     />
                     <div className="flex-1">
-                      <p className="font-bold text-[#1c1917]">Chuyển khoản ngân hàng</p>
+                      <p className="font-bold text-[var(--color-dark)]">Chuyển khoản ngân hàng</p>
                       <p className="text-xs text-[#57534e]">Chuyển khoản vào tài khoản ngân hàng. Đơn hàng được xử lý sau khi xác nhận thanh toán.</p>
                     </div>
                   </label>
 
                   {/* COD */}
-                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'COD' ? 'border-[#b45309] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
+                  <label className={`flex items-center gap-4 p-4 border rounded-xl cursor-pointer transition-colors ${formData.paymentMethod === 'COD' ? 'border-[var(--color-primary)] bg-[#fffbf5]' : 'border-[#e7e5e4] hover:bg-[#f5f5f4]'}`}>
                     <input 
                       type="radio" 
                       name="paymentMethod" 
                       value="COD"
                       checked={formData.paymentMethod === "COD"}
                       onChange={(e) => setFormData(prev => ({ ...prev, paymentMethod: e.target.value }))}
-                      className="w-4 h-4 text-[#b45309] border-[#b45309] focus:ring-[#b45309]" 
+                      className="w-4 h-4 text-[var(--color-primary)] border-[var(--color-primary)] focus:ring-[var(--color-primary)]" 
                     />
                     <div className="flex-1">
-                      <p className="font-bold text-[#1c1917]">Thanh toán khi nhận hàng (COD)</p>
+                      <p className="font-bold text-[var(--color-dark)]">Thanh toán khi nhận hàng (COD)</p>
                       <p className="text-xs text-[#57534e]">Bạn chỉ thanh toán khi nhận được hàng. Phí ship có thể cao hơn.</p>
                     </div>
                   </label>
@@ -215,29 +215,29 @@ export default function CheckoutPage() {
                 {/* Bank Transfer Details */}
                 {formData.paymentMethod === 'BANK' && settings.payment.bankTransfer.enabled && (
                   <div className="mt-4 p-4 bg-[#f5f5f4] rounded-xl border border-[#e7e5e4]">
-                    <p className="text-sm font-medium text-[#1c1917] mb-3">Thông tin chuyển khoản:</p>
+                    <p className="text-sm font-medium text-[var(--color-dark)] mb-3">Thông tin chuyển khoản:</p>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
                         <span className="text-[#57534e]">Ngân hàng:</span>
-                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.bankName || "Vietcombank"}</span>
+                        <span className="font-medium text-[var(--color-dark)]">{settings.payment.bankTransfer.bankName || "Vietcombank"}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-[#57534e]">Số tài khoản:</span>
-                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.accountNumber || "1234567890"}</span>
+                        <span className="font-medium text-[var(--color-dark)]">{settings.payment.bankTransfer.accountNumber || "1234567890"}</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-[#57534e]">Chủ tài khoản:</span>
-                        <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.accountName || settings.brand.name}</span>
+                        <span className="font-medium text-[var(--color-dark)]">{settings.payment.bankTransfer.accountName || settings.brand.name}</span>
                       </div>
                       {settings.payment.bankTransfer.branch && (
                         <div className="flex justify-between">
                           <span className="text-[#57534e]">Chi nhánh:</span>
-                          <span className="font-medium text-[#1c1917]">{settings.payment.bankTransfer.branch}</span>
+                          <span className="font-medium text-[var(--color-dark)]">{settings.payment.bankTransfer.branch}</span>
                         </div>
                       )}
                       <div className="flex justify-between pt-2 border-t border-[#e7e5e4]">
                         <span className="text-[#57534e]">Số tiền:</span>
-                        <span className="font-medium text-[#b45309]">{formatPrice(total)}</span>
+                        <span className="font-medium text-[var(--color-primary)]">{formatPrice(total)}</span>
                       </div>
                       <div className="mt-3 p-2 bg-yellow-50 rounded border border-yellow-200">
                         <p className="text-xs text-yellow-700">
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
               <button 
                 type="submit" 
                 disabled={isProcessing || cartItems.length === 0}
-                className="w-full py-4 bg-[#1c1917] text-white font-bold rounded-xl hover:bg-[#b45309] transition-all shadow-lg shadow-black/10 disabled:opacity-50"
+                className="w-full py-4 bg-[var(--color-dark)] text-white font-bold rounded-xl hover:bg-[var(--color-primary)] transition-all shadow-lg shadow-black/10 disabled:opacity-50"
               >
                 {isProcessing ? "Đang xử lý..." : "Hoàn tất đặt hàng"}
               </button>
@@ -262,22 +262,22 @@ export default function CheckoutPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white p-8 rounded-2xl border border-[#e7e5e4] shadow-sm sticky top-24 space-y-6">
-              <h2 className="text-xl font-bold text-[#1c1917] uppercase tracking-tight">Tóm tắt đơn hàng ({cartItems.length})</h2>
+              <h2 className="text-xl font-bold text-[var(--color-dark)] uppercase tracking-tight">Tóm tắt đơn hàng ({cartItems.length})</h2>
               
               <div className="divide-y divide-[#e7e5e4]/60 max-h-[400px] overflow-y-auto pr-2 scrollbar-hide">
                 {cartItems.map((item) => (
                   <div key={item.id} className="py-4 flex gap-4">
                     <div className="relative w-16 h-16 bg-[#f5f5f4] rounded-lg overflow-hidden shrink-0">
                       <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                      <span className="absolute -top-2 -right-2 w-5 h-5 bg-[#b45309] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                      <span className="absolute -top-2 -right-2 w-5 h-5 bg-[var(--color-primary)] text-white text-[10px] font-bold rounded-full flex items-center justify-center">
                         {item.quantity}
                       </span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-bold text-[#1c1917] truncate">{item.name}</p>
+                      <p className="text-sm font-bold text-[var(--color-dark)] truncate">{item.name}</p>
                       <p className="text-xs text-[#57534e] mt-1">{formatPrice(item.price)}</p>
                     </div>
-                    <p className="text-sm font-bold text-[#1c1917]">{formatPrice(item.price * item.quantity)}</p>
+                    <p className="text-sm font-bold text-[var(--color-dark)]">{formatPrice(item.price * item.quantity)}</p>
                   </div>
                 ))}
               </div>
@@ -285,22 +285,22 @@ export default function CheckoutPage() {
               <div className="space-y-3 pt-6 border-t border-[#e7e5e4]">
                 <div className="flex justify-between text-sm">
                   <span className="text-[#57534e] font-medium">Tạm tính</span>
-                  <span className="text-[#1c1917] font-bold">{formatPrice(subtotal)}</span>
+                  <span className="text-[var(--color-dark)] font-bold">{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-[#57534e] font-medium">Phí vận chuyển</span>
-                  <span className={shipping === 0 ? "text-green-600 font-bold" : "text-[#1c1917] font-bold"}>
+                  <span className={shipping === 0 ? "text-green-600 font-bold" : "text-[var(--color-dark)] font-bold"}>
                     {shipping === 0 ? "Miễn phí" : formatPrice(shipping)}
                   </span>
                 </div>
                 <div className="flex justify-between pt-4 border-t border-[#e7e5e4]">
-                  <span className="text-lg font-bold text-[#1c1917]">Tổng cộng</span>
-                  <span className="text-2xl font-bold text-[#b45309] tracking-tighter">{formatPrice(total)}</span>
+                  <span className="text-lg font-bold text-[var(--color-dark)]">Tổng cộng</span>
+                  <span className="text-2xl font-bold text-[var(--color-primary)] tracking-tighter">{formatPrice(total)}</span>
                 </div>
               </div>
 
-              <div className="bg-[#fffbf5] p-4 rounded-xl border border-[#b45309]/10">
-                <p className="text-[11px] text-[#b45309] font-bold uppercase tracking-widest mb-1">Chính sách giao hàng</p>
+              <div className="bg-[#fffbf5] p-4 rounded-xl border border-[var(--color-primary)]/10">
+                <p className="text-[11px] text-[var(--color-primary)] font-bold uppercase tracking-widest mb-1">Chính sách giao hàng</p>
                 <p className="text-xs text-[#57534e] leading-relaxed italic">
                   * Giao hàng từ {settings.shipping.estimatedTime} tùy khu vực. Kiểm tra hàng trước khi thanh toán.
                 </p>
@@ -312,4 +312,5 @@ export default function CheckoutPage() {
     </div>
   );
 }
+
 

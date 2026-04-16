@@ -88,7 +88,7 @@ export default function BlogPage() {
       {/* Hero */}
       <div className="bg-[#fffbf5] pt-[100px] lg:pt-[120px] pb-16">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
+          <h1 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">
             Bài Viết
           </h1>
           <p className="text-[#57534e] max-w-2xl mx-auto">
@@ -105,7 +105,7 @@ export default function BlogPage() {
               key={category}
               className={`px-4 py-2 text-sm transition-colors ${
                 category === "Tất cả"
-                  ? "bg-[#1c1917] text-white"
+                  ? "bg-[var(--color-dark)] text-white"
                   : "bg-[#f5f5f4] text-[#57534e] hover:bg-[#e7e5e4]"
               }`}
             >
@@ -138,13 +138,13 @@ export default function BlogPage() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-[#b45309] font-medium">{post.category}</span>
+                    <span className="text-[var(--color-primary)] font-medium">{post.category}</span>
                     <span className="text-[#57534e]">•</span>
                     <span className="text-[#57534e]">{post.date}</span>
                     <span className="text-[#57534e]">•</span>
                     <span className="text-[#57534e]">{post.readTime}</span>
                   </div>
-                  <h2 className="text-lg font-medium text-[#1c1917] group-hover:text-[#b45309] transition-colors line-clamp-2">
+                  <h2 className="text-lg font-medium text-[var(--color-dark)] group-hover:text-[var(--color-primary)] transition-colors line-clamp-2">
                     {post.title}
                   </h2>
                   <p className="text-sm text-[#57534e] line-clamp-2">
@@ -160,3 +160,4 @@ export default function BlogPage() {
     </div>
   );
 }
+

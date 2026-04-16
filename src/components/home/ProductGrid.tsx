@@ -176,7 +176,7 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
 
         {/* Badge */}
         {product.badge && (
-          <div className="absolute top-4 left-4 bg-gradient-to-r from-[#b45309] to-[#d97706] text-white text-[10px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-lg z-20 pointer-events-none">
+          <div className="absolute top-4 left-4 bg-gradient-to-r from-[var(--color-primary)] to-[#d97706] text-white text-[10px] font-semibold tracking-wider uppercase px-3 py-1.5 rounded-full shadow-lg z-20 pointer-events-none">
             {product.badge}
           </div>
         )}
@@ -188,7 +188,7 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
               e.stopPropagation();
               onQuickView(product);
             }}
-            className="w-full bg-white/95 backdrop-blur-sm text-[#1c1917] py-3 text-xs font-semibold tracking-wide hover:bg-[#b45309] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 rounded-lg shadow-lg"
+            className="w-full bg-white/95 backdrop-blur-sm text-[var(--color-dark)] py-3 text-xs font-semibold tracking-wide hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 rounded-lg shadow-lg"
           >
             <Eye size={16} />
             Xem nhanh
@@ -198,7 +198,7 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
         {/* Wishlist Button */}
         <button
           onClick={toggleWishlist}
-          className={`absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[#b45309] hover:text-white shadow-md z-20 press-feedback ${isWishlisted ? "bg-[#b45309] text-white opacity-100" : ""}`}
+          className={`absolute top-4 right-4 w-9 h-9 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[var(--color-primary)] hover:text-white shadow-md z-20 press-feedback ${isWishlisted ? "bg-[var(--color-primary)] text-white opacity-100" : ""}`}
           aria-label={isWishlisted ? "Xóa khỏi yêu thích" : "Thêm vào yêu thích"}
         >
           <svg className="w-4 h-4" fill={isWishlisted ? "currentColor" : "none"} viewBox="0 0 24 24" stroke="currentColor">
@@ -234,10 +234,10 @@ function ProductCard({ product, onQuickView }: ProductCardProps) {
           <span className="text-xs text-[#57534e]">({product.reviews})</span>
         </div>
         
-        <h3 className="text-[15px] text-[#1c1917] mb-2 line-clamp-2 min-h-[44px] font-medium hover:text-[#b45309] transition-colors duration-300">
+        <h3 className="text-[15px] text-[var(--color-dark)] mb-2 line-clamp-2 min-h-[44px] font-medium hover:text-[var(--color-primary)] transition-colors duration-300">
           {product.name}
         </h3>
-        <p className="text-lg font-bold text-[#b45309]">
+        <p className="text-lg font-bold text-[var(--color-primary)]">
           {formatPrice(product.price)}
         </p>
       </Link>
@@ -271,8 +271,8 @@ export default function ProductGrid() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <p className="text-sm tracking-[0.2em] text-[#b45309] uppercase mb-3 font-medium">Sản Phẩm Của Chúng Tôi</p>
-          <h2 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">Bộ Sưu Tập Thêu Tay</h2>
+          <p className="text-sm tracking-[0.2em] text-[var(--color-primary)] uppercase mb-3 font-medium">Sản Phẩm Của Chúng Tôi</p>
+          <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">Bộ Sưu Tập Thêu Tay</h2>
           <p className="text-[#57534e] max-w-lg mx-auto">Khám phá những tác phẩm thêu tay tinh xảo, mang đậm giá trị văn hóa Việt Nam</p>
         </motion.div>
 
@@ -282,26 +282,26 @@ export default function ProductGrid() {
             onClick={() => setActiveTab("new")}
             className={`text-lg pb-3 transition-all duration-300 relative font-medium ${
               activeTab === "new"
-                ? "text-[#1c1917]"
-                : "text-[#a8a29e] hover:text-[#1c1917]"
+                ? "text-[var(--color-dark)]"
+                : "text-[#a8a29e] hover:text-[var(--color-dark)]"
             }`}
           >
             Sản Phẩm Mới
             {activeTab === "new" && (
-              <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#b45309]" />
+              <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-primary)]" />
             )}
           </button>
           <button
             onClick={() => setActiveTab("bestsellers")}
             className={`text-lg pb-3 transition-all duration-300 relative font-medium ${
               activeTab === "bestsellers"
-                ? "text-[#1c1917]"
-                : "text-[#a8a29e] hover:text-[#1c1917]"
+                ? "text-[var(--color-dark)]"
+                : "text-[#a8a29e] hover:text-[var(--color-dark)]"
             }`}
           >
             Bán Chạy
             {activeTab === "bestsellers" && (
-              <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#b45309]" />
+              <motion.div layoutId="activeTab" className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-primary)]" />
             )}
           </button>
         </div>
@@ -329,7 +329,7 @@ export default function ProductGrid() {
         >
           <Link
             href="/san-pham"
-            className="group inline-flex items-center gap-3 bg-[#b45309] text-white px-12 py-4 text-sm font-semibold tracking-wider hover:bg-[#1c1917] transition-all duration-500 rounded-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-3 bg-[var(--color-primary)] text-white px-12 py-4 text-sm font-semibold tracking-wider hover:bg-[var(--color-dark)] transition-all duration-500 rounded-sm shadow-lg hover:shadow-xl hover:-translate-y-0.5"
           >
             Xem tất cả sản phẩm
             <svg 

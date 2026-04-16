@@ -36,11 +36,11 @@ export default function Features() {
               className="flex flex-col items-center text-center group"
             >
               <div className="mb-5 relative">
-                <div className="w-20 h-20 border border-[#e7e5e4] rounded-full flex items-center justify-center group-hover:border-[#b45309] transition-colors duration-300">
-                  <feature.icon className="w-8 h-8 text-[#b45309]" strokeWidth={1.5} />
+                <div className="w-20 h-20 border border-[#e7e5e4] rounded-full flex items-center justify-center group-hover:border-[var(--color-primary)] transition-colors duration-300">
+                  <feature.icon className="w-8 h-8 text-[var(--color-primary)]" strokeWidth={1.5} />
                 </div>
               </div>
-              <h3 className="text-base font-medium tracking-wide text-[#1c1917] uppercase mb-3">
+              <h3 className="text-base font-medium tracking-wide text-[var(--color-dark)] uppercase mb-3">
                 {feature.title}
               </h3>
               <p className="text-sm leading-relaxed text-[#57534e] max-w-xs">

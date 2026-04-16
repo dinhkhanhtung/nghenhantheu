@@ -88,7 +88,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                     className="absolute top-3 right-3 w-11 h-11 flex items-center justify-center bg-white shadow-md rounded-full hover:scale-110 hover:shadow-lg transition-all z-10"
                     title="Thêm vào yêu thích"
                   >
-                    <Heart size={20} className="text-[#1c1917]" />
+                    <Heart size={20} className="text-[var(--color-dark)]" />
                   </button>
                 </div>
                 
@@ -118,7 +118,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                         key={idx}
                         onClick={() => setSelectedImage(idx)}
                         className={`w-2 h-2 rounded-full transition-colors ${
-                          selectedImage === idx ? "bg-[#b45309]" : "bg-[#57534e]"
+                          selectedImage === idx ? "bg-[var(--color-primary)]" : "bg-[#57534e]"
                         }`}
                       />
                     ))}
@@ -129,8 +129,8 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
               {/* Right: Product Info */}
               <div className="space-y-6 p-6 lg:p-8 pt-6 lg:pt-8">
                 <div>
-                  <p className="text-sm text-[#b45309] mb-1">{product.category}</p>
-                  <h2 className="text-2xl font-serif text-[#1c1917]">{product.name}</h2>
+                  <p className="text-sm text-[var(--color-primary)] mb-1">{product.category}</p>
+                  <h2 className="text-2xl font-serif text-[var(--color-dark)]">{product.name}</h2>
                 </div>
                 
                 {/* Rating */}
@@ -140,7 +140,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                       <Star
                         key={i}
                         size={16}
-                        className={i < product.rating ? "fill-[#b45309] text-[#b45309]" : "text-[#e7e5e4]"}
+                        className={i < product.rating ? "fill-[var(--color-primary)] text-[var(--color-primary)]" : "text-[#e7e5e4]"}
                       />
                     ))}
                   </div>
@@ -149,7 +149,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
 
                 {/* Price */}
                 <div className="flex items-baseline gap-3 mb-6">
-                  <span className="text-2xl font-medium text-[#b45309]">
+                  <span className="text-2xl font-medium text-[var(--color-primary)]">
                     {formatPrice(product.price)}
                   </span>
                   {product.originalPrice && (
@@ -164,14 +164,14 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                 {/* Color Selection */}
                 {product.colors && (
                   <div className="mb-6">
-                    <p className="text-sm font-medium text-[#1c1917] mb-3">Màu sắc</p>
+                    <p className="text-sm font-medium text-[var(--color-dark)] mb-3">Màu sắc</p>
                     <div className="flex gap-3">
                       {product.colors.map((color) => (
                         <button
                           key={color}
                           onClick={() => setSelectedColor(color)}
                           className={`w-10 h-10 rounded-full border-2 transition-all ${
-                            selectedColor === color ? "border-[#b45309] ring-2 ring-[#b45309]/20" : "border-[#e7e5e4]"
+                            selectedColor === color ? "border-[var(--color-primary)] ring-2 ring-[var(--color-primary)]/20" : "border-[#e7e5e4]"
                           }`}
                           style={{ backgroundColor: color }}
                         />
@@ -183,7 +183,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                 {/* Size Selection */}
                 {product.sizes && (
                   <div className="mb-6">
-                    <p className="text-sm font-medium text-[#1c1917] mb-3">Kích thước</p>
+                    <p className="text-sm font-medium text-[var(--color-dark)] mb-3">Kích thước</p>
                     <div className="flex gap-3">
                       {product.sizes.map((size) => (
                         <button
@@ -191,8 +191,8 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                           onClick={() => setSelectedSize(size)}
                           className={`px-4 py-2 border text-sm transition-all ${
                             selectedSize === size 
-                              ? "border-[#b45309] bg-[#b45309] text-white" 
-                              : "border-[#e7e5e4] text-[#57534e] hover:border-[#b45309]"
+                              ? "border-[var(--color-primary)] bg-[var(--color-primary)] text-white" 
+                              : "border-[#e7e5e4] text-[#57534e] hover:border-[var(--color-primary)]"
                           }`}
                         >
                           {size}
@@ -219,7 +219,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                       <Plus size={16} />
                     </button>
                   </div>
-                  <button className="flex-1 bg-[#b45309] text-white py-4 px-6 font-medium tracking-wide hover:bg-[#1c1917] transition-colors uppercase text-sm flex items-center justify-center gap-2">
+                  <button className="flex-1 bg-[var(--color-primary)] text-white py-4 px-6 font-medium tracking-wide hover:bg-[var(--color-dark)] transition-colors uppercase text-sm flex items-center justify-center gap-2">
                     <ShoppingBag size={18} />
                     Thêm vào giỏ hàng
                   </button>
@@ -229,7 +229,7 @@ export default function QuickViewModal({ isOpen, onClose, product }: QuickViewMo
                 <Link
                   href={`/san-pham/${product.id}`}
                   onClick={onClose}
-                  className="block text-center text-[#b45309] hover:underline text-sm"
+                  className="block text-center text-[var(--color-primary)] hover:underline text-sm"
                 >
                   Xem chi tiết đầy đủ →
                 </Link>

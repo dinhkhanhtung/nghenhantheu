@@ -57,7 +57,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           <p className="text-xs text-muted-foreground uppercase tracking-wide">
             {product.category}
           </p>
-          <h3 className="text-sm font-medium text-foreground line-clamp-2 hover:text-[#b45309] transition-colors">
+          <h3 className="text-sm font-medium text-foreground line-clamp-2 hover:text-[var(--color-primary)] transition-colors">
             {product.name}
           </h3>
           <p className="text-sm font-semibold text-primary">

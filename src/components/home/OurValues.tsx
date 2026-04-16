@@ -41,7 +41,7 @@ export default function OurValues() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-2xl md:text-3xl font-serif text-[#1c1917]">
+          <h2 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)]">
             Giá Trị Của Chúng Tôi
           </h2>
         </motion.div>
@@ -71,10 +71,10 @@ export default function OurValues() {
 
               {/* Content */}
               <div className={`text-center lg:text-left ${value.reverse ? "lg:order-1" : ""}`}>
-                <p className="text-sm text-[#b45309] uppercase tracking-wider mb-2">
+                <p className="text-sm text-[var(--color-primary)] uppercase tracking-wider mb-2">
                   {value.subtitle}
                 </p>
-                <h3 className="text-2xl md:text-3xl font-serif text-[#1c1917] mb-4">
+                <h3 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)] mb-4">
                   {value.title}
                 </h3>
                 <p className="text-[#57534e] leading-relaxed max-w-md mx-auto lg:mx-0">

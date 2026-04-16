@@ -41,7 +41,7 @@ export default function ReviewsCarousel() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <h2 className="text-2xl md:text-3xl font-serif text-[#1c1917]">
+          <h2 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)]">
             Khách Hàng Nói Gì
           </h2>
         </motion.div>
@@ -59,14 +59,14 @@ export default function ReviewsCarousel() {
             >
               {/* Quote Icon */}
               <div className="absolute top-4 left-4">
-                <div className="w-10 h-10 bg-[#b45309]/10 rounded-full flex items-center justify-center">
-                  <Quote className="h-5 w-5 text-[#b45309]" />
+                <div className="w-10 h-10 bg-[var(--color-primary)]/10 rounded-full flex items-center justify-center">
+                  <Quote className="h-5 w-5 text-[var(--color-primary)]" />
                 </div>
               </div>
 
               <div className="pt-8">
                 {/* Review Text */}
-                <p className="text-[#1c1917] mb-6 leading-relaxed">
+                <p className="text-[var(--color-dark)] mb-6 leading-relaxed">
                   {review.text}
                 </p>
 
@@ -81,7 +81,7 @@ export default function ReviewsCarousel() {
                     />
                   </div>
                   <div>
-                    <p className="font-medium text-[#1c1917]">—{review.name}</p>
+                    <p className="font-medium text-[var(--color-dark)]">—{review.name}</p>
                   </div>
                 </div>
               </div>
@@ -91,14 +91,14 @@ export default function ReviewsCarousel() {
 
         {/* Navigation Dots */}
         <div className="mt-8 flex items-center justify-center gap-2">
-          <button className="p-2 text-[#57534e] hover:text-[#b45309] transition-colors">
+          <button className="p-2 text-[#57534e] hover:text-[var(--color-primary)] transition-colors">
             <ChevronLeft className="h-5 w-5" />
           </button>
           <div className="flex gap-2">
-            <button className="w-2 h-2 rounded-full bg-[#1c1917]" />
-            <button className="w-2 h-2 rounded-full bg-[#e7e5e4] hover:bg-[#b45309]/50" />
+            <button className="w-2 h-2 rounded-full bg-[var(--color-dark)]" />
+            <button className="w-2 h-2 rounded-full bg-[#e7e5e4] hover:bg-[var(--color-primary)]/50" />
           </div>
-          <button className="p-2 text-[#57534e] hover:text-[#b45309] transition-colors">
+          <button className="p-2 text-[#57534e] hover:text-[var(--color-primary)] transition-colors">
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>

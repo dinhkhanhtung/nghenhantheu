@@ -85,7 +85,7 @@ export default function FloatingContactBar() {
                     whileTap={{ scale: 0.9 }}
                     className="group relative flex items-center justify-end gap-3"
                   >
-                    <span className="bg-white/90 backdrop-blur-sm text-[#1c1917] text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm border border-[#e7e5e4] opacity-0 group-hover:opacity-100 lg:opacity-0 transition-opacity whitespace-nowrap uppercase tracking-wider">
+                    <span className="bg-white/90 backdrop-blur-sm text-[var(--color-dark)] text-[10px] font-bold px-3 py-1.5 rounded-full shadow-sm border border-[#e7e5e4] opacity-0 group-hover:opacity-100 lg:opacity-0 transition-opacity whitespace-nowrap uppercase tracking-wider">
                       {button.label}
                     </span>
                     <div
@@ -105,7 +105,7 @@ export default function FloatingContactBar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsExpanded(!isExpanded)}
-            className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-[#b45309] text-white shadow-2xl hover:shadow-xl transition-all flex items-center justify-center border-2 border-white relative"
+            className="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-[var(--color-primary)] text-white shadow-2xl hover:shadow-xl transition-all flex items-center justify-center border-2 border-white relative"
           >
             {isExpanded ? <X size={28} /> : <MessageCircle size={28} />}
             {!isExpanded && (

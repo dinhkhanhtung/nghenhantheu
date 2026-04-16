@@ -31,7 +31,7 @@ export default function Footer() {
   const { settings } = useWebsite();
 
   return (
-    <footer className="bg-[#1c1917] text-white">
+    <footer className="bg-[var(--color-dark)] text-white">
       {/* Main Footer */}
       <div className="mx-auto max-w-[1400px] px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
@@ -56,27 +56,27 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 pt-4 flex-wrap">
               {settings.contact.facebook && (
-                <a href={settings.contact.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                <a href={settings.contact.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all rounded-full">
                   <Facebook size={18} />
                 </a>
               )}
               {settings.contact.instagram && (
-                <a href={settings.contact.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                <a href={settings.contact.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all rounded-full">
                   <Instagram size={18} />
                 </a>
               )}
               {settings.contact.youtube && (
-                <a href={settings.contact.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                <a href={settings.contact.youtube} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all rounded-full">
                   <Youtube size={18} />
                 </a>
               )}
               {settings.contact.tiktok && (
-                <a href={settings.contact.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                <a href={settings.contact.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all rounded-full">
                   <TiktokIcon size={18} />
                 </a>
               )}
               {settings.contact.twitter && (
-                <a href={settings.contact.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[#b45309] hover:text-[#b45309] transition-all rounded-full">
+                <a href={settings.contact.twitter} target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/20 flex items-center justify-center text-white/60 hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all rounded-full">
                   <TwitterIcon size={18} />
                 </a>
               )}
@@ -91,7 +91,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.shop.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-white/50 hover:text-[#b45309] transition-colors">
+                  <Link href={link.href} className="text-sm text-white/50 hover:text-[var(--color-primary)] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -107,7 +107,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-sm text-white/50 hover:text-[#b45309] transition-colors">
+                  <Link href={link.href} className="text-sm text-white/50 hover:text-[var(--color-primary)] transition-colors">
                     {link.name}
                   </Link>
                 </li>
@@ -122,15 +122,15 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Phone className="h-4 w-4 shrink-0 text-[#b45309] mt-0.5" />
+                <Phone className="h-4 w-4 shrink-0 text-[var(--color-primary)] mt-0.5" />
                 <span className="text-sm text-white/60">{settings.contact.phone}</span>
               </li>
               <li className="flex items-start gap-3">
-                <Mail className="h-4 w-4 shrink-0 text-[#b45309] mt-0.5" />
+                <Mail className="h-4 w-4 shrink-0 text-[var(--color-primary)] mt-0.5" />
                 <span className="text-sm text-white/60">{settings.contact.email}</span>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 shrink-0 text-[#b45309] mt-0.5" />
+                <MapPin className="h-4 w-4 shrink-0 text-[var(--color-primary)] mt-0.5" />
                 <span className="text-sm text-white/60">{settings.contact.address}</span>
               </li>
             </ul>

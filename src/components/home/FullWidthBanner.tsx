@@ -15,8 +15,8 @@ export default function FullWidthBanner() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4 leading-tight">
-              <span className="text-[#b45309]">Tham Gia Chương Trình</span>
+            <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4 leading-tight">
+              <span className="text-[var(--color-primary)]">Tham Gia Chương Trình</span>
               <br />
               Thành Viên & Nhận Quà!
             </h2>
@@ -26,7 +26,7 @@ export default function FullWidthBanner() {
             </p>
             <Link
               href="/tai-khoan/dang-ky"
-              className="inline-block border border-[#b45309] text-[#b45309] px-8 py-3 text-sm tracking-wide hover:bg-[#b45309] hover:text-white transition-all duration-300 uppercase"
+              className="inline-block border border-[var(--color-primary)] text-[var(--color-primary)] px-8 py-3 text-sm tracking-wide hover:bg-[var(--color-primary)] hover:text-white transition-all duration-300 uppercase"
             >
               Tìm Hiểu Thêm
             </Link>
@@ -47,30 +47,30 @@ export default function FullWidthBanner() {
               <input
                 type="text"
                 placeholder="Họ"
-                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[#b45309] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none transition-colors"
               />
               <input
                 type="text"
                 placeholder="Tên"
-                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[#b45309] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none transition-colors"
               />
               <input
                 type="email"
                 placeholder="Email"
-                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[#b45309] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none transition-colors"
               />
               <input
                 type="password"
                 placeholder="Mật khẩu"
-                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[#b45309] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[#e7e5e4] focus:border-[var(--color-primary)] focus:outline-none transition-colors"
               />
-              <button className="w-full bg-[#b45309] text-white py-4 font-medium tracking-wide hover:bg-[#1c1917] transition-colors uppercase">
+              <button className="w-full bg-[var(--color-primary)] text-white py-4 font-medium tracking-wide hover:bg-[var(--color-dark)] transition-colors uppercase">
                 Tạo Tài Khoản Miễn Phí
               </button>
             </div>
             <p className="text-sm text-[#57534e] text-center mt-4">
               Đã có tài khoản?{" "}
-              <Link href="/tai-khoan/dang-nhap" className="text-[#b45309] hover:underline">
+              <Link href="/tai-khoan/dang-nhap" className="text-[var(--color-primary)] hover:underline">
                 Đăng nhập tại đây
               </Link>
             </p>

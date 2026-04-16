@@ -87,7 +87,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           <motion.button
             initial={{ scale: 0.8, opacity: 0 }}
             whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[#1c1917] shadow-lg hover:bg-[#b45309] hover:text-white transition-colors"
+            className="flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-[var(--color-dark)] shadow-lg hover:bg-[var(--color-primary)] hover:text-white transition-colors"
           >
             <Eye size={16} />
             Xem nhanh
@@ -95,7 +95,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           <motion.button
             initial={{ scale: 0.8, opacity: 0 }}
             whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 rounded-full bg-[#b45309] px-4 py-2 text-sm font-medium text-white shadow-lg hover:bg-[#92400e] transition-colors"
+            className="flex items-center gap-2 rounded-full bg-[var(--color-primary)] px-4 py-2 text-sm font-medium text-white shadow-lg hover:bg-[var(--color-secondary)] transition-colors"
           >
             <ShoppingBag size={16} />
             Thêm vào giỏ
@@ -109,11 +109,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
           {product.category}
         </p>
         <Link href={`/san-pham/${product.id}`}>
-          <h3 className="text-sm font-medium text-[#1c1917] line-clamp-2 min-h-[40px] hover:text-[#b45309] transition-colors">
+          <h3 className="text-sm font-medium text-[var(--color-dark)] line-clamp-2 min-h-[40px] hover:text-[var(--color-primary)] transition-colors">
             {product.name}
           </h3>
         </Link>
-        <p className="text-sm font-semibold text-[#b45309] mt-1">
+        <p className="text-sm font-semibold text-[var(--color-primary)] mt-1">
           {formatPrice(product.price)}
         </p>
       </div>
@@ -184,7 +184,7 @@ export default function AccessoriesPage() {
       <div className="bg-[#fffbf5] pt-[100px] lg:pt-[120px] pb-12">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
+            <h1 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">
               Phụ Kiện Thêu Tay
             </h1>
             <p className="text-[#57534e] max-w-2xl mx-auto">
@@ -201,7 +201,7 @@ export default function AccessoriesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Tìm kiếm phụ kiện..."
-                className="w-full pl-12 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                className="w-full pl-12 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none"
               />
             </div>
 
@@ -212,7 +212,7 @@ export default function AccessoriesPage() {
                   onClick={() => setSelectedCategory(cat)}
                   className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                     selectedCategory === cat
-                      ? "bg-[#b45309] text-white"
+                      ? "bg-[var(--color-primary)] text-white"
                       : "bg-[#f5f5f4] text-[#57534e] hover:bg-[#e7e5e4]"
                   }`}
                 >
@@ -241,3 +241,4 @@ export default function AccessoriesPage() {
     </div>
   );
 }
+

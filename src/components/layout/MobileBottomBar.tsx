@@ -55,16 +55,16 @@ export default function MobileBottomBar() {
                   <Icon 
                     size={22} 
                     strokeWidth={isActive ? 2.5 : 2}
-                    className={`transition-all duration-300 ${isActive ? "text-[#b45309] scale-110" : "text-[#57534e]"}`}
+                    className={`transition-all duration-300 ${isActive ? "text-[var(--color-primary)] scale-110" : "text-[#57534e]"}`}
                   />
                   {/* Cart Badge */}
                   {item.badge && cartCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] bg-[#b45309] text-white text-[9px] font-bold rounded-full flex items-center justify-center px-1 border-2 border-white shadow-sm">
+                    <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] bg-[var(--color-primary)] text-white text-[9px] font-bold rounded-full flex items-center justify-center px-1 border-2 border-white shadow-sm">
                       {cartCount}
                     </span>
                   )}
                 </div>
-                <span className={`text-[10px] mt-0.5 font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-[#b45309]" : "text-[#57534e]"}`}>
+                <span className={`text-[10px] mt-0.5 font-bold tracking-tight transition-colors duration-300 ${isActive ? "text-[var(--color-primary)]" : "text-[#57534e]"}`}>
                   {item.label}
                 </span>
                 
@@ -72,7 +72,7 @@ export default function MobileBottomBar() {
                 {isActive && (
                   <motion.div 
                     layoutId="activeTab"
-                    className="absolute bottom-1 w-1 h-1 bg-[#b45309] rounded-full" 
+                    className="absolute bottom-1 w-1 h-1 bg-[var(--color-primary)] rounded-full" 
                   />
                 )}
               </Link>

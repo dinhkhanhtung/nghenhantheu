@@ -116,7 +116,7 @@ function ProductsContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-2xl sm:text-3xl font-serif text-[#1c1917] text-center">Tất Cả Sản Phẩm</h1>
+            <h1 className="text-2xl sm:text-3xl font-serif text-[var(--color-dark)] text-center">Tất Cả Sản Phẩm</h1>
             <p className="mt-2 text-[#57534e] text-center max-w-xl mx-auto">
               Khám phá bộ sưu tập tranh thêu tay và phụ kiện thêu tinh tế
             </p>
@@ -135,7 +135,7 @@ function ProductsContent() {
                   key={cat.name}
                   onClick={() => setSelectedCategory(selectedCategory === cat.name ? null : cat.name)}
                   className={`flex items-center justify-between w-full text-sm py-1 ${
-                    selectedCategory === cat.name ? "text-[#b45309]" : "text-[#57534e] hover:text-[#b45309]"
+                    selectedCategory === cat.name ? "text-[var(--color-primary)]" : "text-[#57534e] hover:text-[var(--color-primary)]"
                   }`}
                 >
                   <span>{cat.name}</span>
@@ -158,7 +158,7 @@ function ProductsContent() {
                 />
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-[#57534e]">0đ -</span>
-                  <span className="text-sm font-medium text-[#1c1917]">{formatPrice(priceRange[1])}</span>
+                  <span className="text-sm font-medium text-[var(--color-dark)]">{formatPrice(priceRange[1])}</span>
                 </div>
               </div>
             </FilterSection>
@@ -178,7 +178,7 @@ function ProductsContent() {
                     }}
                     className={`w-8 h-8 rounded-full border-2 transition-all ${
                       selectedColors.includes(color.name) 
-                        ? "border-[#b45309] ring-2 ring-[#b45309]/20" 
+                        ? "border-[var(--color-primary)] ring-2 ring-[var(--color-primary)]/20" 
                         : "border-[#e7e5e4]"
                     }`}
                     style={{ backgroundColor: color.hex }}
@@ -204,7 +204,7 @@ function ProductsContent() {
               <div className="flex flex-col">
                 <p className="text-sm text-[#57534e]">{filteredProducts.length} sản phẩm</p>
                 {searchQuery && (
-                  <p className="text-xs text-[#b45309] font-medium">Kết quả tìm kiếm cho: "{searchQuery}"</p>
+                  <p className="text-xs text-[var(--color-primary)] font-medium">Kết quả tìm kiếm cho: "{searchQuery}"</p>
                 )}
               </div>
               <div className="flex items-center gap-2">
@@ -212,7 +212,7 @@ function ProductsContent() {
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="text-sm border border-[#e7e5e4] px-3 py-2 focus:border-[#b45309] focus:outline-none"
+                  className="text-sm border border-[#e7e5e4] px-3 py-2 focus:border-[var(--color-primary)] focus:outline-none"
                 >
                   <option value="featured">Nổi bật</option>
                   <option value="newest">Mới nhất</option>
@@ -225,7 +225,7 @@ function ProductsContent() {
             {/* Grid */}
             {loading ? (
               <div className="flex flex-col items-center justify-center py-20 text-[#57534e]">
-                <Loader2 size={40} className="animate-spin mb-4 text-[#b45309]" />
+                <Loader2 size={40} className="animate-spin mb-4 text-[var(--color-primary)]" />
                 <p>Đang tải sản phẩm...</p>
               </div>
             ) : filteredProducts.length > 0 ? (
@@ -251,7 +251,7 @@ function ProductsContent() {
                       <div className="absolute inset-x-0 bottom-0 p-3 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                         <button 
                           onClick={() => setQuickViewProduct(product)}
-                          className="w-full bg-[#b45309] text-white py-2.5 text-xs font-medium tracking-wide hover:bg-[#1c1917] transition-colors"
+                          className="w-full bg-[var(--color-primary)] text-white py-2.5 text-xs font-medium tracking-wide hover:bg-[var(--color-dark)] transition-colors"
                         >
                           Xem nhanh
                         </button>
@@ -260,11 +260,11 @@ function ProductsContent() {
                     <div className="text-center">
                       <div className="flex justify-center gap-1 mb-1">
                         {[...Array(5)].map((_, i) => (
-                          <Star key={i} size={12} className="fill-[#b45309] text-[#b45309]" />
+                          <Star key={i} size={12} className="fill-[var(--color-primary)] text-[var(--color-primary)]" />
                         ))}
                       </div>
-                      <h3 className="text-sm text-[#1c1917] mb-1 line-clamp-2">{product.name}</h3>
-                      <p className="text-sm font-medium text-[#b45309]">{formatPrice(product.price)}</p>
+                      <h3 className="text-sm text-[var(--color-dark)] mb-1 line-clamp-2">{product.name}</h3>
+                      <p className="text-sm font-medium text-[var(--color-primary)]">{formatPrice(product.price)}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -272,9 +272,9 @@ function ProductsContent() {
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center">
                 <div className="w-20 h-20 bg-[#fffbf5] rounded-full flex items-center justify-center mb-6">
-                  <SearchX size={40} className="text-[#b45309]" />
+                  <SearchX size={40} className="text-[var(--color-primary)]" />
                 </div>
-                <h3 className="text-xl font-bold text-[#1c1917] mb-2">Không tìm thấy sản phẩm nào</h3>
+                <h3 className="text-xl font-bold text-[var(--color-dark)] mb-2">Không tìm thấy sản phẩm nào</h3>
                 <p className="text-[#57534e] max-w-xs mx-auto mb-8">
                   Thử thay đổi bộ lọc hoặc tìm kiếm bằng từ khóa khác.
                 </p>
@@ -284,7 +284,7 @@ function ProductsContent() {
                     setPriceRange([0, 10000000]);
                     window.history.pushState({}, '', '/san-pham');
                   }}
-                  className="px-6 py-3 bg-[#1c1917] text-white font-bold rounded-xl hover:bg-[#b45309] transition-all"
+                  className="px-6 py-3 bg-[var(--color-dark)] text-white font-bold rounded-xl hover:bg-[var(--color-primary)] transition-all"
                 >
                   Xóa tất cả bộ lọc
                 </button>
@@ -316,7 +316,7 @@ export default function ProductsPage() {
   return (
     <Suspense fallback={
       <div className="flex flex-col items-center justify-center min-h-screen py-20 text-[#57534e]">
-        <Loader2 size={40} className="animate-spin mb-4 text-[#b45309]" />
+        <Loader2 size={40} className="animate-spin mb-4 text-[var(--color-primary)]" />
         <p>Đang chuẩn bị sản phẩm...</p>
       </div>
     }>
@@ -324,3 +324,4 @@ export default function ProductsPage() {
     </Suspense>
   );
 }
+

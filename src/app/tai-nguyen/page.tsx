@@ -126,7 +126,7 @@ export default function ResourcesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-[#1c1917] text-white py-16 lg:py-24">
+      <div className="bg-[var(--color-dark)] text-white py-16 lg:py-24">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -158,7 +158,7 @@ export default function ResourcesPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Tìm kiếm mẫu thêu..."
-                className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                className="w-full pl-10 pr-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none"
               />
             </div>
 
@@ -167,7 +167,7 @@ export default function ResourcesPage() {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="px-3 sm:px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none bg-white text-sm whitespace-nowrap"
+                className="px-3 sm:px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none bg-white text-sm whitespace-nowrap"
               >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -177,7 +177,7 @@ export default function ResourcesPage() {
               <select
                 value={selectedDifficulty}
                 onChange={(e) => setSelectedDifficulty(e.target.value)}
-                className="px-3 sm:px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none bg-white text-sm whitespace-nowrap"
+                className="px-3 sm:px-4 py-2.5 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none bg-white text-sm whitespace-nowrap"
               >
                 {difficulties.map((diff) => (
                   <option key={diff.value} value={diff.value}>{diff.label}</option>
@@ -201,7 +201,7 @@ export default function ResourcesPage() {
           </p>
           <div className="flex items-center gap-2">
             <span className="text-sm text-[#57534e]">Sắp xếp:</span>
-            <select className="px-3 py-1.5 text-sm border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none">
+            <select className="px-3 py-1.5 text-sm border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none">
               <option>Mới nhất</option>
               <option>Tải nhiều nhất</option>
               <option>Phổ biến nhất</option>
@@ -212,7 +212,7 @@ export default function ResourcesPage() {
         {filteredResources.length === 0 ? (
           <div className="text-center py-16">
             <FileImage size={64} className="mx-auto text-[#a8a29e] mb-4" />
-            <h3 className="text-lg font-medium text-[#1c1917] mb-2">Không tìm thấy mẫu thêu</h3>
+            <h3 className="text-lg font-medium text-[var(--color-dark)] mb-2">Không tìm thấy mẫu thêu</h3>
             <p className="text-[#57534e]">Vui lòng thử tìm kiếm với từ khóa khác</p>
           </div>
         ) : (
@@ -255,7 +255,7 @@ export default function ResourcesPage() {
                       <span className="text-xs text-[#57534e]">{resource.fileSize}</span>
                     </div>
 
-                    <h3 className="font-medium text-[#1c1917] mb-2 line-clamp-2 group-hover:text-[#b45309] transition-colors">
+                    <h3 className="font-medium text-[var(--color-dark)] mb-2 line-clamp-2 group-hover:text-[var(--color-primary)] transition-colors">
                       {resource.title}
                     </h3>
 
@@ -287,7 +287,7 @@ export default function ResourcesPage() {
 
                     {/* Actions */}
                     <div className="flex gap-2">
-                      <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[#b45309] text-white rounded-lg hover:bg-[#92400e] transition-colors text-sm font-medium">
+                      <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-secondary)] transition-colors text-sm font-medium">
                         <Download size={16} />
                         Tải xuống
                       </button>
@@ -306,14 +306,14 @@ export default function ResourcesPage() {
       {/* CTA Section */}
       <div className="bg-[#f5f5f4] py-16">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl lg:text-3xl font-serif text-[#1c1917] mb-4">
+          <h2 className="text-2xl lg:text-3xl font-serif text-[var(--color-dark)] mb-4">
             Bạn có mẫu thêu muốn chia sẻ?
           </h2>
           <p className="text-[#57534e] mb-6 max-w-2xl mx-auto">
             Hãy gửi mẫu thêu của bạn để cùng chia sẻ với cộng đồng yêu nghệ thuật thêu tay.
             Chúng tôi sẽ xem xét và đăng tải lên hệ thống.
           </p>
-          <button className="px-6 py-3 bg-[#1c1917] text-white rounded-lg hover:bg-[#2d2a26] transition-colors">
+          <button className="px-6 py-3 bg-[var(--color-dark)] text-white rounded-lg hover:bg-[#2d2a26] transition-colors">
             Gửi mẫu thêu của bạn
           </button>
         </div>
@@ -321,3 +321,4 @@ export default function ResourcesPage() {
     </div>
   );
 }
+

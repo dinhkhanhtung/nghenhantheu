@@ -113,7 +113,7 @@ export default function LearningPage() {
   if (status === "loading" || loading) {
     return (
       <div className="min-h-screen bg-[#fffbf5] pt-20 pb-12 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#b45309]" />
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[var(--color-primary)]" />
       </div>
     );
   }
@@ -124,11 +124,11 @@ export default function LearningPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center py-16">
             <BookOpen size={64} className="mx-auto text-[#a8a29e] mb-4" />
-            <h1 className="text-2xl font-serif text-[#1c1917] mb-2">Bạn chưa đăng ký khóa học nào</h1>
+            <h1 className="text-2xl font-serif text-[var(--color-dark)] mb-2">Bạn chưa đăng ký khóa học nào</h1>
             <p className="text-[#57534e] mb-6">Khám phá các khóa học thêu tay và bắt đầu hành trình sáng tạo của bạn</p>
             <Link
               href="/khoa-hoc"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#b45309] text-white rounded-lg hover:bg-[#92400e] transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-secondary)] transition-colors"
             >
               <Play size={20} />
               Khám phá khóa học
@@ -148,7 +148,7 @@ export default function LearningPage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-3xl font-serif text-[#1c1917] mb-2">Khóa học của tôi</h1>
+          <h1 className="text-3xl font-serif text-[var(--color-dark)] mb-2">Khóa học của tôi</h1>
           <p className="text-[#57534e]">Tiếp tục hành trình học tập của bạn</p>
         </motion.div>
 
@@ -185,11 +185,11 @@ export default function LearningPage() {
                   <div>
                     <div className="flex items-center justify-between text-sm mb-1">
                       <span className="text-[#57534e]">Tiến độ</span>
-                      <span className="font-medium text-[#b45309]">{progress}%</span>
+                      <span className="font-medium text-[var(--color-primary)]">{progress}%</span>
                     </div>
                     <div className="h-2 bg-[#f5f5f4] rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-[#b45309] rounded-full transition-all"
+                        className="h-full bg-[var(--color-primary)] rounded-full transition-all"
                         style={{ width: `${progress}%` }}
                       />
                     </div>
@@ -201,7 +201,7 @@ export default function LearningPage() {
                   {/* Last Lesson */}
                   {lastLesson && (
                     <div className="flex items-center gap-2 text-sm text-[#57534e]">
-                      <Play size={14} className="text-[#b45309]" />
+                      <Play size={14} className="text-[var(--color-primary)]" />
                       <span className="line-clamp-1">{lastLesson.title}</span>
                     </div>
                   )}
@@ -209,7 +209,7 @@ export default function LearningPage() {
                   {/* Action Button */}
                   <Link
                     href={`/hoc-tap/${course.id}/${lastLesson?.id || course.lessons?.[0]?.id || "lesson-1"}`}
-                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#b45309] text-white rounded-lg hover:bg-[#92400e] transition-colors"
+                    className="flex items-center justify-center gap-2 w-full py-2.5 bg-[var(--color-primary)] text-white rounded-lg hover:bg-[var(--color-secondary)] transition-colors"
                   >
                     {progress === 100 ? (
                       <>
@@ -237,3 +237,4 @@ export default function LearningPage() {
     </div>
   );
 }
+

@@ -45,8 +45,8 @@ export default function FeaturedCategories() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <p className="text-sm tracking-[0.2em] text-[#b45309] uppercase mb-3 font-medium">Khám Phá</p>
-          <h2 className="text-3xl md:text-4xl font-serif text-[#1c1917] mb-4">
+          <p className="text-sm tracking-[0.2em] text-[var(--color-primary)] uppercase mb-3 font-medium">Khám Phá</p>
+          <h2 className="text-3xl md:text-4xl font-serif text-[var(--color-dark)] mb-4">
             Danh Mục Nổi Bật
           </h2>
           <p className="text-[#57534e] max-w-md mx-auto">

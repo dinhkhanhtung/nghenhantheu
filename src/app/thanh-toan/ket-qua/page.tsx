@@ -69,7 +69,7 @@ function PaymentResultContent() {
           animate={{ opacity: 1 }}
           className="text-center"
         >
-          <Loader2 size={48} className="animate-spin text-[#b45309] mx-auto mb-4" />
+          <Loader2 size={48} className="animate-spin text-[var(--color-primary)] mx-auto mb-4" />
           <p className="text-[#57534e]">Đang xử lý đơn hàng...</p>
         </motion.div>
       </div>
@@ -89,7 +89,7 @@ function PaymentResultContent() {
             <CheckCircle size={40} />
           </div>
           
-          <h1 className="text-2xl font-bold text-[#1c1917] mb-3">
+          <h1 className="text-2xl font-bold text-[var(--color-dark)] mb-3">
             Đặt hàng thành công!
           </h1>
           
@@ -106,7 +106,7 @@ function PaymentResultContent() {
             )}
             {orderDetails && (
               <span className="block mt-2 font-medium">
-                Mã đơn hàng: <span className="text-[#b45309]">HK{orderId?.substring(0, 6).toUpperCase()}</span>
+                Mã đơn hàng: <span className="text-[var(--color-primary)]">HK{orderId?.substring(0, 6).toUpperCase()}</span>
               </span>
             )}
           </p>
@@ -115,7 +115,7 @@ function PaymentResultContent() {
             <div className="bg-[#f5f5f4] p-4 rounded-xl mb-6 text-left">
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-[#57534e]">Phương thức:</span>
-                <span className="font-medium text-[#1c1917]">
+                <span className="font-medium text-[var(--color-dark)]">
                   {orderDetails.paymentMethod === "BANK" ? "Chuyển khoản ngân hàng" : 
                    orderDetails.paymentMethod === "COD" ? "Thanh toán khi nhận" : 
                    orderDetails.paymentMethod}
@@ -123,7 +123,7 @@ function PaymentResultContent() {
               </div>
               <div className="flex justify-between text-sm mb-2">
                 <span className="text-[#57534e]">Số tiền:</span>
-                <span className="font-medium text-[#1c1917]">
+                <span className="font-medium text-[var(--color-dark)]">
                   {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(orderDetails.total || 0)}
                 </span>
               </div>
@@ -139,7 +139,7 @@ function PaymentResultContent() {
               {/* Bank Transfer Info */}
               {orderDetails.paymentMethod === "BANK" && (
                 <div className="mt-4 pt-4 border-t border-[#e7e5e4]">
-                  <p className="text-sm font-medium text-[#1c1917] mb-2">Thông tin chuyển khoản:</p>
+                  <p className="text-sm font-medium text-[var(--color-dark)] mb-2">Thông tin chuyển khoản:</p>
                   <p className="text-xs text-[#57534e] mb-1">Vui lòng chuyển khoản với nội dung: <strong>Thanh toan HK{orderId?.substring(0, 6).toUpperCase()}</strong></p>
                   <p className="text-xs text-[#57534e]">Sau khi chuyển khoản, vui lòng gửi biên lai qua Zalo để được xác nhận nhanh nhất.</p>
                 </div>
@@ -150,7 +150,7 @@ function PaymentResultContent() {
           <div className="space-y-3">
             <Link 
               href="/tai-khoan?tab=orders" 
-              className="flex items-center justify-center gap-2 w-full py-3 bg-[#b45309] text-white font-medium rounded-xl hover:bg-[#92400e] transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--color-primary)] text-white font-medium rounded-xl hover:bg-[var(--color-secondary)] transition-colors"
             >
               <FileText size={18} />
               Xem đơn hàng của tôi
@@ -158,7 +158,7 @@ function PaymentResultContent() {
             
             <Link 
               href="/" 
-              className="flex items-center justify-center gap-2 w-full py-3 border border-[#e7e5e4] text-[#1c1917] font-medium rounded-xl hover:bg-[#f5f5f4] transition-colors"
+              className="flex items-center justify-center gap-2 w-full py-3 border border-[#e7e5e4] text-[var(--color-dark)] font-medium rounded-xl hover:bg-[#f5f5f4] transition-colors"
             >
               <Home size={18} />
               Quay lại trang chủ
@@ -181,7 +181,7 @@ function PaymentResultContent() {
           <XCircle size={40} />
         </div>
         
-        <h1 className="text-2xl font-bold text-[#1c1917] mb-3">
+        <h1 className="text-2xl font-bold text-[var(--color-dark)] mb-3">
           Thanh toán không thành công
         </h1>
         
@@ -193,7 +193,7 @@ function PaymentResultContent() {
         <div className="space-y-3">
           <Link 
             href="/thanh-toan" 
-            className="flex items-center justify-center gap-2 w-full py-3 bg-[#b45309] text-white font-medium rounded-xl hover:bg-[#92400e] transition-colors"
+            className="flex items-center justify-center gap-2 w-full py-3 bg-[var(--color-primary)] text-white font-medium rounded-xl hover:bg-[var(--color-secondary)] transition-colors"
           >
             <CreditCard size={18} />
             Thử thanh toán lại
@@ -201,7 +201,7 @@ function PaymentResultContent() {
           
           <Link 
             href="/gio-hang" 
-            className="flex items-center justify-center gap-2 w-full py-3 border border-[#e7e5e4] text-[#1c1917] font-medium rounded-xl hover:bg-[#f5f5f4] transition-colors"
+            className="flex items-center justify-center gap-2 w-full py-3 border border-[#e7e5e4] text-[var(--color-dark)] font-medium rounded-xl hover:bg-[#f5f5f4] transition-colors"
           >
             <Truck size={18} />
             Quay lại giỏ hàng
@@ -216,11 +216,12 @@ export default function PaymentResultPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-[#fffbf5] flex items-center justify-center">
-        <Loader2 size={40} className="animate-spin text-[#b45309]" />
+        <Loader2 size={40} className="animate-spin text-[var(--color-primary)]" />
       </div>
     }>
       <PaymentResultContent />
     </Suspense>
   );
 }
+
 

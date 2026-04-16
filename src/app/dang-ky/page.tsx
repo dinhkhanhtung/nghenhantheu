@@ -60,7 +60,7 @@ export default function RegisterPage() {
           className="bg-white p-8 rounded-lg shadow-sm border border-[#e7e5e4]"
         >
           <div className="text-center mb-8">
-            <h1 className="text-2xl font-serif text-[#1c1917] mb-2">
+            <h1 className="text-2xl font-serif text-[var(--color-dark)] mb-2">
               Tạo tài khoản
             </h1>
             <p className="text-sm text-[#57534e]">
@@ -80,7 +80,7 @@ export default function RegisterPage() {
             className="w-full flex items-center justify-center gap-3 py-3 px-4 border border-[#e7e5e4] rounded-lg hover:bg-[#f5f5f4] transition-colors mb-6"
           >
             <Chrome size={20} className="text-[#4285F4]" />
-            <span className="text-sm font-medium text-[#1c1917]">
+            <span className="text-sm font-medium text-[var(--color-dark)]">
               Đăng ký với Google
             </span>
           </button>
@@ -99,7 +99,7 @@ export default function RegisterPage() {
           {/* Registration Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Họ và tên
               </label>
               <div className="relative">
@@ -112,7 +112,7 @@ export default function RegisterPage() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="Nguyễn Văn A"
                   required
                 />
@@ -120,7 +120,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Email
               </label>
               <div className="relative">
@@ -133,7 +133,7 @@ export default function RegisterPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="your@email.com"
                   required
                 />
@@ -141,7 +141,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Số điện thoại
               </label>
               <div className="relative">
@@ -154,14 +154,14 @@ export default function RegisterPage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="0982 581 222"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Mật khẩu
               </label>
               <div className="relative">
@@ -174,7 +174,7 @@ export default function RegisterPage() {
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-12 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-12 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="••••••••"
                   required
                   minLength={6}
@@ -182,7 +182,7 @@ export default function RegisterPage() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e] hover:text-[#1c1917]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534e] hover:text-[var(--color-dark)]"
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
@@ -190,7 +190,7 @@ export default function RegisterPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1c1917] mb-2">
+              <label className="block text-sm font-medium text-[var(--color-dark)] mb-2">
                 Xác nhận mật khẩu
               </label>
               <div className="relative">
@@ -203,7 +203,7 @@ export default function RegisterPage() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none text-sm"
+                  className="w-full pl-10 pr-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[var(--color-primary)] focus:outline-none text-sm"
                   placeholder="••••••••"
                   required
                 />
@@ -213,16 +213,16 @@ export default function RegisterPage() {
             <label className="flex items-start gap-2 text-sm">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded border-[#e7e5e4] text-[#b45309] focus:ring-[#b45309] mt-0.5"
+                className="w-4 h-4 rounded border-[#e7e5e4] text-[var(--color-primary)] focus:ring-[var(--color-primary)] mt-0.5"
                 required
               />
               <span className="text-[#57534e]">
                 Tôi đồng ý với{" "}
-                <Link href="/dieu-khoan" className="text-[#b45309] hover:underline">
+                <Link href="/dieu-khoan" className="text-[var(--color-primary)] hover:underline">
                   Điều khoản sử dụng
                 </Link>{" "}
                 và{" "}
-                <Link href="/bao-mat" className="text-[#b45309] hover:underline">
+                <Link href="/bao-mat" className="text-[var(--color-primary)] hover:underline">
                   Chính sách bảo mật
                 </Link>
               </span>
@@ -231,7 +231,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-[#b45309] text-white font-medium rounded-lg hover:bg-[#92400e] transition-colors disabled:opacity-50"
+              className="w-full py-3 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-secondary)] transition-colors disabled:opacity-50"
             >
               {isLoading ? "Đang tạo tài khoản..." : "Tạo tài khoản"}
             </button>
@@ -239,7 +239,7 @@ export default function RegisterPage() {
 
           <p className="mt-6 text-center text-sm text-[#57534e]">
             Đã có tài khoản?{" "}
-            <Link href="/dang-nhap" className="text-[#b45309] hover:underline font-medium">
+            <Link href="/dang-nhap" className="text-[var(--color-primary)] hover:underline font-medium">
               Đăng nhập ngay
             </Link>
           </p>
@@ -248,3 +248,4 @@ export default function RegisterPage() {
     </div>
   );
 }
+

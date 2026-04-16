@@ -41,7 +41,7 @@ export default function BlogSection() {
           viewport={{ once: true }}
           className="mb-12 text-center"
         >
-          <h2 className="text-2xl md:text-3xl font-serif text-[#1c1917] mb-3">
+          <h2 className="text-2xl md:text-3xl font-serif text-[var(--color-dark)] mb-3">
             Bài Viết Mới Nhất
           </h2>
           <p className="text-sm text-[#57534e] max-w-md mx-auto">
@@ -69,11 +69,11 @@ export default function BlogSection() {
                 </div>
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-[#b45309] font-medium">{post.category}</span>
+                    <span className="text-[var(--color-primary)] font-medium">{post.category}</span>
                     <span className="text-[#57534e]">•</span>
                     <span className="text-[#57534e]">{post.date}</span>
                   </div>
-                  <h3 className="text-lg font-medium text-[#1c1917] group-hover:text-[#b45309] transition-colors line-clamp-2">
+                  <h3 className="text-lg font-medium text-[var(--color-dark)] group-hover:text-[var(--color-primary)] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   <p className="text-sm text-[#57534e] line-clamp-2">
@@ -88,7 +88,7 @@ export default function BlogSection() {
         <div className="mt-12 text-center">
           <Link
             href="/bai-viet"
-            className="inline-block border border-[#1c1917] text-[#1c1917] px-8 py-3 text-sm tracking-wide hover:bg-[#1c1917] hover:text-white transition-all duration-300"
+            className="inline-block border border-[var(--color-dark)] text-[var(--color-dark)] px-8 py-3 text-sm tracking-wide hover:bg-[var(--color-dark)] hover:text-white transition-all duration-300"
           >
             Xem tất cả bài viết
           </Link>
