@@ -7,6 +7,7 @@ import BackToTop from "@/components/layout/BackToTop";
 import MobileBottomBar from "@/components/layout/MobileBottomBar";
 import FloatingContactBar from "@/components/layout/FloatingContactBar";
 import AnnouncementBar from "@/components/layout/AnnouncementBar";
+import PopupModal from "@/components/layout/PopupModal";
 
 export default function ClientLayout({
   children,
@@ -33,6 +34,7 @@ export default function ClientLayout({
       <BackToTop />
       <MobileBottomBar />
       <FloatingContactBar />
+      <PopupModal />
     </>
   );
 }

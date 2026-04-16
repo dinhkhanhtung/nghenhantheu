@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { 
+import {
   Globe, Phone, Clock, Save, Upload,
   Image as ImageIcon, Palette, Layout,
   CreditCard, Truck, Search as SearchIcon,
   Facebook, Mail, MapPin, Zap, CheckCircle2,
-  Layers, BookOpen, FileText, GraduationCap
+  Layers, BookOpen, FileText, GraduationCap,
+  Gift
 } from "lucide-react";
 import { useWebsite } from "@/context/WebsiteContext";
 
 export default function WebsiteSettingsPage() {
   const { settings, updateSettings } = useWebsite();
-  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules">("general");
+  const [activeTab, setActiveTab] = useState<"general" | "contact" | "seo" | "appearance" | "payment" | "shipping" | "modules" | "popup">("general");
   const [tempSettings, setTempSettings] = useState(settings);
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
@@ -67,6 +68,7 @@ export default function WebsiteSettingsPage() {
                 { id: "payment", label: "Thanh toán", icon: CreditCard },
                 { id: "shipping", label: "Vận chuyển", icon: Truck },
                 { id: "modules", label: "Tính năng", icon: Layers },
+                { id: "popup", label: "Popup quảng cáo", icon: Gift },
               ].map((tab) => (
                 <button
                   key={tab.id}
@@ -365,6 +367,192 @@ export default function WebsiteSettingsPage() {
 
             {/* Appearance, Payment, Shipping - similar pattern ... */}
             {/* (Omitted for brevity, but they should also use tempSettings and onChange) */}
+
+            {/* Popup Settings */}
+            {activeTab === "popup" && (
+              <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div className="flex items-center gap-4 pb-6 border-b border-[#e7e5e4]">
+                  <div className="w-12 h-12 bg-[#b45309]/10 rounded-2xl flex items-center justify-center text-[#b45309]">
+                    <Gift size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#1c1917] text-lg tracking-tight">Popup quảng cáo</h3>
+                    <p className="text-sm text-[#57534e] font-medium">Hiển thị thông báo cho khách lần đầu ghé thăm</p>
+                  </div>
+                </div>
+
+                <div className="space-y-6">
+                  {/* Enable/Disable */}
+                  <div className="flex items-center justify-between p-4 bg-[#fffbf5] rounded-xl border border-[#e7e5e4]">
+                    <div>
+                      <h4 className="font-medium text-[#1c1917]">Bật popup</h4>
+                      <p className="text-sm text-[#57534e]">Hiển thị popup cho khách hàng</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.popup?.enabled ?? false}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, enabled: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+
+                  {/* Template Selection */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-[#1c1917]">Mẫu popup</label>
+                    <div className="grid grid-cols-3 gap-3">
+                      {[
+                        { value: "promotion", label: "Khuyến mãi", icon: "🎁" },
+                        { value: "text", label: "Văn bản", icon: "📝" },
+                        { value: "image", label: "Ảnh", icon: "🖼️" },
+                      ].map((template) => (
+                        <button
+                          key={template.value}
+                          type="button"
+                          onClick={() => setTempSettings({
+                            ...tempSettings,
+                            popup: { ...tempSettings.popup, template: template.value as any }
+                          })}
+                          className={`p-4 rounded-xl border-2 transition-all ${
+                            tempSettings.popup?.template === template.value
+                              ? "border-[#b45309] bg-[#b45309]/5"
+                              : "border-[#e7e5e4] hover:border-[#b45309]/30"
+                          }`}
+                        >
+                          <div className="text-2xl mb-2">{template.icon}</div>
+                          <div className="text-sm font-medium text-[#1c1917]">{template.label}</div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Image Upload (only for image template) */}
+                  {tempSettings.popup?.template === "image" && (
+                    <div className="space-y-3">
+                      <label className="block text-sm font-medium text-[#1c1917]">Ảnh popup</label>
+                      <div className="p-4 border-2 border-dashed border-[#e7e5e4] rounded-xl">
+                        <input
+                          type="text"
+                          value={tempSettings.popup?.image || ""}
+                          onChange={(e) => setTempSettings({
+                            ...tempSettings,
+                            popup: { ...tempSettings.popup, image: e.target.value }
+                          })}
+                          placeholder="Dán đường dẫn ảnh từ ImgBB..."
+                          className="w-full px-4 py-2 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                        />
+                        <p className="text-xs text-[#57534e] mt-2">Tải ảnh lên ImgBB và dán link vào đây</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Title (only for text and promotion templates) */}
+                  {tempSettings.popup?.template !== "image" && (
+                    <div className="space-y-3">
+                      <label className="block text-sm font-medium text-[#1c1917]">Tiêu đề</label>
+                      <input
+                        type="text"
+                        value={tempSettings.popup?.title || ""}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, title: e.target.value }
+                        })}
+                        placeholder="VD: ƯU ĐÃI ĐẶC BIỆT"
+                        className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                      />
+                    </div>
+                  )}
+
+                  {/* Content (only for text and promotion templates) */}
+                  {tempSettings.popup?.template !== "image" && (
+                    <div className="space-y-3">
+                      <label className="block text-sm font-medium text-[#1c1917]">Nội dung</label>
+                      <textarea
+                        value={tempSettings.popup?.content || ""}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, content: e.target.value }
+                        })}
+                        placeholder="VD: Giảm 20% cho đơn hàng đầu tiên!"
+                        rows={3}
+                        className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none resize-none"
+                      />
+                    </div>
+                  )}
+
+                  {/* Button Settings */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-3">
+                      <label className="block text-sm font-medium text-[#1c1917]">Text nút</label>
+                      <input
+                        type="text"
+                        value={tempSettings.popup?.buttonText || ""}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, buttonText: e.target.value }
+                        })}
+                        placeholder="VD: Mua ngay"
+                        className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                      />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="block text-sm font-medium text-[#1c1917]">Link nút</label>
+                      <input
+                        type="text"
+                        value={tempSettings.popup?.buttonLink || ""}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, buttonLink: e.target.value }
+                        })}
+                        placeholder="VD: /san-pham"
+                        className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Show After */}
+                  <div className="space-y-3">
+                    <label className="block text-sm font-medium text-[#1c1917]">Hiện sau bao nhiêu giây</label>
+                    <input
+                      type="number"
+                      value={tempSettings.popup?.showAfter || 3}
+                      onChange={(e) => setTempSettings({
+                        ...tempSettings,
+                        popup: { ...tempSettings.popup, showAfter: parseInt(e.target.value) || 3 }
+                      })}
+                      min="0"
+                      max="30"
+                      className="w-full px-4 py-3 border border-[#e7e5e4] rounded-lg focus:border-[#b45309] focus:outline-none"
+                    />
+                  </div>
+
+                  {/* Show Once */}
+                  <div className="flex items-center justify-between p-4 bg-[#fffbf5] rounded-xl border border-[#e7e5e4]">
+                    <div>
+                      <h4 className="font-medium text-[#1c1917]">Chỉ hiện 1 lần</h4>
+                      <p className="text-sm text-[#57534e]">Không hiện lại cho khách đã xem</p>
+                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={tempSettings.popup?.showOnce ?? true}
+                        onChange={(e) => setTempSettings({
+                          ...tempSettings,
+                          popup: { ...tempSettings.popup, showOnce: e.target.checked }
+                        })}
+                        className="sr-only peer"
+                      />
+                      <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#b45309]"></div>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

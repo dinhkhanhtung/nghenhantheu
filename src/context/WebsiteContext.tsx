@@ -47,6 +47,17 @@ export interface WebsiteSettings {
     resources: boolean;    // Hiển thị Tài nguyên/Mẫu thêu
     blog: boolean;         // Hiển thị Tin tức/Blog
   };
+  popup: {
+    enabled: boolean;      // Bật/tắt popup
+    template: "image" | "text" | "promotion";  // Mẫu popup
+    image?: string;        // Ảnh popup (đường dẫn ImgBB)
+    title?: string;        // Tiêu đề popup
+    content?: string;      // Nội dung popup
+    buttonText?: string;   // Text nút button
+    buttonLink?: string;   // Link nút button
+    showAfter: number;     // Hiện sau bao nhiêu giây
+    showOnce: boolean;     // Chỉ hiện 1 lần
+  };
 }
 
 const defaultSettings: WebsiteSettings = {
@@ -90,6 +101,17 @@ const defaultSettings: WebsiteSettings = {
     courses: true,      // Bật Khóa học
     resources: true,      // Bật Tài nguyên
     blog: true,           // Bật Tin tức
+  },
+  popup: {
+    enabled: false,      // Mặc định tắt
+    template: "promotion",
+    image: "",
+    title: "ƯU ĐÃI ĐẶC BIỆT",
+    content: "Giảm 20% cho đơn hàng đầu tiên! Nhập mã: NEW20",
+    buttonText: "Mua ngay",
+    buttonLink: "/san-pham",
+    showAfter: 3,        // Hiện sau 3 giây
+    showOnce: true,      // Chỉ hiện 1 lần
   },
 };
 
