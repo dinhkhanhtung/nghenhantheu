@@ -88,8 +88,32 @@ const navGroups: NavGroup[] = [
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Check authentication
+  useEffect(() => {
+    const checkAuth = () => {
+      // Skip auth check for login page
+      if (pathname === "/admin/login") {
+        setIsAuthenticated(true);
+        setIsLoading(false);
+        return;
+      }
+
+      const token = localStorage.getItem("adminToken");
+      if (!token) {
+        router.push("/admin/login");
+      } else {
+        setIsAuthenticated(true);
+      }
+      setIsLoading(false);
+    };
+
+    checkAuth();
+  }, [pathname, router]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -106,6 +130,28 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     localStorage.removeItem("adminToken");
     router.push("/admin/login");
   };
+
+  // Show loading while checking auth
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-[#fffbf5] flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-8 h-8 border-2 border-[#b45309] border-t-transparent rounded-full animate-spin" />
+          <p className="text-sm text-[#57534e]">Đang kiểm tra đăng nhập...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Don't render layout if not authenticated (except login page)
+  if (!isAuthenticated && pathname !== "/admin/login") {
+    return null;
+  }
+
+  // Skip layout wrapper for login page
+  if (pathname === "/admin/login") {
+    return <>{children}</>;
+  }
 
   return (
     <div className="min-h-screen bg-[#fffbf5] flex font-sans">

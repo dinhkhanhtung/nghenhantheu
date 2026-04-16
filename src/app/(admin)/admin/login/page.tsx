@@ -20,11 +20,14 @@ export default function AdminLoginPage() {
     
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    if (formData.remember) {
-      localStorage.setItem("adminToken", "mock_token");
+    // Simple credential validation (replace with real API call)
+    if (formData.email === "admin@example.com" && formData.password === "admin123") {
+      localStorage.setItem("adminToken", "admin_token_" + Date.now());
+      router.push("/admin");
+    } else {
+      setError("Email hoặc mật khẩu không đúng. Vui lòng thử lại.");
     }
     
-    router.push("/admin");
     setIsLoading(false);
   };
 
