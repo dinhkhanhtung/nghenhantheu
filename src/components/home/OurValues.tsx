@@ -9,7 +9,7 @@ const values = [
     title: "Thiết Kế Ý Nghĩa",
     subtitle: "Meaningful Designs",
     description: "Phía sau mỗi sản phẩm là một câu chuyện đầy cảm hứng đang chờ được kể. Chúng tôi tin rằng nghệ thuật thêu tay không chỉ là trang trí, mà còn là ngôn ngữ truyền tải giá trị văn hóa và tâm hồn.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/b/b7/Commissioned_embroidery_by_V%C5%A9_Ng%E1%BB%8Dc_Ho%C3%A1nh%2C_Chief_of_L%E1%BA%A1ng_S%C6%A1n_Province_03.jpg",
+    image: "https://via.placeholder.com/800x600/9CA3AF/FFFFFF?text=DEMO+800x600",
     reverse: false,
   },
   {
@@ -17,7 +17,7 @@ const values = [
     title: "Cảm Hứng Thiêng Liêng",
     subtitle: "Divinely-Inspired",
     description: "Lấy cảm hứng từ vẻ đẹp của thiên nhiên và nghệ thuật truyền thống, mọi thiết kế của chúng tôi đều bắt nguồn từ di sản văn hóa phong phú. Mỗi đường kim mũi chỉ đều mang theo sự tôn kính đối với nghệ thuật cổ truyền.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Silk_embroidery_with_Tree_of_Life_motif_from_Vietnam.JPG",
+    image: "https://via.placeholder.com/800x600/9CA3AF/FFFFFF?text=DEMO+800x600",
     reverse: true,
   },
   {
@@ -25,7 +25,7 @@ const values = [
     title: "Chất Lượng Thủ Công",
     subtitle: "Quality Craftsmanship",
     description: "Làm việc với các nghệ nhân địa phương tài hoa, vẻ đẹp của những sản phẩm thủ công cao cấp của chúng tôi sẽ vượt qua thử thách của thời gian. Mỗi tác phẩm đều là kết tinh của sự kiên nhẫn và tâm huyết.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Commissioned_embroidery_by_V%C5%A9_Ng%E1%BB%8Dc_Ho%C3%A1nh%2C_Chief_of_L%E1%BA%A1ng_S%C6%A1n_Province_02.jpg",
+    image: "https://via.placeholder.com/800x600/9CA3AF/FFFFFF?text=DEMO+800x600",
     reverse: false,
   },
 ];
