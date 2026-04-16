@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Eye } from "lucide-react";
+import { Star, Eye, Heart } from "lucide-react";
 import QuickViewModal from "@/components/product/QuickViewModal";
+import { useWebsite } from "@/context/WebsiteContext";
 
 type TabType = "new" | "bestsellers";
 
