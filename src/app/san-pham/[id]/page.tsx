@@ -34,12 +34,12 @@ const products = [
     name: "Túi Xách Da Thật Cao Cấp",
     price: 11500000,
     originalPrice: 13500000,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80",
+    image: "https://placehold.co/800x800/9CA3AF/FFFFFF?text=DEMO+800x800",
     gallery: [
-      "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=800&q=80",
-      "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=800&q=80",
-      "https://images.unsplash.com/photo-1591561954557-26941169b49e?w=800&q=80",
-      "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=800&q=80",
+      "https://placehold.co/800x800/9CA3AF/FFFFFF?text=DEMO+800x800",
+      "https://placehold.co/800x800/6B7280/FFFFFF?text=GALLERY+1",
+      "https://placehold.co/800x800/6B7280/FFFFFF?text=GALLERY+2",
+      "https://placehold.co/800x800/6B7280/FFFFFF?text=GALLERY+3",
     ],
     category: "Phụ kiện thời trang",
     rating: 5,
@@ -68,10 +68,10 @@ const products = [
     id: "2",
     name: "Tranh Thêu Quạt Giấy",
     price: 650000,
-    image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80",
+    image: "https://placehold.co/800x800/9CA3AF/FFFFFF?text=DEMO+800x800",
     gallery: [
-      "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80",
-      "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+      "https://placehold.co/800x800/9CA3AF/FFFFFF?text=DEMO+800x800",
+      "https://placehold.co/800x800/6B7280/FFFFFF?text=GALLERY+1",
     ],
     category: "Tranh thêu tay",
     rating: 5,
@@ -98,10 +98,10 @@ const reviews = [
 ];
 
 const relatedProducts = [
-  { id: "3", name: "Túi Xách Da Mini", price: 7500000, image: "https://images.unsplash.com/photo-1566150905458-1bf1fc113f0d?w=400&q=80", rating: 5, reviews: 8 },
-  { id: "4", name: "Ví Da Cầm Tay", price: 3200000, image: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&q=80", rating: 5, reviews: 12 },
-  { id: "5", name: "Thắt Lưng Da", price: 2800000, image: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=400&q=80", rating: 4, reviews: 6 },
-  { id: "6", name: "Túi Đeo Chéo", price: 5800000, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=400&q=80", rating: 5, reviews: 15 },
+  { id: "3", name: "Túi Xách Da Mini", price: 7500000, image: "https://placehold.co/400x400/9CA3AF/FFFFFF?text=DEMO+400x400", rating: 5, reviews: 8 },
+  { id: "4", name: "Ví Da Cầm Tay", price: 3200000, image: "https://placehold.co/400x400/9CA3AF/FFFFFF?text=DEMO+400x400", rating: 5, reviews: 12 },
+  { id: "5", name: "Thắt Lưng Da", price: 2800000, image: "https://placehold.co/400x400/9CA3AF/FFFFFF?text=DEMO+400x400", rating: 4, reviews: 6 },
+  { id: "6", name: "Túi Đeo Chéo", price: 5800000, image: "https://placehold.co/400x400/9CA3AF/FFFFFF?text=DEMO+400x400", rating: 5, reviews: 15 },
 ];
 
 // export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {

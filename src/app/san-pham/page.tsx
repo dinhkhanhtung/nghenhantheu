@@ -66,12 +66,12 @@ function ProductsContent() {
         if (!db) {
           // Fallback to mock data if Firebase not configured
           const mockProducts = [
-            { id: "1", name: "Tranh thêu hoa sen - Tinh khiết từ bùn", price: 2800000, image: "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80", category: "Tranh thêu tay" },
-            { id: "2", name: "Tranh thêu chim hạc - Tùng hạc diên niên", price: 3500000, image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80", category: "Tranh thêu tay" },
-            { id: "3", name: "Tranh thêu cô gái Việt - Dịu dàng áo dài", price: 4200000, image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80", category: "Tranh thêu tay" },
-            { id: "4", name: "Tranh thêu phong cảnh - Làng quê yên bình", price: 3200000, image: "https://images.unsplash.com/photo-1582562124811-c8ed1b31bc3b?w=600&q=80", category: "Tranh thêu tay" },
-            { id: "5", name: "Khung thêu gỗ sồi cao cấp 40x50cm", price: 450000, image: "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=600&q=80", category: "Phụ kiện thêu" },
-            { id: "6", name: "Bộ chỉ thêu 100 màu cao cấp", price: 280000, image: "https://images.unsplash.com/photo-1606293926075-69a00febf281?w=600&q=80", category: "Phụ kiện thêu" },
+            { id: "1", name: "Tranh thêu hoa sen - Tinh khiết từ bùn", price: 2800000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Tranh thêu tay" },
+            { id: "2", name: "Tranh thêu chim hạc - Tùng hạc diên niên", price: 3500000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Tranh thêu tay" },
+            { id: "3", name: "Tranh thêu cô gái Việt - Dịu dàng áo dài", price: 4200000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Tranh thêu tay" },
+            { id: "4", name: "Tranh thêu phong cảnh - Làng quê yên bình", price: 3200000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Tranh thêu tay" },
+            { id: "5", name: "Khung thêu gỗ sồi cao cấp 40x50cm", price: 450000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Phụ kiện thêu" },
+            { id: "6", name: "Bộ chỉ thêu 100 màu cao cấp", price: 280000, image: "https://placehold.co/600x600/9CA3AF/FFFFFF?text=DEMO+600x600", category: "Phụ kiện thêu" },
           ];
           setProducts(mockProducts);
           return;

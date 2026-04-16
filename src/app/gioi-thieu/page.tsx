@@ -33,7 +33,7 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1920&q=80"
+          src="https://placehold.co/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080"
           alt="Về chúng tôi"
           fill
           className="object-cover"
@@ -91,7 +91,7 @@ export default function AboutPage() {
             className="relative aspect-[4/3] overflow-hidden rounded-lg"
           >
             <Image
-              src="https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80"
+              src="https://placehold.co/800x600/9CA3AF/FFFFFF?text=DEMO+800x600"
               alt="Nghệ nhân thêu tay"
               fill
               className="object-cover"

@@ -9,7 +9,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image: "https://via.placeholder.com/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
+    image: "https://placehold.co/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
     title: "Nghệ Thuật Thêu Tay",
     subtitle: "Truyền thống Việt Nam",
     description: "Mỗi đường kim mũi chỉ đều mang theo tâm huyết và kỹ nghệ được truyền lại qua nhiều thế hệ.",
@@ -18,7 +18,7 @@ const slides = [
   },
   {
     id: 2,
-    image: "https://via.placeholder.com/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
+    image: "https://placehold.co/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
     title: "Khóa Học Thêu Online",
     subtitle: "Học từ cơ bản đến nâng cao",
     description: "Trải nghiệm nghệ thuật thêu tay với các khóa học được thiết kế bài bản.",
@@ -27,7 +27,7 @@ const slides = [
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
+    image: "https://placehold.co/1920x1080/9CA3AF/FFFFFF?text=DEMO+1920x1080",
     title: "Phụ Kiện Thêu Cao Cấp",
     subtitle: "Khung, chỉ, kim chất lượng",
     description: "Tất cả dụng cụ bạn cần để bắt đầu hành trình thêu tay.",
